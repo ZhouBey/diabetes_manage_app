@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <TextView
+        android:id="@+id/tv_input_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/font_deep_gray"
+        android:textSize="@dimen/font_size19"
+        />
+
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:layout_marginTop="7dp"-->
+        <!--android:background="@color/line_color" />-->
+
+    <EditText
+        android:id="@+id/et_input_content"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/radius_layout_shape"
+        android:paddingLeft="5dp"
+        android:singleLine="true"
+        android:textColor="@color/font_deep_gray"
+        android:textColorHint="@color/font_thin_gray"
+        android:textSize="@dimen/font_size17"
+        android:layout_marginTop="15dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_input_submit"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_shape"
+        android:gravity="center"
+        android:text="确定"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/font_size17" />
+
+    <TextView
+        android:id="@+id/tv_input_error_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="哈哈，错了"
+        android:layout_marginTop="7dp"
+        android:textSize="@dimen/font_size14"
+        android:textColor="@android:color/holo_red_light"
+        android:visibility="gone"
+        />
+</LinearLayout>

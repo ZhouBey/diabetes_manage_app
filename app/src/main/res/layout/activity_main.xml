@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <com.zpy.diabetes.app.widget.MyViewPager
+        android:id="@+id/viewPagerMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/nav_buttons"
+        android:layout_alignParentTop="true" />
+
+    <com.zpy.diabetes.app.widget.IconButtonContainer
+        android:id="@id/nav_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorNavBackground"
+        android:orientation="horizontal">
+
+        <com.zpy.diabetes.app.widget.IconButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            app:buttonIcon="@mipmap/icon_nav_home"
+            app:iconButtonPressedTextColor="@color/theme_color"
+            app:iconButtonTextColor="@color/colorWhite"
+            app:iconSize="22dp"
+            app:pressedIcon="@mipmap/icon_nav_home_press"
+            app:text="首页"
+            app:textSize="@dimen/font_size14" />
+
+        <com.zpy.diabetes.app.widget.IconButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            app:buttonIcon="@mipmap/icon_nav_search"
+            app:iconButtonPressedTextColor="@color/theme_color"
+            app:iconButtonTextColor="@color/colorWhite"
+            app:iconSize="22dp"
+            app:pressedIcon="@mipmap/icon_nav_search_press"
+            app:text="发现"
+            app:textSize="@dimen/font_size14" />
+
+        <com.zpy.diabetes.app.widget.IconButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            app:buttonIcon="@mipmap/icon_nav_user"
+            app:iconButtonPressedTextColor="@color/theme_color"
+            app:iconButtonTextColor="@color/colorWhite"
+            app:iconSize="22dp"
+            app:pressedIcon="@mipmap/icon_nav_user_press"
+            app:text="我的"
+            app:textSize="@dimen/font_size14" />
+
+        <!--<com.zpy.diabetes.app.widget.IconButton-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:paddingBottom="5dp"-->
+            <!--android:paddingTop="5dp"-->
+            <!--app:buttonIcon="@mipmap/icon_nav_more"-->
+            <!--app:iconButtonPressedTextColor="@color/theme_color"-->
+            <!--app:iconButtonTextColor="@color/colorWhite"-->
+            <!--app:iconSize="22dp"-->
+            <!--app:pressedIcon="@mipmap/icon_nav_more_press"-->
+            <!--app:text="更多"-->
+            <!--app:textSize="@dimen/font_size14" />-->
+    </com.zpy.diabetes.app.widget.IconButtonContainer>
+
+</RelativeLayout>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:fitsSystemWindows="true">
+
+    <com.zpy.diabetes.app.widget.LineEditText
+        android:id="@+id/et_register_doctor_phone"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@null"
+        android:hint="请输入手机号"
+        android:inputType="phone"
+        android:maxLength="11"
+        android:singleLine="true"
+        android:textColor="@color/font_deep_gray"
+        android:textColorHint="@color/font_thin_gray"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/font_size16"
+        app:lineColor="@color/theme_color"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        />
+
+
+    <com.zpy.diabetes.app.widget.LineEditText
+        android:id="@+id/et_register_doctor_password"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@id/et_register_doctor_phone"
+        android:layout_alignRight="@id/et_register_doctor_phone"
+        android:layout_below="@id/et_register_doctor_phone"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="15dp"
+        android:background="@null"
+        android:hint="请输入密码"
+        android:inputType="textPassword"
+        android:maxLines="20"
+        android:singleLine="true"
+        android:textColor="@color/font_deep_gray"
+        android:textColorHint="@color/font_thin_gray"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/font_size16"
+        app:lineColor="@color/theme_color" />
+
+
+    <com.zpy.diabetes.app.widget.LineEditText
+        android:id="@+id/et_register_doctor_confirm_password"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@id/et_register_doctor_password"
+        android:layout_alignRight="@id/et_register_doctor_password"
+        android:layout_below="@id/et_register_doctor_password"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="15dp"
+        android:background="@null"
+        android:hint="请确认密码"
+        android:inputType="textPassword"
+        android:maxLines="20"
+        android:singleLine="true"
+        android:textColor="@color/font_deep_gray"
+        android:textColorHint="@color/font_thin_gray"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/font_size16"
+        app:lineColor="@color/theme_color" />
+
+    <RelativeLayout
+        android:id="@+id/layout_register_doctor_verify_code"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@id/et_register_doctor_phone"
+        android:layout_alignRight="@id/et_register_doctor_phone"
+        android:layout_below="@id/et_register_doctor_confirm_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_doctor_click_to_get_verify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/radius_button_shape"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp"
+            android:text="点击获取"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/font_size16" />
+
+        <com.zpy.diabetes.app.widget.LineEditText
+            android:id="@+id/et_register_doctor_message_verify"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_toLeftOf="@id/tv_doctor_click_to_get_verify"
+            android:background="@null"
+            android:hint="请输入验证码"
+            android:maxLines="8"
+            android:singleLine="true"
+            android:textColor="@color/font_deep_gray"
+            android:textColorHint="@color/font_thin_gray"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/font_size16"
+            app:lineColor="@color/theme_color" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_register_doctor"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_alignLeft="@id/et_register_doctor_phone"
+        android:layout_alignRight="@id/et_register_doctor_phone"
+        android:layout_below="@id/layout_register_doctor_verify_code"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/radius_button_shape"
+        android:gravity="center"
+        android:text="注册"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/font_size20" />
+</RelativeLayout>
+

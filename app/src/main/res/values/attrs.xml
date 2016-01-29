@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="IconButton">
+        <attr name="pressedIcon" format="reference" />
+        <attr name="buttonIcon" format="reference" />
+        <attr name="text" format="string" />
+        <attr name="iconSize" format="dimension" />
+        <attr name="textSize" format="dimension" />
+        <attr name="iconButtonPressedTextColor" format="color" />
+        <attr name="iconButtonTextColor" format="color" />
+        <attr name="pressedBackground" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="LineEditText">
+        <attr name="lineColor" format="color"/>
+        <attr name="lineHeight" format="dimension"/>
+    </declare-styleable>
+</resources>

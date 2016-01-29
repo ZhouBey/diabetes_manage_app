@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <RelativeLayout
+        android:id="@+id/layout_qa_suffer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp">
+
+        <com.github.siyamed.shapeimageview.CircularImageView
+            android:id="@+id/image_qa_item_photo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/img_default_photo_gray"
+            app:siBorderColor="@color/dark_gray"
+            app:siBorderWidth="1dp" />
+
+        <TextView
+            android:id="@+id/tv_qa_item_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/image_qa_item_photo"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/image_qa_item_photo"
+            android:textColor="@color/font_deep_gray"
+            android:textSize="@dimen/font_size15" />
+
+        <TextView
+            android:id="@+id/tv_qa_item_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/image_qa_item_photo"
+            android:layout_alignLeft="@id/tv_qa_item_phone"
+            android:textColor="@color/font_deep_gray"
+            android:textSize="@dimen/font_size12" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignBottom="@id/layout_qa_suffer"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="17dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="3dp"
+            android:src="@mipmap/icon_qa_reply_count"
+            />
+
+        <TextView
+            android:id="@+id/tv_qa_item_reply_count"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/font_thin_gray"
+            android:textSize="@dimen/font_size15"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_qa_item_question_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/layout_qa_suffer"
+        android:layout_below="@id/layout_qa_suffer"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="15dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="@color/font_deep_gray"
+        android:textSize="@dimen/font_size16" />
+
+    <TextView
+        android:id="@+id/tv_qa_item_question_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/layout_qa_suffer"
+        android:layout_below="@id/tv_qa_item_question_title"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="3dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="@color/font_thin_gray"
+        android:textSize="@dimen/font_size14" />
+</RelativeLayout>

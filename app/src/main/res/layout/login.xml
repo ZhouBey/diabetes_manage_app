@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:fitsSystemWindows="true">
+
+    <com.zpy.diabetes.app.widget.LineEditText
+        android:id="@+id/et_login_phone"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@null"
+        android:hint="请输入手机号"
+        android:inputType="phone"
+        android:maxLength="11"
+        android:singleLine="true"
+        android:textColor="@color/font_deep_gray"
+        android:textColorHint="@color/font_thin_gray"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/font_size16"
+        app:lineColor="@color/theme_color"
+        android:text="13837113789"/>
+
+    <com.zpy.diabetes.app.widget.LineEditText
+        android:id="@+id/et_login_password"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@id/et_login_phone"
+        android:layout_alignRight="@id/et_login_phone"
+        android:layout_below="@id/et_login_phone"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:background="@null"
+        android:hint="请输入密码"
+        android:inputType="textPassword"
+        android:maxLength="20"
+        android:singleLine="true"
+        android:textColor="@color/font_deep_gray"
+        android:textColorHint="@color/font_thin_gray"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/font_size16"
+        app:lineColor="@color/theme_color"
+        android:text="qwer1234"/>
+
+    <RadioGroup
+        android:id="@+id/radio_group_role"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/et_login_phone"
+        android:layout_alignRight="@id/et_login_password"
+        android:layout_below="@id/et_login_password"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radio_suffer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="患者"
+            android:textColor="@color/font_deep_gray"
+            android:textSize="@dimen/font_size16"
+            android:checked="true"
+            />
+
+        <RadioButton
+            android:id="@+id/radio_doctor"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="医生"
+            android:textColor="@color/font_deep_gray"
+            android:textSize="@dimen/font_size16"/>
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tv_login"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_alignLeft="@id/et_login_password"
+        android:layout_alignRight="@id/et_login_password"
+        android:layout_below="@id/radio_group_role"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/radius_button_shape"
+        android:gravity="center"
+        android:text="登录"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/font_size20"
+        android:fontFamily="sans-serif-light"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <TextView
+            android:id="@+id/tv_login_forget_password"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="忘记密码"
+            android:textColor="@color/font_gray"
+            android:textSize="@dimen/font_size16" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/font_gray" />
+
+        <TextView
+            android:id="@+id/tv_login_register"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="注册账号"
+            android:textColor="@color/font_gray"
+            android:textSize="@dimen/font_size16" />
+
+    </LinearLayout>
+</RelativeLayout>

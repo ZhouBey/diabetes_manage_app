@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <TextView
+        android:id="@+id/tv_submit_question"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_shape"
+        android:gravity="center"
+        android:text="提交"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/font_size17" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignLeft="@id/tv_submit_question"
+        android:layout_alignRight="@id/tv_submit_question"
+        android:layout_marginTop="12dp"
+        android:layout_above="@id/tv_submit_question"
+        android:orientation="vertical"
+        android:background="@drawable/radius_line_shape">
+        <EditText
+            android:id="@+id/et_ask_question_title"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:textColor="@color/font_deep_gray"
+            android:textSize="@dimen/font_size17"
+            android:hint="请输入问题标题"
+            android:textColorHint="@color/font_thin_gray"
+            android:singleLine="true"
+            android:layout_marginLeft="10dp"
+            android:maxLength="100"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line_color"/>
+        <EditText
+            android:id="@+id/et_ask_question_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:textColor="@color/font_deep_gray"
+            android:textSize="@dimen/font_size17"
+            android:hint="请详细描述您的问题、症状、身体状况"
+            android:textColorHint="@color/font_thin_gray"
+            android:singleLine="false"
+            android:layout_margin="10dp"
+            android:gravity="top"
+            android:lineSpacingMultiplier="1.3"/>
+    </LinearLayout>
+</RelativeLayout>

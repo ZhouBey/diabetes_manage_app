@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="theme_color">#30a0a7</color>
+    <color name="theme_thin_color">#32a5ac</color>
+    <color name="theme_deep_color">#3095a0</color>
+    <color name="main_background">#F5F5F5</color>
+    <color name="colorNavBackground">#414154</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="font_deep_gray">#5b5b5b</color>
+    <color name="font_gray">#88878f</color>
+    <color name="font_thin_gray">#93929A</color>
+    <color name="transparent00">#00000000</color>
+    <color name="line_color">#e2e3e5</color>
+    <color name="font_black">#333333</color>
+    <color name="dark_gray">#666666</color>
+
+    <color name="color_sugar_mark_low">#FF8309</color>
+    <color name="color_sugar_mark_middle">#01B18A</color>
+    <color name="color_sugar_mark_high">#F02A41</color>
+
+    <color name="account_bar_color">#36b097</color>
+    <color name="btn_not_click">#c9c9c9</color>
+    <color name="background_gray">#cccccc</color>
+</resources>

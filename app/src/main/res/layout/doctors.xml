@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line_color" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/radius_layout_shape"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/icon_search" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:background="@null"
+            android:hint="请输入医生姓名和医院查找"
+            android:maxLength="50"
+            android:singleLine="true"
+            android:textColor="@color/font_deep_gray"
+            android:textColorHint="@color/font_thin_gray"
+            android:textSize="@dimen/font_size16" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="7dp"
+        android:background="@color/line_color" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayoutDoctorList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/listview_doctors"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/line_color"
+            android:dividerHeight="1dp" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

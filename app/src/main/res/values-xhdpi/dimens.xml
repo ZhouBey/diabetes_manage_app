@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="font_size50">50dp</dimen>
+    <dimen name="font_size30">30dp</dimen>
+    <dimen name="font_size25">25dp</dimen>
+    <dimen name="font_size24">24dp</dimen>
+    <dimen name="font_size23">23dp</dimen>
+    <dimen name="font_size22">22dp</dimen>
+    <dimen name="font_size21">21dp</dimen>
+    <dimen name="font_size20">20dp</dimen>
+    <dimen name="font_size19">19dp</dimen>
+    <dimen name="font_size18">18dp</dimen>
+    <dimen name="font_size17">17dp</dimen>
+    <dimen name="font_size16">16dp</dimen>
+    <dimen name="font_size15">15dp</dimen>
+    <dimen name="font_size14">14dp</dimen>
+    <dimen name="font_size13">13dp</dimen>
+    <dimen name="font_size12">12dp</dimen>
+
+    <dimen name="loading_petal_thickness">3dp</dimen>
+
+</resources>
