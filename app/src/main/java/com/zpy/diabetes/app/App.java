@@ -15,7 +15,7 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//全局application
 public class App extends Application {
     public static final String PERSONAL_DATA = "personal_data";
     private static SharedPreferences personData;
