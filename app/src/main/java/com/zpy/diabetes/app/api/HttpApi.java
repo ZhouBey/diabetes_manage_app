@@ -390,6 +390,14 @@ public class HttpApi {
         });
     }
 
+    /**
+     * 提问
+     * @param token
+     * @param title
+     * @param content
+     * @param dialog
+     * @param holder
+     */
     public void askQuestion(String token, String title, String content, final ACProgressFlower dialog, final IAppUserTokenBeanHolder holder) {
         if (isNotOverDue()) {
             RequestParams params = new RequestParams(AppConfig.ASK_QUESTION);
