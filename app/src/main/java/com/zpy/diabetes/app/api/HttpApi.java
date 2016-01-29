@@ -433,6 +433,13 @@ public class HttpApi {
         }
     }
 
+    /**
+     * 意见反馈
+     * @param token
+     * @param content
+     * @param dialog
+     * @param holder
+     */
     public void feedBack(String token, String content, final ACProgressFlower dialog, final IAppCommonBeanHolder holder) {
         RequestParams params = new RequestParams(AppConfig.FEED_BACK);
         params.addBodyParameter("content", content);
