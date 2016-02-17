@@ -14,8 +14,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bigkoo.convenientbanner.ConvenientBanner;
-import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.zpy.diabetes.app.R;
 import com.zpy.diabetes.app.adapter.HealthInfoListViewAdapter;
@@ -39,8 +37,6 @@ import com.zpy.diabetes.app.widget.acpf.ACProgressFlower;
 import com.zpy.diabetes.app.widget.linechart.FancyChartPointListener;
 import com.zpy.diabetes.app.widget.linechart.data.Point;
 
-
-import org.xutils.common.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;

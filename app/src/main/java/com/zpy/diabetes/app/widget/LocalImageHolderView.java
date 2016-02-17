@@ -6,10 +6,8 @@ import android.widget.ImageView;
 
 import com.bigkoo.convenientbanner.holder.Holder;
 import com.zpy.diabetes.app.R;
-import com.zpy.diabetes.app.config.AppConfig;
 import com.zpy.diabetes.app.my.MyCommonCallbackForDrawable;
 
-import org.xutils.common.util.LogUtil;
 import org.xutils.x;
 
 /**

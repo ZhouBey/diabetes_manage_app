@@ -38,7 +38,7 @@ public class BaseActivity extends AppCompatActivity {
 //                localClassName.equals("ui.GestureStartVerifyActivity")) {
 //            initSystemBarTint(true, R.color.transparent00);
 //        } else {
-            initSystemBarTint(true, R.color.theme_deep_color);
+            initSystemBarTint(true, R.color.theme_color);
 //        }
     }
 

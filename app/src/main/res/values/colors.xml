@@ -5,8 +5,7 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="theme_color">#30a0a7</color>
-    <color name="theme_thin_color">#32a5ac</color>
-    <color name="theme_deep_color">#3095a0</color>
+    <!--<color name="theme_thin_color">#32a5ac</color>-->
     <color name="main_background">#F5F5F5</color>
     <color name="colorNavBackground">#414154</color>
     <color name="colorWhite">#ffffff</color>

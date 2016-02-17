@@ -302,30 +302,19 @@ public class HttpApi {
      * 更新患者资料
      *
      * @param token
-     * @param name
-     * @param sex
-     * @param birthday
-     * @param sufferDate
+     * @param key
+     * @param value
      * @param dialog
      * @param holder
      */
-    public void updateSuffererInfo(String token, String name, String sex, String birthday, String sufferDate, final ACProgressFlower dialog, final IAppUserTokenBeanHolder holder) {
+    public void updateSuffererInfo(String token, String key, String value, final ACProgressFlower dialog, final IAppUserTokenBeanHolder holder) {
         if (isNotOverDue()) {
             RequestParams params = new RequestParams(AppConfig.UPDATE_SUFFERER_INFO);
             if (!TextUtil.isEmpty(token)) {
                 params.addBodyParameter(AppConfig.TOKEN, token);
             }
-            if (!TextUtil.isEmpty(name)) {
-                params.addBodyParameter("name", name);
-            }
-            if (!TextUtil.isEmpty(sex)) {
-                params.addBodyParameter("sex", sex);
-            }
-            if (!TextUtil.isEmpty(birthday)) {
-                params.addBodyParameter("birthday", birthday);
-            }
-            if (!TextUtil.isEmpty(sufferDate)) {
-                params.addBodyParameter("sufferDate", sufferDate);
+            if (!TextUtil.isEmpty(key) && !TextUtil.isEmpty(value)) {
+                params.addBodyParameter(key, value);
             }
             x.http().post(params, new Callback.CommonCallback<String>() {
                 @Override
@@ -392,6 +381,7 @@ public class HttpApi {
 
     /**
      * 提问
+     *
      * @param token
      * @param title
      * @param content
@@ -435,6 +425,7 @@ public class HttpApi {
 
     /**
      * 意见反馈
+     *
      * @param token
      * @param content
      * @param dialog
@@ -676,10 +667,11 @@ public class HttpApi {
             holder.overDue();
         }
     }
-    public void getAllDoctorList(int currentPage,final SwipeRefreshLayout swipeRefreshLayout,final IAppCommonBeanHolder holder) {
+
+    public void getAllDoctorList(int currentPage, final SwipeRefreshLayout swipeRefreshLayout, final IAppCommonBeanHolder holder) {
         RequestParams params = new RequestParams(AppConfig.GET_ALL_DOCTOR);
-        params.addBodyParameter("currentPage",String.valueOf(currentPage));
-        params.addBodyParameter("showCount",String.valueOf(AppConfig.SHOW_COUNT));
+        params.addBodyParameter("currentPage", String.valueOf(currentPage));
+        params.addBodyParameter("showCount", String.valueOf(AppConfig.SHOW_COUNT));
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {

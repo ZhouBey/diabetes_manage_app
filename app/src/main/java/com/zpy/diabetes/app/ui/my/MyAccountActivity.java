@@ -67,8 +67,7 @@ public class MyAccountActivity extends BaseActivity implements BaseUIInterf, Vie
             layout_account_info_sex,
             layout_account_info_birthday,
             layout_account_info_suffer_date;
-    private TextView tvRight,
-            tv_account_info_birthday,
+    private TextView tv_account_info_birthday,
             tv_account_info_suffer_date,
             tv_account_info_sex,
             tv_account_info_name,
@@ -80,7 +79,7 @@ public class MyAccountActivity extends BaseActivity implements BaseUIInterf, Vie
     private SuffererBean suffererBean;
     private String name, phone, sex, suffer_date, birthday, photo;
     private String newName, newSex, newSuffererDate, newBirthday;
-    private boolean isUpdate;
+    //    private boolean isUpdate;
     private ACProgressFlower loadingDialog;
     private boolean isRefresh;
     private File uploadFile;
@@ -97,11 +96,9 @@ public class MyAccountActivity extends BaseActivity implements BaseUIInterf, Vie
     @Override
     public void init() {
         actionBar = getSupportActionBar();
-        ActivityUtil.showActionBar(myActionBar, actionBar, R.mipmap.back, "保存", "我的账户");
+        ActivityUtil.showActionBar(myActionBar, actionBar, R.mipmap.back, -1, "我的账户");
         imageLeft = myActionBar.getImageViewLeft();
         imageLeft.setOnClickListener(this);
-        tvRight = myActionBar.getTv_title_bar_right();
-        tvRight.setOnClickListener(this);
         bundle = getIntent().getExtras();
         suffererBean = (SuffererBean) bundle.getSerializable("sufferer");
         image_my_account_info_photo = (CircularImageView) findViewById(R.id.image_my_account_info_photo);
@@ -126,7 +123,7 @@ public class MyAccountActivity extends BaseActivity implements BaseUIInterf, Vie
         tv_account_info_phone = (TextView) findViewById(R.id.tv_account_info_phone);
         tv_logout = (TextView) findViewById(R.id.tv_logout);
         tv_logout.setOnClickListener(this);
-        isUpdate = false;
+//        isUpdate = false;
         isRefresh = false;
         loadingDialog = ActivityUtil.getLoadingDialog(this);
     }
@@ -142,7 +139,6 @@ public class MyAccountActivity extends BaseActivity implements BaseUIInterf, Vie
             if (!"null".equals(phone)) {
                 tv_account_info_phone.setText(String.valueOf(phone));
             }
-            LogUtil.e("" + suffererBean.getSex());
             sex = TextUtil.getSexStr(suffererBean.getSex());
             if (!"null".equals(sex)) {
                 tv_account_info_sex.setText(String.valueOf(sex));
@@ -171,65 +167,6 @@ public class MyAccountActivity extends BaseActivity implements BaseUIInterf, Vie
                 this.setResult(AppConfig.REFRESH_ACCOUNT_RESULT);
             }
             this.finish();
-        }
-        if (v == tvRight) {
-            newName = tv_account_info_name.getText().toString();
-            if (name.equals(newName)) {
-                newName = "";
-            } else {
-                isUpdate = true;
-            }
-            newSex = tv_account_info_sex.getText().toString();
-            if (sex.equals(newSex)) {
-                newSex = "";
-            } else {
-                isUpdate = true;
-            }
-            newBirthday = tv_account_info_birthday.getText().toString();
-            if (birthday.equals(newBirthday)) {
-                newBirthday = "";
-            } else {
-                isUpdate = true;
-            }
-            newSuffererDate = tv_account_info_suffer_date.getText().toString();
-            if (suffer_date.equals(newSuffererDate)) {
-                newSuffererDate = "";
-            } else {
-                isUpdate = true;
-            }
-            String token = getApp().getShareDataStr(AppConfig.TOKEN);
-            if (!TextUtil.isEmpty(token) && isUpdate) {
-                loadingDialog.show();
-                getApp().getHttpApi().updateSuffererInfo(token, newName, newSex, newBirthday,
-                        newSuffererDate, loadingDialog, new IAppUserTokenBeanHolder() {
-                            @Override
-                            public void asynHold(AppBean bean) {
-                                if (bean != null) {
-                                    ResultBean resultBean = (ResultBean) bean;
-                                    if (AppConfig.OK.equals(resultBean.getCode())) {
-                                        Toast.makeText(MyAccountActivity.this, "保存成功！", Toast.LENGTH_SHORT).show();
-                                        name = tv_account_info_name.getText().toString();
-                                        sex = tv_account_info_sex.getText().toString();
-                                        birthday = tv_account_info_birthday.getText().toString();
-                                        suffer_date = tv_account_info_suffer_date.getText().toString();
-                                        isUpdate = false;
-                                        isRefresh = true;
-                                    } else {
-                                        Toast.makeText(MyAccountActivity.this, resultBean.getMsg(), Toast.LENGTH_SHORT).show();
-                                    }
-                                } else {
-                                    ActivityUtil.loadError(MyAccountActivity.this);
-                                }
-                            }
-
-                            @Override
-                            public void overDue() {
-                                ActivityUtil.overdue(MyAccountActivity.this, loadingDialog, false);
-                            }
-                        });
-            } else {
-                Toast.makeText(MyAccountActivity.this, "您没有修改资料", Toast.LENGTH_SHORT).show();
-            }
         }
         if (v == image_my_account_info_photo) {
             final UploadPhotoDialog dialog = new UploadPhotoDialog(this, R.style.GrayDialog);
@@ -318,8 +255,8 @@ public class MyAccountActivity extends BaseActivity implements BaseUIInterf, Vie
                     return;
                 }
                 if (TextUtil.checkChinese(content)) {
-                    tv_account_info_name.setText(content);
                     dialog.dismiss();
+                    update("name", content, tv_account_info_name);
                 } else {
                     tv_input_error_message.setVisibility(View.VISIBLE);
                     tv_input_error_message.setText("请填写中文姓名");
@@ -344,7 +281,10 @@ public class MyAccountActivity extends BaseActivity implements BaseUIInterf, Vie
         @Override
         public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
             // TODO Auto-generated method stub
-            tv_account_info_birthday.setText(String.valueOf(arg1) + "-" + String.valueOf(arg2 + 1) + "-" + String.valueOf(arg3));
+            String mouth = arg2 + 1 > 9 ? String.valueOf(arg2 + 1) : ("0" + String.valueOf(arg2 + 1));
+            String day = arg3 > 9 ? String.valueOf(arg3) : ("0" + arg3);
+            String date = String.valueOf(arg1) + "-" + mouth + "-" + day;
+            update("birthday", date, tv_account_info_birthday);
         }
     };
 
@@ -352,7 +292,10 @@ public class MyAccountActivity extends BaseActivity implements BaseUIInterf, Vie
         @Override
         public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
             // TODO Auto-generated method stub
-            tv_account_info_suffer_date.setText(String.valueOf(arg1) + "-" + String.valueOf(arg2 + 1) + "-" + String.valueOf(arg3));
+            String mouth = arg2 + 1 > 9 ? String.valueOf(arg2 + 1) : ("0" + String.valueOf(arg2 + 1));
+            String day = arg3 > 9 ? String.valueOf(arg3) : ("0" + arg3);
+            String date = String.valueOf(arg1) + "-" + mouth + "-" + day;
+            update("sufferDate", date, tv_account_info_suffer_date);
         }
     };
 
@@ -371,8 +314,9 @@ public class MyAccountActivity extends BaseActivity implements BaseUIInterf, Vie
         listview_select_content.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                tv_account_info_sex.setText(list.get(position));
+                String sex = list.get(position);
                 dialog.dismiss();
+                update("sex", sex, tv_account_info_sex);
             }
         });
     }
@@ -381,6 +325,7 @@ public class MyAccountActivity extends BaseActivity implements BaseUIInterf, Vie
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            LogUtil.e(String.valueOf(isRefresh));
             if (isRefresh) {
                 this.setResult(AppConfig.REFRESH_ACCOUNT_RESULT);
                 this.finish();
@@ -488,6 +433,35 @@ public class MyAccountActivity extends BaseActivity implements BaseUIInterf, Vie
                 default:
                     break;
             }
+        }
+    }
+
+    private void update(String key, final String value, final TextView textView) {
+        String token = getApp().getShareDataStr(AppConfig.TOKEN);
+        if (!TextUtil.isEmpty(token)) {
+            loadingDialog.show();
+            getApp().getHttpApi().updateSuffererInfo(token, key, value, loadingDialog, new IAppUserTokenBeanHolder() {
+                @Override
+                public void asynHold(AppBean bean) {
+                    if (bean != null) {
+                        ResultBean resultBean = (ResultBean) bean;
+                        if (AppConfig.OK.equals(resultBean.getCode())) {
+                            Toast.makeText(MyAccountActivity.this, "保存成功！", Toast.LENGTH_SHORT).show();
+                            textView.setText(value);
+                            isRefresh = true;
+                        } else {
+                            Toast.makeText(MyAccountActivity.this, resultBean.getMsg(), Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        ActivityUtil.loadError(MyAccountActivity.this);
+                    }
+                }
+
+                @Override
+                public void overDue() {
+                    ActivityUtil.overdue(MyAccountActivity.this, loadingDialog, false);
+                }
+            });
         }
     }
 }

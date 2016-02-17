@@ -9,10 +9,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-
-import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.github.siyamed.shapeimageview.RoundedImageView;
@@ -25,14 +22,12 @@ import com.zpy.diabetes.app.ui.HealthInfoCenterActivity;
 import com.zpy.diabetes.app.util.ActivityUtil;
 import com.zpy.diabetes.app.util.TextUtil;
 import com.zpy.diabetes.app.widget.LocalImageHolderView;
+import com.zpy.diabetes.app.widget.banner.ConvenientBanner;
 import com.zpy.diabetes.app.widget.linechart.FancyChart;
 import com.zpy.diabetes.app.widget.linechart.FancyChartPointListener;
-import com.zpy.diabetes.app.widget.linechart.data.Point;
 
-import org.xutils.common.util.LogUtil;
 import org.xutils.x;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -192,6 +187,7 @@ public class HealthInfoListViewAdapter<T> extends ArrayAdapter<T> {
                     }, list);
             banner_doctor_home.startTurning(2000);
             banner_doctor_home.setOnItemClickListener(bannerOnItemClickListener);
+            banner_doctor_home.setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT);
         }
     }
 }

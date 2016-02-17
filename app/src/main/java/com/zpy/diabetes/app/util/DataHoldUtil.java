@@ -246,6 +246,7 @@ public class DataHoldUtil {
                 questionBean.setContent(questionObj.optString("content"));
                 questionBean.setTitle(questionObj.optString("title"));
                 questionBean.setCreateD(TextUtil.getTimeStr(questionObj.optLong("createD")));
+                LogUtil.e("createD="+String.valueOf(questionObj.optLong("createD")));
                 questionBean.setReplyCount(item.optInt("reply_count"));
                 JSONObject suffererObj = item.optJSONObject("sufferer");
                 if (suffererObj != null) {
@@ -331,7 +332,7 @@ public class DataHoldUtil {
             doctorPageBean.setPageInfo(pageInfo);
             JSONArray doctorsArr = data.optJSONArray("doctors");
             List<DoctorBean> doctorBeans = new ArrayList<>();
-            for(int i=0;i<doctorsArr.length();i++) {
+            for (int i = 0; i < doctorsArr.length(); i++) {
                 DoctorBean doctorBean = new DoctorBean();
                 JSONObject doctorObj = doctorsArr.optJSONObject(i);
                 doctorBean.setId(doctorObj.optInt("id"));

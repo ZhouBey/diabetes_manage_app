@@ -136,11 +136,10 @@ public class TextUtil {
         }
         String sd = null;
         if (timestamp != null) {
-            sd = sdf.format(new Date(Long.parseLong(String.valueOf(timestamp))));
+            sd = sdf.format(new Date(timestamp));
         } else {
             sd = sdf.format(new Date());
         }
-
         return sd;
     }
 
@@ -235,6 +234,7 @@ public class TextUtil {
         }
         return originalStr;
     }
+
     //根据当前日期判断是周几
     public static int getWeekOfDate(Date date) {
         int[] weekDays = {7, 1, 2, 3, 4, 5, 6};
@@ -264,17 +264,18 @@ public class TextUtil {
         }
         return new Date();
     }
+
     public static String getSexStr(int sex) {
-        if(sex==0) {
+        if (sex == 0) {
             return "男";
         }
-        if(sex==1) {
+        if (sex == 1) {
             return "女";
         }
         return "";
     }
 
     public static String getencryptPhone(String phone) {
-        return phone.substring(0,2)+"*****"+phone.substring(phone.length()-3,phone.length());
+        return phone.substring(0, 2) + "*****" + phone.substring(phone.length() - 3, phone.length());
     }
 }
