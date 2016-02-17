@@ -246,7 +246,6 @@ public class DataHoldUtil {
                 questionBean.setContent(questionObj.optString("content"));
                 questionBean.setTitle(questionObj.optString("title"));
                 questionBean.setCreateD(TextUtil.getTimeStr(questionObj.optLong("createD")));
-                LogUtil.e("createD="+String.valueOf(questionObj.optLong("createD")));
                 questionBean.setReplyCount(item.optInt("reply_count"));
                 JSONObject suffererObj = item.optJSONObject("sufferer");
                 if (suffererObj != null) {

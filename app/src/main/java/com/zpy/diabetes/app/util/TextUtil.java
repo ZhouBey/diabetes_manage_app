@@ -1,6 +1,9 @@
 package com.zpy.diabetes.app.util;
 
 import android.content.Context;
+import android.util.Log;
+
+import org.xutils.common.util.LogUtil;
 
 import java.math.BigDecimal;
 import java.security.MessageDigest;
@@ -128,18 +131,19 @@ public class TextUtil {
     }
 
     public static String getTimeStr(Long timestamp, String pattern) {
-        SimpleDateFormat sdf = null;
+        Date date;
+        if(timestamp!=null) {
+            date = new Date(timestamp);
+        } else {
+            date = new Date();
+        }
+        SimpleDateFormat sdf;
         if (isEmpty(pattern)) {
             sdf = new SimpleDateFormat("yyyy-MM-dd");
         } else {
             sdf = new SimpleDateFormat(pattern);
         }
-        String sd = null;
-        if (timestamp != null) {
-            sd = sdf.format(new Date(timestamp));
-        } else {
-            sd = sdf.format(new Date());
-        }
+        String sd = sdf.format(date);
         return sd;
     }
 
