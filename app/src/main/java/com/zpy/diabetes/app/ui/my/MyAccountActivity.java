@@ -163,8 +163,9 @@ public class MyAccountActivity extends BaseActivity implements BaseUIInterf, Vie
     @Override
     public void onClick(View v) {
         if (v == imageLeft) {
-            if (isRefresh) {
-                this.setResult(AppConfig.REFRESH_ACCOUNT_RESULT);
+            if(isRefresh) {
+                Intent intent_refresh_account = new Intent(AppConfig.REFRESH_ACCOUNT_ACTION);
+                sendBroadcast(intent_refresh_account);
             }
             this.finish();
         }
@@ -230,7 +231,8 @@ public class MyAccountActivity extends BaseActivity implements BaseUIInterf, Vie
         }
         if (v == tv_logout) {
             ActivityUtil.logout(getApp());
-            this.setResult(AppConfig.REFRESH_ACCOUNT_RESULT);
+            Intent intent_refresh_account = new Intent(AppConfig.REFRESH_ACCOUNT_ACTION);
+            sendBroadcast(intent_refresh_account);
             this.finish();
         }
 
@@ -327,7 +329,8 @@ public class MyAccountActivity extends BaseActivity implements BaseUIInterf, Vie
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
             LogUtil.e(String.valueOf(isRefresh));
             if (isRefresh) {
-                this.setResult(AppConfig.REFRESH_ACCOUNT_RESULT);
+                Intent intent_refresh_account = new Intent(AppConfig.REFRESH_ACCOUNT_ACTION);
+                sendBroadcast(intent_refresh_account);
                 this.finish();
             }
         }

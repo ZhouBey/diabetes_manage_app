@@ -235,7 +235,7 @@ public class UserFragment extends Fragment implements BaseUIInterf, View.OnClick
                     intent.putExtras(bundle);
                 }
             }
-            startActivityForResult(intent, AppConfig.REFRESH_ACCOUNT_REQUEST);
+            startActivity(intent);
         }
         if (v == layout_user_my_question) {
             intent = new Intent(activity, MyQuestionActivity.class);
@@ -272,11 +272,4 @@ public class UserFragment extends Fragment implements BaseUIInterf, View.OnClick
         }
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (AppConfig.REFRESH_ACCOUNT_RESULT == resultCode) {
-            getUserInfo();
-        }
-    }
 }

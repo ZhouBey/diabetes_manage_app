@@ -107,7 +107,8 @@ public class LoginActivity extends BaseActivity implements BaseUIInterf, View.On
                                     getApp().setShareData(AppConfig.EXPIRE_IN, tokenBean.getExpireIn());
                                     getApp().setShareData(AppConfig.TOKEN, tokenBean.getToken());
                                     getApp().setShareData(AppConfig.ROLE_TYPE, tokenBean.getRoleType());
-                                    LoginActivity.this.setResult(AppConfig.REFRESH_ACCOUNT_RESULT);
+                                    Intent intent_refresh_account = new Intent(AppConfig.REFRESH_ACCOUNT_ACTION);
+                                    sendBroadcast(intent_refresh_account);
                                     LoginActivity.this.finish();
                                 } else {
                                     Toast.makeText(LoginActivity.this, tokenBean.getMsg(), Toast.LENGTH_SHORT).show();
@@ -128,7 +129,8 @@ public class LoginActivity extends BaseActivity implements BaseUIInterf, View.On
                                     getApp().setShareData(AppConfig.EXPIRE_IN, tokenBean.getExpireIn());
                                     getApp().setShareData(AppConfig.TOKEN, tokenBean.getToken());
                                     getApp().setShareData(AppConfig.ROLE_TYPE, tokenBean.getRoleType());
-                                    LoginActivity.this.setResult(AppConfig.REFRESH_ACCOUNT_RESULT);
+                                    Intent intent_refresh_account = new Intent(AppConfig.REFRESH_ACCOUNT_ACTION);
+                                    sendBroadcast(intent_refresh_account);
                                     LoginActivity.this.finish();
                                 } else {
                                     Toast.makeText(LoginActivity.this,tokenBean.getMsg(),Toast.LENGTH_SHORT).show();

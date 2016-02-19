@@ -16,9 +16,8 @@ public class AppConfig {
     public static String SMS_APPSECRET = "e976a39389a4688472c287ede47017c1";
     public static final int READ_MSG = 1;
     public static final int DIRECT_CLOCKWISE = 100;
-    public static final int REFRESH_ACCOUNT_REQUEST = 110;
-    public static final int REFRESH_ACCOUNT_RESULT = 120;
     public static final int REFRESH_QA_LIST = 119;
+    public static final String REFRESH_ACCOUNT_ACTION = "refresh_account_action";
 
     //主机名
 //    public static final String HOST = "http://kobe-curry.imwork.net";

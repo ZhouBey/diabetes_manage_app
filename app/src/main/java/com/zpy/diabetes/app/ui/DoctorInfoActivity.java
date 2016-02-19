@@ -162,14 +162,14 @@ public class DoctorInfoActivity extends BaseActivity implements BaseUIInterf, Vi
     @Override
     public void onClick(View v) {
         if (v == leftImage) {
-            if(isRefresh) {
-                this.setResult(AppConfig.REFRESH_ACCOUNT_RESULT);
-            }
+            Intent intent_refresh_account = new Intent(AppConfig.REFRESH_ACCOUNT_ACTION);
+            sendBroadcast(intent_refresh_account);
             this.finish();
         }
         if (v == tv_doctor_logout) {
             ActivityUtil.logout(getApp());
-            this.setResult(AppConfig.REFRESH_ACCOUNT_RESULT);
+            Intent intent_refresh_account = new Intent(AppConfig.REFRESH_ACCOUNT_ACTION);
+            sendBroadcast(intent_refresh_account);
             this.finish();
         }
         if (v == image_doctors_info_photo) {
@@ -321,15 +321,5 @@ public class DoctorInfoActivity extends BaseActivity implements BaseUIInterf, Vi
                     break;
             }
         }
-    }
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
-            if (isRefresh) {
-                this.setResult(AppConfig.REFRESH_ACCOUNT_RESULT);
-                this.finish();
-            }
-        }
-        return super.onKeyDown(keyCode, event);
     }
 }

@@ -3,6 +3,7 @@ package com.zpy.diabetes.app.ui;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import com.zpy.diabetes.app.BaseActivity;
 import com.zpy.diabetes.app.R;
 import com.zpy.diabetes.app.adapter.MainControllerAdapter;
+import com.zpy.diabetes.app.config.AppConfig;
 import com.zpy.diabetes.app.fragment.HomeFragment;
 import com.zpy.diabetes.app.fragment.SearchFragment;
 import com.zpy.diabetes.app.fragment.UserFragment;
@@ -23,6 +25,8 @@ import com.zpy.diabetes.app.util.ActivityUtil;
 import com.zpy.diabetes.app.util.DoubleClickExitHelper;
 import com.zpy.diabetes.app.widget.IconButtonContainer;
 import com.zpy.diabetes.app.widget.MyViewPager;
+
+import org.xutils.common.util.LogUtil;
 
 import java.util.ArrayList;
 
@@ -78,6 +82,10 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         doubleClickExitHelper = new DoubleClickExitHelper(this);
         imageRigth = myActionBar.getImageViewRight();
         imageRigth.setOnClickListener(this);
+
+        IntentFilter intentFilterPush = new IntentFilter(AppConfig.REFRESH_ACCOUNT_ACTION);
+        registerReceiver(broadcastAccountRefresh, intentFilterPush);
+
     }
 
     //广播，登录成功后，刷新个人页面
@@ -111,15 +119,11 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 myActionBar.setImageViewRight(R.mipmap.icon_alarm_clock);
                 break;
             case 1:
-                myActionBar.setActionBarTitle("问答");
+                myActionBar.setActionBarTitle("发现");
                 myActionBar.setImageViewRight(-1);
                 break;
             case 2:
                 myActionBar.setActionBarTitle("我的");
-                myActionBar.setImageViewRight(-1);
-                break;
-            case 3:
-                myActionBar.setActionBarTitle("更多");
                 myActionBar.setImageViewRight(-1);
                 break;
         }
@@ -153,6 +157,14 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
             return doubleClickExitHelper.onKeyDown(keyCode, event);
         }
         return super.onKeyDown(keyCode, event);
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        try {
+            unregisterReceiver(broadcastAccountRefresh);
+        } catch (Exception e) {
+        }
     }
 
 }
