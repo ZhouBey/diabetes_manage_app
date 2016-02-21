@@ -30,14 +30,13 @@ import com.zpy.diabetes.app.ui.LoginActivity;
 import com.zpy.diabetes.app.ui.MainActivity;
 import com.zpy.diabetes.app.ui.my.MyAccountActivity;
 import com.zpy.diabetes.app.ui.my.MyDoctorActivity;
-import com.zpy.diabetes.app.ui.my.MyQuestionActivity;
+import com.zpy.diabetes.app.ui.my.MyParticipateActivity;
 import com.zpy.diabetes.app.util.ActivityUtil;
 import com.zpy.diabetes.app.util.TextUtil;
 import com.zpy.diabetes.app.widget.ConfirmationDialog;
 import com.zpy.diabetes.app.widget.acpf.ACProgressFlower;
 
 import org.xutils.common.Callback;
-import org.xutils.common.util.LogUtil;
 import org.xutils.x;
 
 public class UserFragment extends Fragment implements BaseUIInterf, View.OnClickListener {
@@ -238,7 +237,7 @@ public class UserFragment extends Fragment implements BaseUIInterf, View.OnClick
             startActivity(intent);
         }
         if (v == layout_user_my_question) {
-            intent = new Intent(activity, MyQuestionActivity.class);
+            intent = new Intent(activity, MyParticipateActivity.class);
             startActivity(intent);
         }
         if (v == layout_user_my_doctor) {

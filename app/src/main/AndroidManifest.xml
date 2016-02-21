@@ -41,7 +41,7 @@
             android:name=".ui.my.MyAccountActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.my.MyQuestionActivity"
+            android:name=".ui.my.MyParticipateActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.my.MyDoctorActivity"

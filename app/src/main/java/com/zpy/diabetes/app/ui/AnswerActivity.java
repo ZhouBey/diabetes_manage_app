@@ -127,7 +127,6 @@ public class AnswerActivity extends BaseActivity implements BaseUIInterf, View.O
         loadingDialog = ActivityUtil.getLoadingDialog(this);
         btnLoadMore = ActivityUtil.getBtnLoadMore(this, btnLoadMore);
         btnLoadMore.setOnClickListener(this);
-        listview_answer.addFooterView(btnLoadMore);
         currentPage = 1;
     }
 
@@ -220,15 +219,15 @@ public class AnswerActivity extends BaseActivity implements BaseUIInterf, View.O
                         if (pageInfo.getTotalPage() != 0) {
                             btnLoadMore.setVisibility(View.VISIBLE);
                             if (pageInfo.getCurrentPage() < pageInfo.getTotalPage()) {
-                                btnLoadMore.setVisibility(View.VISIBLE);
                                 btnLoadMore.setText("加载更多");
                                 btnLoadMore.setClickable(true);
                                 currentPage++;
                             } else {
-                                btnLoadMore.setVisibility(View.GONE);
+                                btnLoadMore.setText("加载完毕");
+                                btnLoadMore.setClickable(false);
                             }
                         } else {
-                            btnLoadMore.setVisibility(View.GONE);
+                            listview_answer.removeFooterView(btnLoadMore);
                         }
                     } else {
                         Toast.makeText(AnswerActivity.this, pageBean.getMsg(), Toast.LENGTH_SHORT).show();

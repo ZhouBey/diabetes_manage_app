@@ -70,11 +70,9 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         homeFragment = new HomeFragment();
         searchFragment = new SearchFragment();
         userFragment = new UserFragment();
-//        moreFragment = new MoreFragment();
         fragments.add(homeFragment);
         fragments.add(searchFragment);
         fragments.add(userFragment);
-//        fragments.add(moreFragment);
         mainControllerAdapter = new MainControllerAdapter(this, fragments);
         viewPagerMain.setAdapter(mainControllerAdapter);
         viewPagerMain.setOffscreenPageLimit(4);

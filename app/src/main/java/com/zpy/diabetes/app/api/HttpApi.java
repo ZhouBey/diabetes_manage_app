@@ -185,7 +185,7 @@ public class HttpApi {
      * @param currentPage
      * @param holder
      */
-    public void getHealthInfoList(int currentPage, final SwipeRefreshLayout swipeRefreshLayout,final IAppCommonBeanHolder holder) {
+    public void getHealthInfoList(int currentPage, final SwipeRefreshLayout swipeRefreshLayout, final IAppCommonBeanHolder holder) {
         RequestParams params = new RequestParams(AppConfig.GET_HEALTH_INFO_LIST);
         params.addBodyParameter("currentPage", String.valueOf(currentPage));
         params.addBodyParameter("showCount", String.valueOf(AppConfig.SHOW_COUNT));
@@ -208,7 +208,7 @@ public class HttpApi {
 
             @Override
             public void onFinished() {
-                if (swipeRefreshLayout.isRefreshing()) {
+                if (swipeRefreshLayout != null && swipeRefreshLayout.isRefreshing()) {
                     swipeRefreshLayout.setRefreshing(false);
                 }
             }
@@ -348,14 +348,13 @@ public class HttpApi {
      * @param currentPage
      * @param holder
      */
-    public void getQuestionList(int currentPage, final IAppCommonBeanHolder holder) {
+    public void getQuestionList(int currentPage, final SwipeRefreshLayout swipeRefreshLayout, final IAppCommonBeanHolder holder) {
         RequestParams params = new RequestParams(AppConfig.GET_QUESTION_LIST);
         params.addBodyParameter("currentPage", String.valueOf(currentPage));
         params.addBodyParameter("showCount", String.valueOf(AppConfig.SHOW_COUNT));
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                LogUtil.e("问答列表="+result);
                 QuestionPageBean questionPageBean = DataHoldUtil.getQuestionPageBean(result);
                 holder.asynHold(questionPageBean);
             }
@@ -372,7 +371,9 @@ public class HttpApi {
 
             @Override
             public void onFinished() {
-
+                if (swipeRefreshLayout != null && swipeRefreshLayout.isRefreshing()) {
+                    swipeRefreshLayout.setRefreshing(false);
+                }
             }
         });
     }
@@ -463,16 +464,15 @@ public class HttpApi {
         });
     }
 
-    public void getMyQuestionList(String token, int currentPage, final SwipeRefreshLayout swipeRefreshLayout, final IAppUserTokenBeanHolder holder) {
+    public void getMyQuestionList(String requestUrl, String token, int currentPage, final SwipeRefreshLayout swipeRefreshLayout, final IAppUserTokenBeanHolder holder) {
         if (isNotOverDue()) {
-            RequestParams params = new RequestParams(AppConfig.GET_MY_QUESTION_LIST);
+            RequestParams params = new RequestParams(requestUrl);
             params.addBodyParameter(AppConfig.TOKEN, token);
             params.addBodyParameter("currentPage", String.valueOf(currentPage));
             params.addBodyParameter("showCount", String.valueOf(AppConfig.SHOW_COUNT));
             x.http().post(params, new Callback.CommonCallback<String>() {
                 @Override
                 public void onSuccess(String result) {
-                    LogUtil.e("getMyQuestionList=" + result);
                     QuestionPageBean questionPageBean = DataHoldUtil.getQuestionPageBean(result);
                     holder.asynHold(questionPageBean);
                 }
@@ -489,7 +489,7 @@ public class HttpApi {
 
                 @Override
                 public void onFinished() {
-                    if (swipeRefreshLayout.isRefreshing()) {
+                    if (swipeRefreshLayout != null && swipeRefreshLayout.isRefreshing()) {
                         swipeRefreshLayout.setRefreshing(false);
                     }
                 }
@@ -689,7 +689,7 @@ public class HttpApi {
 
             @Override
             public void onFinished() {
-                if (swipeRefreshLayout.isRefreshing()) {
+                if (swipeRefreshLayout != null && swipeRefreshLayout.isRefreshing()) {
                     swipeRefreshLayout.setRefreshing(false);
                 }
             }
@@ -698,6 +698,7 @@ public class HttpApi {
 
     /**
      * 医生回答
+     *
      * @param token
      * @param questionId
      * @param content
@@ -705,11 +706,11 @@ public class HttpApi {
      * @param holder
      */
     public void replyQuestion(String token, Integer questionId, String content, final ACProgressFlower dialog, final IAppUserTokenBeanHolder holder) {
-        if(isNotOverDue()) {
+        if (isNotOverDue()) {
             RequestParams params = new RequestParams(AppConfig.REPLY_QUESTION);
-            params.addBodyParameter(AppConfig.TOKEN,token);
-            params.addBodyParameter("questionId",String.valueOf(questionId));
-            params.addBodyParameter("content",content);
+            params.addBodyParameter(AppConfig.TOKEN, token);
+            params.addBodyParameter("questionId", String.valueOf(questionId));
+            params.addBodyParameter("content", content);
             x.http().post(params, new Callback.CommonCallback<String>() {
                 @Override
                 public void onSuccess(String result) {
@@ -739,15 +740,16 @@ public class HttpApi {
         }
 
     }
-    public void getAnswersForOneQuestion(Integer questionId,int currentPage,final ACProgressFlower dialog,final IAppCommonBeanHolder holder) {
+
+    public void getAnswersForOneQuestion(Integer questionId, int currentPage, final ACProgressFlower dialog, final IAppCommonBeanHolder holder) {
         RequestParams params = new RequestParams(AppConfig.GET_ANSWERS_FOR_ONE_QUESTION);
-        params.addBodyParameter("questionId",String.valueOf(questionId));
+        params.addBodyParameter("questionId", String.valueOf(questionId));
         params.addBodyParameter("currentPage", String.valueOf(currentPage));
         params.addBodyParameter("showCount", String.valueOf(AppConfig.SHOW_COUNT));
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                LogUtil.e("result="+result);
+                LogUtil.e("result=" + result);
                 AnswerPageBean answerPageBean = DataHoldUtil.getAnswerPageBean(result);
                 holder.asynHold(answerPageBean);
             }
@@ -770,4 +772,5 @@ public class HttpApi {
             }
         });
     }
+
 }

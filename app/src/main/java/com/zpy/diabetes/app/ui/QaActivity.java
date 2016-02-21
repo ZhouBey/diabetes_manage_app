@@ -78,7 +78,7 @@ public class QaActivity extends BaseActivity implements BaseUIInterf, View.OnCli
     }
 
     private void load(int pageNum, final boolean isClear) {
-        getApp().getHttpApi().getQuestionList(pageNum, new IAppCommonBeanHolder() {
+        getApp().getHttpApi().getQuestionList(pageNum, refreshLayoutQuestion, new IAppCommonBeanHolder() {
             @Override
             public void asynHold(final AppBean bean) {
                 refreshLayoutQuestion.setRefreshing(false);
@@ -127,7 +127,7 @@ public class QaActivity extends BaseActivity implements BaseUIInterf, View.OnCli
                                 btnLoadMore.setClickable(false);
                             }
                         } else {
-                            btnLoadMore.setVisibility(View.GONE);
+                            listview_question.removeFooterView(btnLoadMore);
                         }
                     } else {
                         Toast.makeText(QaActivity.this, questionPageBean.getMsg(), Toast.LENGTH_SHORT).show();
@@ -157,7 +157,8 @@ public class QaActivity extends BaseActivity implements BaseUIInterf, View.OnCli
 
     @Override
     public void onRefresh() {
-        load(1, true);
+        currentPage = 1;
+        load(currentPage, true);
     }
 
     @Override

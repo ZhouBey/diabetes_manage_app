@@ -102,12 +102,12 @@ public class DoctorsActivity extends BaseActivity implements BaseUIInterf, View.
                         if (pageInfo.getTotalPage() != 0) {
                             btnLoadMore.setVisibility(View.VISIBLE);
                             if (pageInfo.getCurrentPage() < pageInfo.getTotalPage()) {
-                                btnLoadMore.setVisibility(View.VISIBLE);
                                 btnLoadMore.setText("加载更多");
                                 btnLoadMore.setClickable(true);
                                 currentPage++;
                             } else {
-                                btnLoadMore.setVisibility(View.GONE);
+                                btnLoadMore.setText("加载完毕");
+                                btnLoadMore.setClickable(false);
                             }
                         } else {
                             btnLoadMore.setVisibility(View.GONE);
@@ -146,6 +146,7 @@ public class DoctorsActivity extends BaseActivity implements BaseUIInterf, View.
 
     @Override
     public void onRefresh() {
-        load(1, true);
+        currentPage = 1;
+        load(currentPage, true);
     }
 }

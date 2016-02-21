@@ -25,14 +25,15 @@ import com.zpy.diabetes.app.ui.AnswerActivity;
 import com.zpy.diabetes.app.util.ActivityUtil;
 import com.zpy.diabetes.app.util.TextUtil;
 
-import org.xutils.common.util.LogUtil;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MyQuestionActivity extends BaseActivity implements View.OnClickListener,BaseUIInterf,SwipeRefreshLayout.OnRefreshListener {
+/**
+ * 我的参与
+ */
+public class MyParticipateActivity extends BaseActivity implements View.OnClickListener, BaseUIInterf, SwipeRefreshLayout.OnRefreshListener {
 
     private ActionBar actionBar;
     private ImageView imageLeft;
@@ -43,6 +44,8 @@ public class MyQuestionActivity extends BaseActivity implements View.OnClickList
     private SwipeRefreshLayout refreshLayoutMyQuestion;
     private Button btnLoadMore;
     private int currentPage;
+    int role_type;
+    String requestUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +58,14 @@ public class MyQuestionActivity extends BaseActivity implements View.OnClickList
     @Override
     public void init() {
         actionBar = getSupportActionBar();
-        ActivityUtil.showActionBar(myActionBar,actionBar, R.mipmap.back,-1,"我的提问");
+        role_type = getApp().getShareDataInt(AppConfig.ROLE_TYPE);
+        if (AppConfig.ROLE_TYPE_FOR_DOCTOR == role_type) {
+            ActivityUtil.showActionBar(myActionBar, actionBar, R.mipmap.back, -1, "我的回复");
+            requestUrl = AppConfig.GET_MY_REPLY_LIST;
+        } else {
+            ActivityUtil.showActionBar(myActionBar, actionBar, R.mipmap.back, -1, "我的提问");
+            requestUrl = AppConfig.GET_MY_QUESTION_LIST;
+        }
         imageLeft = myActionBar.getImageViewLeft();
         imageLeft.setOnClickListener(this);
         listview_my_question = (ListView) findViewById(R.id.listview_my_question);
@@ -72,24 +82,23 @@ public class MyQuestionActivity extends BaseActivity implements View.OnClickList
     @Override
     public void show() {
         refreshLayoutMyQuestion.setRefreshing(true);
-        load(currentPage,true);
-
+        load(currentPage, true);
     }
 
     private void load(int pageNum, final boolean isClear) {
         String token = getApp().getShareDataStr(AppConfig.TOKEN);
-        if(!TextUtil.isEmpty(token)) {
-            getApp().getHttpApi().getMyQuestionList(token, pageNum,refreshLayoutMyQuestion, new IAppUserTokenBeanHolder() {
+        if (!TextUtil.isEmpty(token)) {
+            getApp().getHttpApi().getMyQuestionList(requestUrl, token, pageNum, refreshLayoutMyQuestion, new IAppUserTokenBeanHolder() {
                 @Override
                 public void asynHold(AppBean bean) {
-                    if(bean!=null) {
+                    if (bean != null) {
                         QuestionPageBean questionPageBean = (QuestionPageBean) bean;
-                        if(AppConfig.OK.equals(questionPageBean.getCode())) {
+                        if (AppConfig.OK.equals(questionPageBean.getCode())) {
                             if (isClear) {
                                 list = new ArrayList<Map<String, String>>();
                                 adapter = null;
                             }
-                            List<QuestionBean> questionBeans = questionPageBean.getQuestionBeans();
+                            final List<QuestionBean> questionBeans = questionPageBean.getQuestionBeans();
                             for (int i = 0; i < questionBeans.size(); i++) {
                                 QuestionBean questionBean = questionBeans.get(i);
                                 Map item = new HashMap();
@@ -101,14 +110,17 @@ public class MyQuestionActivity extends BaseActivity implements View.OnClickList
                                 list.add(item);
                             }
                             if (adapter == null || isClear) {
-                                adapter = new QaListViewItemAdapter(MyQuestionActivity.this, R.layout.qa_listview_item, list);
+                                adapter = new QaListViewItemAdapter(MyParticipateActivity.this, R.layout.qa_listview_item, list);
                                 listview_my_question.setAdapter(adapter);
                             }
                             adapter.notifyDataSetChanged();
                             listview_my_question.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                    Intent intent = new Intent(MyQuestionActivity.this, AnswerActivity.class);
+                                    Intent intent = new Intent(MyParticipateActivity.this, AnswerActivity.class);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putSerializable("question", questionBeans.get(position));
+                                    intent.putExtras(bundle);
                                     startActivity(intent);
                                 }
                             });
@@ -116,21 +128,21 @@ public class MyQuestionActivity extends BaseActivity implements View.OnClickList
                             if (pageInfo.getTotalPage() != 0) {
                                 btnLoadMore.setVisibility(View.VISIBLE);
                                 if (pageInfo.getCurrentPage() < pageInfo.getTotalPage()) {
-                                    btnLoadMore.setVisibility(View.VISIBLE);
                                     btnLoadMore.setText("加载更多");
                                     btnLoadMore.setClickable(true);
                                     currentPage++;
                                 } else {
-                                    btnLoadMore.setVisibility(View.GONE);
+                                    btnLoadMore.setText("加载完毕");
+                                    btnLoadMore.setClickable(false);
                                 }
                             } else {
                                 btnLoadMore.setVisibility(View.GONE);
                             }
                         } else {
-                            Toast.makeText(MyQuestionActivity.this,questionPageBean.getMsg(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyParticipateActivity.this, questionPageBean.getMsg(), Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        ActivityUtil.loadError(MyQuestionActivity.this);
+                        ActivityUtil.loadError(MyParticipateActivity.this);
                     }
                 }
 
@@ -144,18 +156,19 @@ public class MyQuestionActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        if(v == imageLeft) {
+        if (v == imageLeft) {
             this.finish();
         }
-        if(v == btnLoadMore) {
+        if (v == btnLoadMore) {
             refreshLayoutMyQuestion.setRefreshing(true);
-            load(currentPage,false);
+            load(currentPage, false);
         }
     }
 
     @Override
     public void onRefresh() {
-        load(1,true);
+        currentPage = 1;
+        load(currentPage, true);
     }
 
 }

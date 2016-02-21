@@ -40,8 +40,10 @@ public class AppConfig {
     public static final String UPDATE_SUFFERER_INFO = HOST + "/suffererApi/updateSuffererInfo";
     //问答列表
     public static final String GET_QUESTION_LIST = HOST + "/questionApi/getQuestionList";
-    //获取我的问题列表
+    //获取患者的问题列表
     public static final String GET_MY_QUESTION_LIST = HOST + "/questionApi/getMyQuestions";
+    //获取医生的回复问题列表
+    public static final String GET_MY_REPLY_LIST = HOST + "/doctorApi/getOneDoctorReply";
     //提问题
     public static final String ASK_QUESTION = HOST + "/questionApi/askQuestion";
     //意见反馈
