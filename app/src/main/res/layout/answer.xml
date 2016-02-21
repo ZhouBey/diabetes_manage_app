@@ -8,7 +8,49 @@
         android:id="@+id/listview_answer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/layout_doctor_reply_content"
         android:scrollbars="none"
         android:dividerHeight="1dp"
         android:divider="@color/line_color"/>
+    <RelativeLayout
+        android:id="@id/layout_doctor_reply_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp">
+        <TextView
+            android:id="@+id/tv_doctor_submit_reply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="发表"
+            android:textSize="16dp"
+            android:textColor="@color/colorWhite"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:padding="7dp"
+            android:background="@drawable/radius_button_shape"
+            />
+
+        <EditText
+            android:id="@+id/et_doctor_reply_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/tv_doctor_submit_reply"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@color/colorWhite"
+            android:padding="5dp"
+            android:maxLines="10"
+            />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginBottom="3dp"
+        android:background="@color/line_color"
+        android:layout_above="@id/layout_doctor_reply_content"/>
 </RelativeLayout>

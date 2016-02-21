@@ -3,6 +3,7 @@ package com.zpy.diabetes.app.api;
 import android.support.v4.widget.SwipeRefreshLayout;
 
 import com.zpy.diabetes.app.App;
+import com.zpy.diabetes.app.bean.AnswerPageBean;
 import com.zpy.diabetes.app.bean.AppBean;
 import com.zpy.diabetes.app.bean.DoctorBean;
 import com.zpy.diabetes.app.bean.DoctorPageBean;
@@ -31,12 +32,6 @@ import java.util.Date;
 
 public class HttpApi {
     private App app;
-
-//    public PreferencesCookieStore getPreferencesCookieStore() {
-//        return preferencesCookieStore;
-//    }
-
-//    private PreferencesCookieStore preferencesCookieStore;
 
     public HttpApi(App app) {
         this.app = app;
@@ -190,7 +185,7 @@ public class HttpApi {
      * @param currentPage
      * @param holder
      */
-    public void getHealthInfoList(int currentPage, final IAppCommonBeanHolder holder) {
+    public void getHealthInfoList(int currentPage, final SwipeRefreshLayout swipeRefreshLayout,final IAppCommonBeanHolder holder) {
         RequestParams params = new RequestParams(AppConfig.GET_HEALTH_INFO_LIST);
         params.addBodyParameter("currentPage", String.valueOf(currentPage));
         params.addBodyParameter("showCount", String.valueOf(AppConfig.SHOW_COUNT));
@@ -213,7 +208,9 @@ public class HttpApi {
 
             @Override
             public void onFinished() {
-
+                if (swipeRefreshLayout.isRefreshing()) {
+                    swipeRefreshLayout.setRefreshing(false);
+                }
             }
         });
     }
@@ -358,6 +355,7 @@ public class HttpApi {
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
+                LogUtil.e("问答列表="+result);
                 QuestionPageBean questionPageBean = DataHoldUtil.getQuestionPageBean(result);
                 holder.asynHold(questionPageBean);
             }
@@ -693,6 +691,81 @@ public class HttpApi {
             public void onFinished() {
                 if (swipeRefreshLayout.isRefreshing()) {
                     swipeRefreshLayout.setRefreshing(false);
+                }
+            }
+        });
+    }
+
+    /**
+     * 医生回答
+     * @param token
+     * @param questionId
+     * @param content
+     * @param dialog
+     * @param holder
+     */
+    public void replyQuestion(String token, Integer questionId, String content, final ACProgressFlower dialog, final IAppUserTokenBeanHolder holder) {
+        if(isNotOverDue()) {
+            RequestParams params = new RequestParams(AppConfig.REPLY_QUESTION);
+            params.addBodyParameter(AppConfig.TOKEN,token);
+            params.addBodyParameter("questionId",String.valueOf(questionId));
+            params.addBodyParameter("content",content);
+            x.http().post(params, new Callback.CommonCallback<String>() {
+                @Override
+                public void onSuccess(String result) {
+                    ResultBean resultBean = DataHoldUtil.getResultBean(result);
+                    holder.asynHold(resultBean);
+                }
+
+                @Override
+                public void onError(Throwable ex, boolean isOnCallback) {
+                    holder.asynHold(null);
+                }
+
+                @Override
+                public void onCancelled(CancelledException cex) {
+
+                }
+
+                @Override
+                public void onFinished() {
+                    if (dialog != null && dialog.isShowing()) {
+                        dialog.dismiss();
+                    }
+                }
+            });
+        } else {
+            holder.overDue();
+        }
+
+    }
+    public void getAnswersForOneQuestion(Integer questionId,int currentPage,final ACProgressFlower dialog,final IAppCommonBeanHolder holder) {
+        RequestParams params = new RequestParams(AppConfig.GET_ANSWERS_FOR_ONE_QUESTION);
+        params.addBodyParameter("questionId",String.valueOf(questionId));
+        params.addBodyParameter("currentPage", String.valueOf(currentPage));
+        params.addBodyParameter("showCount", String.valueOf(AppConfig.SHOW_COUNT));
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                LogUtil.e("result="+result);
+                AnswerPageBean answerPageBean = DataHoldUtil.getAnswerPageBean(result);
+                holder.asynHold(answerPageBean);
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                holder.asynHold(null);
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
                 }
             }
         });

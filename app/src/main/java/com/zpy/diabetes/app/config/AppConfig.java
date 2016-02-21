@@ -20,9 +20,10 @@ public class AppConfig {
     public static final String REFRESH_ACCOUNT_ACTION = "refresh_account_action";
 
     //主机名
-//    public static final String HOST = "http://kobe-curry.imwork.net";
-    public static final String HOST = "http://139.129.34.235:8080/diabetesmanage";
-//    public static final String HOST = "http://192.168.1.115:8080";
+//    public static final String HOST = "http://tangzhushou.wicp.net:20162";
+//    public static final String HOST = "http://139.129.34.235:8080/diabetesmanage";
+    //    public static final String HOST = "http://192.168.1.115:8080";
+    public static final String HOST = "http://192.168.0.100:8080";
     //患者注册
     public static final String REGISTER_FOR_SUFFERER = HOST + "/suffererApi/suffererRegister";
     //患者登录
@@ -54,9 +55,13 @@ public class AppConfig {
     //医生登录
     public static final String LOGIN_FOR_DOCTOR = HOST + "/doctorApi/doctorLogin";
     //获取医生信息
-    public static final String GET_DOCTOR_INFO = HOST+"/doctorApi/getDoctorInfo";
+    public static final String GET_DOCTOR_INFO = HOST + "/doctorApi/getDoctorInfo";
     //医生列表
     public static final String GET_ALL_DOCTOR = HOST + "/doctorApi/getDoctorsListPage";
+    //医生回复患者提问
+    public static final String REPLY_QUESTION = HOST + "/doctorApi/replyQuestion";
+    //获取问题所对应的答案
+    public static final String GET_ANSWERS_FOR_ONE_QUESTION = HOST + "/questionApi/getAnswersForOneQuestion";
 
     public static final String EXPIRE_IN = "expire_in";
     public static final String TOKEN = "token";

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_background"
-    android:orientation="vertical"
     android:fitsSystemWindows="true">
 
     <RelativeLayout
         android:id="@+id/layout_ask_question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorWhite">
+        android:background="@color/colorWhite"
+        android:layout_alignParentTop="true">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -40,7 +40,8 @@
         android:id="@+id/refreshLayoutQuestion"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/layout_ask_question">
 
         <ListView
             android:id="@+id/listview_question"
@@ -50,4 +51,4 @@
             android:dividerHeight="1dp"
             android:scrollbars="none" />
     </android.support.v4.widget.SwipeRefreshLayout>
-</LinearLayout>
+</RelativeLayout>

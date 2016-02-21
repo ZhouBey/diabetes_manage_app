@@ -73,10 +73,9 @@ public class HealthInfoCenterActivity extends BaseActivity implements BaseUIInte
     }
 
     private void load(int pageNum, final boolean isClear) {
-        getApp().getHttpApi().getHealthInfoList(pageNum, new IAppCommonBeanHolder() {
+        getApp().getHttpApi().getHealthInfoList(pageNum, refreshLayoutHealthInfoCenter,new IAppCommonBeanHolder() {
             @Override
             public void asynHold(AppBean bean) {
-                refreshLayoutHealthInfoCenter.setRefreshing(false);
                 if (bean != null) {
                     HealthInfoPageBean healthInfoPageBean = (HealthInfoPageBean) bean;
                     if (AppConfig.OK.equals(healthInfoPageBean.getCode())) {
@@ -105,12 +104,12 @@ public class HealthInfoCenterActivity extends BaseActivity implements BaseUIInte
                         if (pageInfo.getTotalPage() != 0) {
                             btnLoadMore.setVisibility(View.VISIBLE);
                             if (pageInfo.getCurrentPage() < pageInfo.getTotalPage()) {
+                                btnLoadMore.setVisibility(View.VISIBLE);
                                 btnLoadMore.setText("加载更多");
                                 btnLoadMore.setClickable(true);
                                 currentPage++;
                             } else {
-                                btnLoadMore.setText("加载完毕");
-                                btnLoadMore.setClickable(false);
+                                btnLoadMore.setVisibility(View.GONE);
                             }
                         } else {
                             btnLoadMore.setVisibility(View.GONE);

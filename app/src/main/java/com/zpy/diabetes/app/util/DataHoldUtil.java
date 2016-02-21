@@ -1,5 +1,7 @@
 package com.zpy.diabetes.app.util;
 
+import com.zpy.diabetes.app.bean.AnswerBean;
+import com.zpy.diabetes.app.bean.AnswerPageBean;
 import com.zpy.diabetes.app.bean.AppBean;
 import com.zpy.diabetes.app.bean.BloodSugarLogBean;
 import com.zpy.diabetes.app.bean.BloodSugarLogoPageBean;
@@ -243,6 +245,7 @@ public class DataHoldUtil {
                 QuestionBean questionBean = new QuestionBean();
                 JSONObject item = questionArr.getJSONObject(i);
                 JSONObject questionObj = item.optJSONObject("question");
+                questionBean.setId(questionObj.optInt("id"));
                 questionBean.setContent(questionObj.optString("content"));
                 questionBean.setTitle(questionObj.optString("title"));
                 questionBean.setCreateD(TextUtil.getTimeStr(questionObj.optLong("createD")));
@@ -352,5 +355,47 @@ public class DataHoldUtil {
             e.printStackTrace();
         }
         return doctorPageBean;
+    }
+
+    public static AnswerPageBean getAnswerPageBean(String result) {
+        if (TextUtil.isEmpty(result)) return null;
+        AnswerPageBean pageBean = null;
+        try {
+            JSONObject object = new JSONObject(result);
+            String code = object.optString(AppConfig.CODE);
+            String msg = object.optString(AppConfig.MSG);
+            pageBean = new AnswerPageBean();
+            pageBean.setCode(code);
+            pageBean.setMsg(msg);
+            JSONObject dataObj = object.optJSONObject(AppConfig.DATA);
+            JSONObject pageInfoObj = dataObj.optJSONObject("pageInfo");
+            PageInfo pageInfo = new PageInfo();
+            pageInfo.setCurrentPage(pageInfoObj.optInt("currentPage"));
+            pageInfo.setShowCount(pageInfoObj.optInt("showCount"));
+            pageInfo.setTotalPage(pageInfoObj.optInt("totalPage"));
+            pageInfo.setTotalResult(pageInfoObj.optInt("totalResult"));
+            pageBean.setPageInfo(pageInfo);
+            List<AnswerBean> answerBeanList = new ArrayList<>();
+            JSONArray array = dataObj.optJSONArray("list");
+            for (int i = 0; i < array.length(); i++) {
+                JSONObject itemObj = array.optJSONObject(i);
+                AnswerBean answerBean = new AnswerBean();
+                JSONObject answerObj = itemObj.optJSONObject("answer");
+                JSONObject doctorObj = itemObj.optJSONObject("doctor");
+                answerBean.setId(answerObj.optInt("id"));
+                answerBean.setAnswerPhoto(doctorObj.optString("photo"));
+                answerBean.setAnswerContent(answerObj.optString("content"));
+                answerBean.setAnswerPhone(doctorObj.optString("phone"));
+                answerBean.setAnswerTime(TextUtil.getTimeStr(answerObj.optLong("createD")));
+                answerBeanList.add(answerBean);
+            }
+            pageBean.setAnswerBeanList(answerBeanList);
+            Integer replyCount = dataObj.optInt("reply_count");
+            pageBean.setReplyCount(replyCount);
+            return pageBean;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

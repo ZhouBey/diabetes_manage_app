@@ -1,22 +1,40 @@
 package com.zpy.diabetes.app.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.zpy.diabetes.app.BaseActivity;
 import com.zpy.diabetes.app.R;
 import com.zpy.diabetes.app.adapter.AnswerListViewAdapter;
+import com.zpy.diabetes.app.adapter.HealthInfoListViewAdapter;
+import com.zpy.diabetes.app.bean.AnswerBean;
+import com.zpy.diabetes.app.bean.AnswerPageBean;
+import com.zpy.diabetes.app.bean.AppBean;
+import com.zpy.diabetes.app.bean.PageInfo;
 import com.zpy.diabetes.app.bean.QuestionBean;
+import com.zpy.diabetes.app.bean.ResultBean;
 import com.zpy.diabetes.app.config.AppConfig;
 import com.zpy.diabetes.app.interf.BaseUIInterf;
+import com.zpy.diabetes.app.interf.IAppCommonBeanHolder;
+import com.zpy.diabetes.app.interf.IAppUserTokenBeanHolder;
 import com.zpy.diabetes.app.my.MyCommonCallbackForDrawable;
 import com.zpy.diabetes.app.util.ActivityUtil;
+import com.zpy.diabetes.app.util.TextUtil;
+import com.zpy.diabetes.app.widget.acpf.ACProgressFlower;
 
+import org.xutils.common.util.LogUtil;
 import org.xutils.x;
 
 import java.util.ArrayList;
@@ -39,7 +57,14 @@ public class AnswerActivity extends BaseActivity implements BaseUIInterf, View.O
             tv_answer_suffer_time,
             tv_answer_question_title,
             tv_answer_question_content,
-            tv_doctor_answer_and_count;
+            tv_doctor_answer_and_count,
+            tv_doctor_submit_reply;
+
+    private RelativeLayout layout_doctor_reply_content;
+    private EditText et_doctor_reply_content;
+    private ACProgressFlower loadingDialog;
+    private Button btnLoadMore;
+    private int currentPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,33 +89,58 @@ public class AnswerActivity extends BaseActivity implements BaseUIInterf, View.O
         tv_answer_question_title = (TextView) headView.findViewById(R.id.tv_answer_question_title);
         tv_answer_question_content = (TextView) headView.findViewById(R.id.tv_answer_question_content);
         tv_doctor_answer_and_count = (TextView) headView.findViewById(R.id.tv_doctor_answer_and_count);
+        layout_doctor_reply_content = (RelativeLayout) findViewById(R.id.layout_doctor_reply_content);
+        et_doctor_reply_content = (EditText) findViewById(R.id.et_doctor_reply_content);
+        tv_doctor_submit_reply = (TextView) findViewById(R.id.tv_doctor_submit_reply);
+        tv_doctor_submit_reply.setOnClickListener(this);
+        et_doctor_reply_content.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (TextUtil.isEmpty(String.valueOf(s))) {
+                    tv_doctor_submit_reply.setClickable(false);
+                } else {
+                    tv_doctor_submit_reply.setClickable(true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         list = new ArrayList();
         bundle = getIntent().getExtras();
         if (bundle != null) {
             questionBean = (QuestionBean) bundle.getSerializable("question");
         }
+        int role_type = getApp().getShareDataInt(AppConfig.ROLE_TYPE);
+        if (AppConfig.ROLE_TYPE_FOR_DOCTOR == role_type) {
+            layout_doctor_reply_content.setVisibility(View.VISIBLE);
+        } else {
+            layout_doctor_reply_content.setVisibility(View.GONE);
+        }
+        loadingDialog = ActivityUtil.getLoadingDialog(this);
+        btnLoadMore = ActivityUtil.getBtnLoadMore(this, btnLoadMore);
+        btnLoadMore.setOnClickListener(this);
+        listview_answer.addFooterView(btnLoadMore);
+        currentPage = 1;
     }
 
     @Override
     public void show() {
-        if(questionBean!=null) {
+        if (questionBean != null) {
             tv_answer_suffer_phone.setText(questionBean.getSuffererPhone());
             tv_answer_question_title.setText(questionBean.getTitle());
             tv_answer_question_content.setText(questionBean.getContent());
             tv_answer_suffer_time.setText(questionBean.getCreateD());
             x.image().bind(image_answer_suffer_photo, AppConfig.QINIU_IMAGE_URL + questionBean.getSuffererPhoto(), new MyCommonCallbackForDrawable(this, image_answer_suffer_photo, R.mipmap.img_default_photo_gray));
         }
-        tv_doctor_answer_and_count.setText("医生回答（2）");
-
-        for (int i = 0; i < 5; i++) {
-            Map item = new HashMap();
-            item.put("answer_time", "2015-12-22 15:33");
-            item.put("answer_content", "是来得及发了圣诞节了房间拉萨的减肥了凯撒的几率咖啡机卢卡斯的肌肤莱卡时间到了快放假了萨克的减肥了凯撒的记录卡附件里是");
-            item.put("answer_phone", "138***789");
-            list.add(item);
-        }
-        adapter = new AnswerListViewAdapter(this, R.layout.answer_listview_item, list);
-        listview_answer.setAdapter(adapter);
+        load(1, true);
     }
 
     @Override
@@ -98,5 +148,95 @@ public class AnswerActivity extends BaseActivity implements BaseUIInterf, View.O
         if (v == leftImage) {
             this.finish();
         }
+        if (v == tv_doctor_submit_reply) {
+            String token = getApp().getShareDataStr(AppConfig.TOKEN);
+            if (!TextUtil.isEmpty(token)) {
+                submitMyAnswer(token);
+            } else {
+                Intent intent = new Intent(AnswerActivity.this, LoginActivity.class);
+                startActivityForResult(intent, 400);
+            }
+        }
+        if (v == btnLoadMore) {
+            load(currentPage, false);
+        }
+    }
+
+    private void submitMyAnswer(String token) {
+        String answer = et_doctor_reply_content.getText().toString();
+        getApp().getHttpApi().replyQuestion(token, questionBean.getId(), answer, loadingDialog, new IAppUserTokenBeanHolder() {
+            @Override
+            public void asynHold(AppBean bean) {
+                if (bean != null) {
+                    ResultBean resultBean = (ResultBean) bean;
+                    if (AppConfig.OK.equals(resultBean.getCode())) {
+                        Toast.makeText(AnswerActivity.this, "回复成功", Toast.LENGTH_SHORT).show();
+                        et_doctor_reply_content.setText("");
+                        //刷新回答列表
+                        load(1, true);
+                    }
+                } else {
+                    ActivityUtil.loadError(AnswerActivity.this);
+                }
+            }
+
+            @Override
+            public void overDue() {
+                ActivityUtil.overdue(AnswerActivity.this, loadingDialog, false);
+            }
+        });
+    }
+
+    private void load(int pageNum, final boolean isClear) {
+        getApp().getHttpApi().getAnswersForOneQuestion(questionBean.getId(), pageNum, loadingDialog, new IAppCommonBeanHolder() {
+            @Override
+            public void asynHold(AppBean bean) {
+                if (bean != null) {
+                    AnswerPageBean pageBean = (AnswerPageBean) bean;
+                    if (AppConfig.OK.equals(pageBean.getCode())) {
+
+                        if (isClear) {
+                            list = new ArrayList<Map<String, String>>();
+                            adapter = null;
+                        }
+
+                        List<AnswerBean> answerBeanList = pageBean.getAnswerBeanList();
+                        tv_doctor_answer_and_count.setText("医生回答（" + String.valueOf(pageBean.getReplyCount()) + "）");
+                        for (int i = 0; i < answerBeanList.size(); i++) {
+                            Map item = new HashMap();
+                            AnswerBean answerBean = answerBeanList.get(i);
+                            item.put("answer_time", answerBean.getAnswerTime());
+                            item.put("answer_content", answerBean.getAnswerContent());
+                            item.put("answer_phone", answerBean.getAnswerPhone());
+                            item.put("answer_photo", AppConfig.QINIU_IMAGE_URL + answerBean.getAnswerPhoto());
+                            list.add(item);
+                        }
+                        if (adapter == null || isClear) {
+                            adapter = new AnswerListViewAdapter(AnswerActivity.this, R.layout.answer_listview_item, list);
+                            listview_answer.setAdapter(adapter);
+                        }
+                        adapter.notifyDataSetChanged();
+                        PageInfo pageInfo = pageBean.getPageInfo();
+                        if (pageInfo.getTotalPage() != 0) {
+                            btnLoadMore.setVisibility(View.VISIBLE);
+                            if (pageInfo.getCurrentPage() < pageInfo.getTotalPage()) {
+                                btnLoadMore.setVisibility(View.VISIBLE);
+                                btnLoadMore.setText("加载更多");
+                                btnLoadMore.setClickable(true);
+                                currentPage++;
+                            } else {
+                                btnLoadMore.setVisibility(View.GONE);
+                            }
+                        } else {
+                            btnLoadMore.setVisibility(View.GONE);
+                        }
+                    } else {
+                        Toast.makeText(AnswerActivity.this, pageBean.getMsg(), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    ActivityUtil.loadError(AnswerActivity.this);
+                }
+            }
+        });
     }
 }
