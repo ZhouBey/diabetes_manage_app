@@ -22,6 +22,7 @@ import com.zpy.diabetes.app.config.AppConfig;
 import com.zpy.diabetes.app.interf.BaseUIInterf;
 import com.zpy.diabetes.app.interf.IAppUserTokenBeanHolder;
 import com.zpy.diabetes.app.ui.AnswerActivity;
+import com.zpy.diabetes.app.ui.LoginActivity;
 import com.zpy.diabetes.app.util.ActivityUtil;
 import com.zpy.diabetes.app.util.TextUtil;
 
@@ -52,7 +53,6 @@ public class MyParticipateActivity extends BaseActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_question);
         init();
-        show();
     }
 
     @Override
@@ -151,6 +151,9 @@ public class MyParticipateActivity extends BaseActivity implements View.OnClickL
 
                 }
             });
+        } else {
+            Intent intent = new Intent(MyParticipateActivity.this, LoginActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -171,4 +174,9 @@ public class MyParticipateActivity extends BaseActivity implements View.OnClickL
         load(currentPage, true);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        show();
+    }
 }

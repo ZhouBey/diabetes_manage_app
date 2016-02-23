@@ -21,9 +21,9 @@ public class AppConfig {
 
     //主机名
 //    public static final String HOST = "http://tangzhushou.wicp.net:20162";
-//    public static final String HOST = "http://139.129.34.235:8080/diabetesmanage";
+    public static final String HOST = "http://139.129.34.235:8080/diabetesmanage";
     //    public static final String HOST = "http://192.168.1.115:8080";
-    public static final String HOST = "http://192.168.0.100:8080";
+//    public static final String HOST = "http://192.168.0.100:8080";
     //患者注册
     public static final String REGISTER_FOR_SUFFERER = HOST + "/suffererApi/suffererRegister";
     //患者登录

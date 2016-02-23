@@ -163,7 +163,7 @@ public class MyAccountActivity extends BaseActivity implements BaseUIInterf, Vie
     @Override
     public void onClick(View v) {
         if (v == imageLeft) {
-            if(isRefresh) {
+            if (isRefresh) {
                 Intent intent_refresh_account = new Intent(AppConfig.REFRESH_ACCOUNT_ACTION);
                 sendBroadcast(intent_refresh_account);
             }
@@ -400,7 +400,7 @@ public class MyAccountActivity extends BaseActivity implements BaseUIInterf, Vie
                                                                                     Toast.makeText
                                                                                             (MyAccountActivity.this, "上传成功！", Toast.LENGTH_SHORT).show();
                                                                                     isRefresh = true;
-
+                                                                                    uploadFile.delete();
                                                                                     x.image().bind(image_my_account_info_photo, AppConfig.QINIU_IMAGE_URL + key, new MyCommonCallbackForDrawable(MyAccountActivity.this, image_my_account_info_photo, R.mipmap.img_default_phone_blue));
                                                                                 } else {
                                                                                     Toast.makeText

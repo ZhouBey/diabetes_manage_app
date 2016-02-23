@@ -24,8 +24,7 @@
         android:textColorHint="@color/font_thin_gray"
         android:textCursorDrawable="@null"
         android:textSize="@dimen/font_size16"
-        app:lineColor="@color/theme_color"
-        android:text="13837113789"/>
+        app:lineColor="@color/theme_color"/>
 
     <com.zpy.diabetes.app.widget.LineEditText
         android:id="@+id/et_login_password"
@@ -45,8 +44,7 @@
         android:textColorHint="@color/font_thin_gray"
         android:textCursorDrawable="@null"
         android:textSize="@dimen/font_size16"
-        app:lineColor="@color/theme_color"
-        android:text="qwer1234"/>
+        app:lineColor="@color/theme_color"/>
 
     <RadioGroup
         android:id="@+id/radio_group_role"
