@@ -112,8 +112,21 @@ public class DoctorRegisterOneFragment extends Fragment implements BaseUIInterf,
         if (v == tv_register_doctor_next) {
             String code = et_register_doctor_message_verify.getText().toString();
             String phone = et_register_doctor_phone.getText().toString();
+            if (TextUtil.isEmpty(phone)) {
+                Toast.makeText(activity, "请输入手机号", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (!TextUtil.phoneCheck(phone)) {
+                Toast.makeText(activity, "手机号格式不正确", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (TextUtil.isEmpty(code)) {
+                Toast.makeText(activity, "请输入验证码", Toast.LENGTH_SHORT).show();
+                return;
+            }
             SMSSDK.submitVerificationCode("86", phone, code);
             loadingDialog.show();
+
         }
 
     }

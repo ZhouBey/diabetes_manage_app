@@ -25,7 +25,7 @@
             android:textColor="@color/font_deep_gray"
             android:textColorHint="@color/font_thin_gray"
             android:textCursorDrawable="@null"
-            android:textSize="@dimen/font_size16"
+            android:textSize="@dimen/font_size15"
             app:lineColor="@color/theme_color" />
 
         <com.zpy.diabetes.app.widget.LineEditText
@@ -44,7 +44,7 @@
             android:textColor="@color/font_deep_gray"
             android:textColorHint="@color/font_thin_gray"
             android:textCursorDrawable="@null"
-            android:textSize="@dimen/font_size16"
+            android:textSize="@dimen/font_size15"
             app:lineColor="@color/theme_color" />
 
 
@@ -65,7 +65,7 @@
             android:textColor="@color/font_deep_gray"
             android:textColorHint="@color/font_thin_gray"
             android:textCursorDrawable="@null"
-            android:textSize="@dimen/font_size16"
+            android:textSize="@dimen/font_size15"
             app:lineColor="@color/theme_color" />
 
         <com.zpy.diabetes.app.widget.LineEditText
@@ -84,7 +84,7 @@
             android:textColor="@color/font_deep_gray"
             android:textColorHint="@color/font_thin_gray"
             android:textCursorDrawable="@null"
-            android:textSize="@dimen/font_size16"
+            android:textSize="@dimen/font_size15"
             app:lineColor="@color/theme_color" />
 
         <com.zpy.diabetes.app.widget.LineEditText
@@ -103,17 +103,18 @@
             android:textColor="@color/font_deep_gray"
             android:textColorHint="@color/font_thin_gray"
             android:textCursorDrawable="@null"
-            android:textSize="@dimen/font_size16"
+            android:textSize="@dimen/font_size15"
             app:lineColor="@color/theme_color" />
 
         <RelativeLayout
             android:id="@+id/layout_select_sex"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:layout_alignLeft="@id/et_register_doctor_confirm_password"
             android:layout_alignRight="@id/et_register_doctor_confirm_password"
             android:layout_below="@id/et_register_doctor_position"
             android:layout_marginTop="15dp"
+            android:paddingLeft="7dp"
             android:background="@drawable/radius_layout_shape">
 
             <TextView
@@ -122,13 +123,13 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:text="请选择性别"
-                android:textColor="@color/font_deep_gray"
+                android:textColor="@color/font_thin_gray"
                 android:textSize="@dimen/font_size16" />
 
             <ImageView
                 android:id="@+id/image_right_select_sex"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="2dp"
@@ -148,11 +149,12 @@
         <RelativeLayout
             android:id="@+id/layout_select_birthday"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:layout_alignLeft="@id/et_register_doctor_confirm_password"
             android:layout_alignRight="@id/et_register_doctor_confirm_password"
             android:layout_below="@id/layout_select_sex"
             android:layout_marginTop="15dp"
+            android:paddingLeft="7dp"
             android:background="@drawable/radius_layout_shape">
 
             <TextView
@@ -161,7 +163,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:text="请选择生日"
-                android:textColor="@color/font_deep_gray"
+                android:textColor="@color/font_thin_gray"
                 android:textSize="@dimen/font_size16" />
 
             <ImageView
@@ -212,8 +214,8 @@
 
             <ImageView
                 android:id="@+id/image_upload_doctor_certificate"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/et_doctor_info"
@@ -224,7 +226,7 @@
         <TextView
             android:id="@+id/tv_register_doctor"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:layout_alignLeft="@id/et_register_doctor_password"
             android:layout_alignRight="@id/et_register_doctor_password"
             android:layout_below="@id/layout_register_doctor_info"
@@ -234,7 +236,7 @@
             android:gravity="center"
             android:text="注册"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/font_size20" />
+            android:textSize="@dimen/font_size17" />
 
     </RelativeLayout>
 </ScrollView>

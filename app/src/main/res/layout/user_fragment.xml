@@ -19,8 +19,8 @@
 
             <com.github.siyamed.shapeimageview.CircularImageView
                 android:id="@+id/image_user_photo"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="77dp"
+                android:layout_height="77dp"
                 android:layout_gravity="center"
                 android:src="@mipmap/img_default_phone_blue"
                 app:siBorderColor="@color/theme_color"
@@ -34,14 +34,14 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/radius_tv_shape"
-                android:paddingBottom="5dp"
+                android:paddingBottom="4dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:paddingTop="5dp"
+                android:paddingTop="4dp"
                 android:singleLine="true"
                 android:text="未登录"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/font_size17" />
+                android:textSize="@dimen/font_size16" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -54,13 +54,13 @@
     <RelativeLayout
         android:id="@+id/layout_user_my_account"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:background="@color/colorWhite">
 
         <ImageView
             android:id="@+id/image_user_my_account"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
@@ -74,7 +74,7 @@
             android:layout_toRightOf="@id/image_user_my_account"
             android:text="我的账户"
             android:textColor="@color/font_deep_gray"
-            android:textSize="@dimen/font_size18" />
+            android:textSize="@dimen/font_size17" />
 
         <ImageView
             android:layout_width="22dp"
@@ -99,13 +99,13 @@
     <RelativeLayout
         android:id="@+id/layout_user_my_question"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:background="@color/colorWhite">
 
         <ImageView
             android:id="@+id/image_user_about_question"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
@@ -121,7 +121,7 @@
             android:layout_toRightOf="@id/image_user_about_question"
             android:text="我的提问"
             android:textColor="@color/font_deep_gray"
-            android:textSize="@dimen/font_size18" />
+            android:textSize="@dimen/font_size17" />
 
         <ImageView
             android:layout_width="22dp"
@@ -140,13 +140,13 @@
     <RelativeLayout
         android:id="@+id/layout_user_my_doctor"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:background="@color/colorWhite">
 
         <ImageView
             android:id="@+id/image_my_doctor_or_sufferer"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
@@ -162,7 +162,7 @@
             android:layout_toRightOf="@id/image_my_doctor_or_sufferer"
             android:text="我的医生"
             android:textColor="@color/font_deep_gray"
-            android:textSize="@dimen/font_size18" />
+            android:textSize="@dimen/font_size17" />
 
         <ImageView
             android:layout_width="22dp"
@@ -187,13 +187,13 @@
     <RelativeLayout
         android:id="@+id/layout_user_feed_back"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:background="@color/colorWhite">
 
         <ImageView
             android:id="@+id/image_user_account_feedback"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
@@ -208,7 +208,7 @@
             android:layout_toRightOf="@id/image_user_account_feedback"
             android:text="意见反馈"
             android:textColor="@color/font_deep_gray"
-            android:textSize="@dimen/font_size18" />
+            android:textSize="@dimen/font_size17" />
 
         <ImageView
             android:layout_width="22dp"
@@ -227,13 +227,13 @@
     <RelativeLayout
         android:id="@+id/layout_user_call_us"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:background="@color/colorWhite">
 
         <ImageView
             android:id="@+id/image_user_call_us"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
@@ -248,7 +248,7 @@
             android:layout_toRightOf="@id/image_user_call_us"
             android:text="联系我们"
             android:textColor="@color/font_deep_gray"
-            android:textSize="@dimen/font_size18" />
+            android:textSize="@dimen/font_size17" />
 
         <ImageView
             android:layout_width="22dp"

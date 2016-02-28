@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp">
 
         <com.github.siyamed.shapeimageview.CircularImageView
@@ -48,10 +47,10 @@
         android:layout_alignLeft="@id/layout_answer_suffer"
         android:layout_below="@id/layout_answer_suffer"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:ellipsize="end"
         android:textColor="@color/font_deep_gray"
-        android:textSize="@dimen/font_size17"
+        android:textSize="@dimen/font_size15"
         android:lineSpacingMultiplier="1.3"/>
 
     <TextView
@@ -62,27 +61,26 @@
         android:layout_below="@id/tv_answer_question_title"
         android:layout_marginBottom="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="7dp"
         android:ellipsize="end"
         android:textColor="@color/font_thin_gray"
-        android:textSize="@dimen/font_size16"
+        android:textSize="@dimen/font_size14"
         android:lineSpacingMultiplier="1.3"/>
     <View
         android:id="@+id/line_answer"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/line_color"
+        android:background="@color/main_background"
         android:layout_below="@id/tv_answer_question_content"
-        android:layout_marginTop="7dp"/>
+        />
 
     <TextView
         android:id="@+id/tv_doctor_answer_and_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/font_deep_gray"
-        android:textSize="@dimen/font_size17"
+        android:textSize="@dimen/font_size15"
         android:layout_below="@id/line_answer"
         android:layout_marginTop="7dp"
-        android:layout_marginLeft="12dp"
         android:layout_marginBottom="7dp"/>
 </RelativeLayout>

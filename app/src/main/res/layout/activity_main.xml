@@ -29,10 +29,10 @@
             app:buttonIcon="@mipmap/icon_nav_home"
             app:iconButtonPressedTextColor="@color/theme_color"
             app:iconButtonTextColor="@color/colorWhite"
-            app:iconSize="22dp"
+            app:iconSize="20dp"
             app:pressedIcon="@mipmap/icon_nav_home_press"
             app:text="首页"
-            app:textSize="@dimen/font_size14" />
+            app:textSize="@dimen/font_size13" />
 
         <com.zpy.diabetes.app.widget.IconButton
             android:layout_width="0dp"
@@ -43,10 +43,10 @@
             app:buttonIcon="@mipmap/icon_nav_search"
             app:iconButtonPressedTextColor="@color/theme_color"
             app:iconButtonTextColor="@color/colorWhite"
-            app:iconSize="22dp"
+            app:iconSize="20dp"
             app:pressedIcon="@mipmap/icon_nav_search_press"
             app:text="发现"
-            app:textSize="@dimen/font_size14" />
+            app:textSize="@dimen/font_size13" />
 
         <com.zpy.diabetes.app.widget.IconButton
             android:layout_width="0dp"
@@ -57,10 +57,10 @@
             app:buttonIcon="@mipmap/icon_nav_user"
             app:iconButtonPressedTextColor="@color/theme_color"
             app:iconButtonTextColor="@color/colorWhite"
-            app:iconSize="22dp"
+            app:iconSize="20dp"
             app:pressedIcon="@mipmap/icon_nav_user_press"
             app:text="我的"
-            app:textSize="@dimen/font_size14" />
+            app:textSize="@dimen/font_size13" />
 
         <!--<com.zpy.diabetes.app.widget.IconButton-->
             <!--android:layout_width="0dp"-->

@@ -19,15 +19,15 @@
         <RelativeLayout
             android:id="@+id/layout_search_fragment_qa"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:background="@color/colorWhite"
             android:paddingLeft="30dp"
             android:paddingRight="20dp">
 
             <ImageView
                 android:id="@+id/image_search_fragment_qa"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:scaleType="fitCenter"
@@ -41,7 +41,7 @@
                 android:gravity="center_vertical"
                 android:text="问答动态"
                 android:textColor="@color/font_deep_gray"
-                android:textSize="@dimen/font_size18" />
+                android:textSize="@dimen/font_size17" />
 
             <ImageView
                 android:layout_width="22dp"
@@ -65,15 +65,15 @@
         <RelativeLayout
             android:id="@+id/layout_search_fragment_health_info_center"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:background="@color/colorWhite"
             android:paddingLeft="30dp"
             android:paddingRight="20dp">
 
             <ImageView
                 android:id="@+id/image_search_fragment_health_info_center"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:scaleType="fitCenter"
@@ -87,7 +87,7 @@
                 android:gravity="center_vertical"
                 android:text="资讯中心"
                 android:textColor="@color/font_deep_gray"
-                android:textSize="@dimen/font_size18" />
+                android:textSize="@dimen/font_size17" />
 
             <ImageView
                 android:layout_width="22dp"
@@ -111,15 +111,15 @@
         <RelativeLayout
             android:id="@+id/layout_search_fragment_doctors"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:background="@color/colorWhite"
             android:paddingLeft="30dp"
             android:paddingRight="20dp">
 
             <ImageView
                 android:id="@+id/image_search_fragment_doctors"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:src="@mipmap/icon_doctor" />
@@ -132,7 +132,7 @@
                 android:gravity="center_vertical"
                 android:text="医生团队"
                 android:textColor="@color/font_deep_gray"
-                android:textSize="@dimen/font_size18" />
+                android:textSize="@dimen/font_size17" />
 
             <ImageView
                 android:layout_width="22dp"

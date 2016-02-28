@@ -20,7 +20,7 @@
         android:background="@drawable/radius_layout_shape"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:paddingLeft="5dp"
+        android:paddingLeft="7dp"
         android:paddingRight="5dp">
 
         <ImageView
@@ -39,25 +39,27 @@
             android:singleLine="true"
             android:textColor="@color/font_deep_gray"
             android:textColorHint="@color/font_thin_gray"
-            android:textSize="@dimen/font_size16" />
+            android:textSize="@dimen/font_size15" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="7dp"
-        android:background="@color/line_color" />
+        android:background="@color/main_background" />
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/refreshLayoutDoctorList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp">
 
         <ListView
             android:id="@+id/listview_doctors"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="@color/line_color"
+            android:divider="@color/main_background"
             android:dividerHeight="1dp" />
     </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

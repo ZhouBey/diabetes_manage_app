@@ -20,7 +20,7 @@
         android:textColor="@color/font_deep_gray"
         android:textColorHint="@color/font_thin_gray"
         android:textCursorDrawable="@null"
-        android:textSize="@dimen/font_size16"
+        android:textSize="@dimen/font_size15"
         app:lineColor="@color/theme_color"
         android:layout_alignParentTop="true"
         android:layout_marginTop="30dp"
@@ -47,13 +47,13 @@
             android:layout_marginLeft="10dp"
             android:background="@drawable/radius_button_shape"
             android:gravity="center"
-            android:paddingBottom="5dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingTop="5dp"
+            android:paddingBottom="3dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="3dp"
             android:text="点击获取"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/font_size16" />
+            android:textSize="@dimen/font_size15" />
 
         <com.zpy.diabetes.app.widget.LineEditText
             android:id="@+id/et_register_doctor_message_verify"
@@ -68,22 +68,22 @@
             android:textColor="@color/font_deep_gray"
             android:textColorHint="@color/font_thin_gray"
             android:textCursorDrawable="@null"
-            android:textSize="@dimen/font_size16"
+            android:textSize="@dimen/font_size15"
             app:lineColor="@color/theme_color" />
     </RelativeLayout>
 
     <TextView
         android:id="@+id/tv_register_doctor_next"
         android:layout_width="wrap_content"
-        android:layout_height="45dp"
+        android:layout_height="40dp"
         android:layout_alignLeft="@id/et_register_doctor_phone"
         android:layout_alignRight="@id/et_register_doctor_phone"
         android:layout_below="@id/layout_register_doctor_verify_code"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/radius_button_shape"
         android:gravity="center"
         android:text="下一步"
         android:textColor="@color/colorWhite"
-        android:textSize="@dimen/font_size20" />
+        android:textSize="@dimen/font_size17" />
 
 </RelativeLayout>

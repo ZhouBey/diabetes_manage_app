@@ -54,7 +54,7 @@
             android:layout_width="17dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginRight="3dp"
+            android:layout_marginRight="7dp"
             android:src="@mipmap/icon_qa_reply_count"
             />
 
@@ -63,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textColor="@color/font_thin_gray"
-            android:textSize="@dimen/font_size15"
+            android:textSize="@dimen/font_size16"
             android:gravity="center_vertical"
             android:layout_gravity="center_vertical"/>
     </LinearLayout>
@@ -75,7 +75,7 @@
         android:layout_alignLeft="@id/layout_qa_suffer"
         android:layout_below="@id/layout_qa_suffer"
         android:layout_marginRight="60dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:ellipsize="end"
         android:singleLine="true"
         android:textColor="@color/font_deep_gray"
@@ -87,7 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/layout_qa_suffer"
         android:layout_below="@id/tv_qa_item_question_title"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="7dp"
         android:layout_marginRight="60dp"
         android:layout_marginTop="3dp"
         android:ellipsize="end"

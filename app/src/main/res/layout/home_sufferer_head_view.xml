@@ -32,10 +32,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/layout_home_guage"
-            android:layout_toRightOf="@id/layout_home_guage"
             android:layout_marginLeft="20dp"
-            android:orientation="vertical"
-            >
+            android:layout_toRightOf="@id/layout_home_guage"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -43,18 +42,18 @@
                 android:text="哈哈"
                 android:textColor="@color/font_deep_gray"
                 android:textSize="@dimen/font_size18"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:singleLine="false"
                 android:text="点击左边，记录血糖"
                 android:textColor="@color/font_gray"
-                android:textSize="@dimen/font_size16"
-                android:layout_marginTop="3dp"
-                android:singleLine="false"
-                android:maxLines="3"
-                android:ellipsize="end"/>
+                android:textSize="@dimen/font_size15" />
 
         </LinearLayout>
 
@@ -66,11 +65,11 @@
             android:layout_alignParentRight="true"
             android:background="@drawable/radius_shape"
             android:gravity="center_vertical"
-            android:paddingLeft="14dp"
-            android:paddingRight="14dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
             android:text="本周血糖分析"
             android:textColor="@color/font_deep_gray"
-            android:textSize="@dimen/font_size16" />
+            android:textSize="@dimen/font_size15" />
 
         <TextView
             android:id="@+id/tv_home_today_date"
@@ -80,11 +79,10 @@
             android:layout_alignRight="@id/layout_home_guage"
             android:layout_below="@id/layout_home_guage"
             android:layout_marginTop="7dp"
+            android:gravity="center_horizontal"
             android:text="2015-12-25"
             android:textColor="@color/font_gray"
-            android:textSize="@dimen/font_size15"
-            android:gravity="center_horizontal"
-            />
+            android:textSize="@dimen/font_size15" />
     </RelativeLayout>
 
     <View
@@ -101,18 +99,21 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:background="@color/line_color" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="6dp">
 
         <ImageView
             android:id="@+id/image_home_tuijian"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:src="@mipmap/img_tuijian" />
@@ -126,7 +127,7 @@
             android:gravity="center_vertical"
             android:text="今日推荐"
             android:textColor="@color/font_black"
-            android:textSize="@dimen/font_size18" />
+            android:textSize="@dimen/font_size16" />
 
         <TextView
             android:id="@+id/tv_home_health_info_more"
@@ -138,11 +139,6 @@
             android:gravity="center_vertical"
             android:text="更多>>"
             android:textColor="@color/font_thin_gray"
-            android:textSize="@dimen/font_size16" />
+            android:textSize="@dimen/font_size14" />
     </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/line_color" />
 </LinearLayout>

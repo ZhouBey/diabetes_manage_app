@@ -23,8 +23,9 @@
         android:textColor="@color/font_deep_gray"
         android:textColorHint="@color/font_thin_gray"
         android:textCursorDrawable="@null"
-        android:textSize="@dimen/font_size16"
-        app:lineColor="@color/theme_color"/>
+        android:textSize="@dimen/font_size15"
+        app:lineColor="@color/theme_color"
+        android:text="13837113789"/>
 
     <com.zpy.diabetes.app.widget.LineEditText
         android:id="@+id/et_login_password"
@@ -43,8 +44,9 @@
         android:textColor="@color/font_deep_gray"
         android:textColorHint="@color/font_thin_gray"
         android:textCursorDrawable="@null"
-        android:textSize="@dimen/font_size16"
-        app:lineColor="@color/theme_color"/>
+        android:textSize="@dimen/font_size15"
+        app:lineColor="@color/theme_color"
+        android:text="qwer1234"/>
 
     <RadioGroup
         android:id="@+id/radio_group_role"
@@ -63,7 +65,7 @@
             android:layout_weight="1"
             android:text="患者"
             android:textColor="@color/font_deep_gray"
-            android:textSize="@dimen/font_size16"
+            android:textSize="@dimen/font_size15"
             android:checked="true"
             />
 
@@ -74,13 +76,13 @@
             android:layout_weight="1"
             android:text="医生"
             android:textColor="@color/font_deep_gray"
-            android:textSize="@dimen/font_size16"/>
+            android:textSize="@dimen/font_size15"/>
     </RadioGroup>
 
     <TextView
         android:id="@+id/tv_login"
         android:layout_width="wrap_content"
-        android:layout_height="45dp"
+        android:layout_height="40dp"
         android:layout_alignLeft="@id/et_login_password"
         android:layout_alignRight="@id/et_login_password"
         android:layout_below="@id/radio_group_role"
@@ -89,7 +91,7 @@
         android:gravity="center"
         android:text="登录"
         android:textColor="@color/colorWhite"
-        android:textSize="@dimen/font_size20"
+        android:textSize="@dimen/font_size17"
         android:fontFamily="sans-serif-light"/>
 
     <LinearLayout
@@ -97,7 +99,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="17dp"
         android:orientation="horizontal"
         android:paddingLeft="12dp"
         android:paddingRight="12dp">
@@ -110,7 +112,7 @@
             android:gravity="center_vertical"
             android:text="忘记密码"
             android:textColor="@color/font_gray"
-            android:textSize="@dimen/font_size16" />
+            android:textSize="@dimen/font_size15" />
 
         <View
             android:layout_width="1dp"
@@ -128,7 +130,7 @@
             android:gravity="center_vertical"
             android:text="注册账号"
             android:textColor="@color/font_gray"
-            android:textSize="@dimen/font_size16" />
+            android:textSize="@dimen/font_size15" />
 
     </LinearLayout>
 </RelativeLayout>

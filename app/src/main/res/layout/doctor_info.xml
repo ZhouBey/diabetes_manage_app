@@ -15,7 +15,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp">
+            android:padding="7dp">
 
             <com.github.siyamed.shapeimageview.CircularImageView
                 android:id="@+id/image_doctors_info_photo"
@@ -34,7 +34,7 @@
                 android:layout_marginLeft="12dp"
                 android:layout_toRightOf="@id/image_doctors_info_photo"
                 android:textColor="@color/font_deep_gray"
-                android:textSize="@dimen/font_size17" />
+                android:textSize="@dimen/font_size15" />
 
             <TextView
                 android:id="@+id/tv_doctors_info_position"
@@ -47,7 +47,7 @@
                 android:maxLength="5"
                 android:singleLine="true"
                 android:textColor="@color/font_gray"
-                android:textSize="@dimen/font_size14" />
+                android:textSize="@dimen/font_size12" />
 
             <TextView
                 android:id="@+id/tv_doctors_info_hospital"
@@ -60,7 +60,7 @@
                 android:layout_toLeftOf="@+id/layout_doctor_info_level"
                 android:ellipsize="end"
                 android:textColor="@color/font_deep_gray"
-                android:textSize="@dimen/font_size16" />
+                android:textSize="@dimen/font_size14" />
 
             <LinearLayout
                 android:id="@id/layout_doctor_info_level"
@@ -70,74 +70,60 @@
                 android:layout_alignTop="@id/image_doctors_info_photo"
                 android:background="@drawable/angle_layout_shape"
                 android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="25dp"
-                    android:gravity="center"
-                    android:text="100"
-                    android:textColor="@color/theme_color"
-                    android:textSize="@dimen/font_size17" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:background="@color/theme_color"
-                    android:gravity="center"
-                    android:text="推荐指数"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/font_size14" />
             </LinearLayout>
         </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/line_color" />
+            android:background="@color/main_background" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:text="简介"
             android:textColor="@color/font_deep_gray"
-            android:textSize="@dimen/font_size17" />
+            android:textSize="@dimen/font_size16" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="12dp"
-            android:background="@color/line_color" />
+        <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:layout_marginTop="12dp"-->
+            <!--android:background="@color/line_color" />-->
 
         <TextView
             android:id="@+id/tv_doctors_info_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="7dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="12dp"
             android:lineSpacingMultiplier="1.3"
             android:singleLine="false"
             android:textColor="@color/font_gray"
-            android:textSize="@dimen/font_size16"/>
+            android:textSize="@dimen/font_size15"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/line_color" />
+            android:background="@color/main_background" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:text="相关资质"
             android:textColor="@color/font_deep_gray"
-            android:textSize="@dimen/font_size17" />
+            android:textSize="@dimen/font_size16" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="12dp"
-            android:background="@color/line_color" />
+        <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:layout_marginTop="12dp"-->
+            <!--android:background="@color/line_color" />-->
 
         <ImageView
             android:id="@+id/image_doctor_info_certificate"
@@ -147,7 +133,7 @@
         <TextView
             android:id="@+id/tv_doctor_logout"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
@@ -156,7 +142,7 @@
             android:gravity="center"
             android:text="退出"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/font_size17" />
+            android:textSize="@dimen/font_size15" />
 
     </LinearLayout>
 </ScrollView>

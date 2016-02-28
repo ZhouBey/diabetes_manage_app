@@ -4,53 +4,57 @@
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
     android:fitsSystemWindows="true">
+
     <ListView
         android:id="@+id/listview_answer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/layout_doctor_reply_content"
-        android:scrollbars="none"
+        android:layout_marginRight="@dimen/line_margin_left_right"
+        android:layout_marginLeft="@dimen/line_margin_left_right"
+        android:divider="@color/main_background"
         android:dividerHeight="1dp"
-        android:divider="@color/line_color"/>
+        android:scrollbars="none" />
+
     <RelativeLayout
         android:id="@id/layout_doctor_reply_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="5dp">
+
         <TextView
             android:id="@+id/tv_doctor_submit_reply"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="发表"
-            android:textSize="16dp"
-            android:textColor="@color/colorWhite"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
             android:layout_centerVertical="true"
-            android:padding="7dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/radius_button_shape"
-            />
+            android:gravity="center"
+            android:padding="7dp"
+            android:text="发表"
+            android:textColor="@color/colorWhite"
+            android:textSize="16dp" />
 
         <EditText
             android:id="@+id/et_doctor_reply_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@id/tv_doctor_submit_reply"
-            android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/tv_doctor_submit_reply"
             android:background="@color/colorWhite"
-            android:padding="5dp"
             android:maxLines="10"
-            />
+            android:padding="5dp" />
 
     </RelativeLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
+        android:layout_above="@id/layout_doctor_reply_content"
         android:layout_marginBottom="3dp"
-        android:background="@color/line_color"
-        android:layout_above="@id/layout_doctor_reply_content"/>
+        android:background="@color/line_color" />
 </RelativeLayout>

@@ -21,8 +21,8 @@
             android:paddingTop="12dp">
 
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
                 android:src="@mipmap/icon_ask" />
 
             <TextView
@@ -32,7 +32,7 @@
                 android:layout_marginLeft="7dp"
                 android:text="免费问医生"
                 android:textColor="@color/font_deep_gray"
-                android:textSize="@dimen/font_size20" />
+                android:textSize="@dimen/font_size17" />
         </LinearLayout>
     </RelativeLayout>
 

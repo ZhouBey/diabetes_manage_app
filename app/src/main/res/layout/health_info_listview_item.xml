@@ -6,11 +6,14 @@
     android:background="@color/colorWhite">
     <com.github.siyamed.shapeimageview.RoundedImageView
         android:id="@+id/image_health_info"
-        android:layout_width="70dp"
-        android:layout_height="60dp"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_margin="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="7dp"
         app:siRadius="8dp"
         android:src="@drawable/empty_photo"
         />
@@ -33,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/font_deep_gray"
-            android:textSize="@dimen/font_size17"
+            android:textSize="@dimen/font_size16"
             android:singleLine="true"
             android:layout_marginRight="50dp"
             />
@@ -42,8 +45,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/font_thin_gray"
-            android:layout_marginTop="7dp"
-            android:textSize="@dimen/font_size16"
+            android:layout_marginTop="3dp"
+            android:textSize="@dimen/font_size15"
             android:singleLine="true"
             android:layout_marginRight="50dp"/>
     </LinearLayout>
