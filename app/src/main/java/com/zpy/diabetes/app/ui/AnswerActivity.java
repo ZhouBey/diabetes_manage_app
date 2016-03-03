@@ -18,7 +18,6 @@ import com.github.siyamed.shapeimageview.CircularImageView;
 import com.zpy.diabetes.app.BaseActivity;
 import com.zpy.diabetes.app.R;
 import com.zpy.diabetes.app.adapter.AnswerListViewAdapter;
-import com.zpy.diabetes.app.adapter.HealthInfoListViewAdapter;
 import com.zpy.diabetes.app.bean.AnswerBean;
 import com.zpy.diabetes.app.bean.AnswerPageBean;
 import com.zpy.diabetes.app.bean.AppBean;
@@ -29,12 +28,11 @@ import com.zpy.diabetes.app.config.AppConfig;
 import com.zpy.diabetes.app.interf.BaseUIInterf;
 import com.zpy.diabetes.app.interf.IAppCommonBeanHolder;
 import com.zpy.diabetes.app.interf.IAppUserTokenBeanHolder;
-import com.zpy.diabetes.app.my.MyCommonCallbackForDrawable;
 import com.zpy.diabetes.app.util.ActivityUtil;
 import com.zpy.diabetes.app.util.TextUtil;
 import com.zpy.diabetes.app.widget.acpf.ACProgressFlower;
 
-import org.xutils.common.util.LogUtil;
+import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
 import java.util.ArrayList;
@@ -137,7 +135,7 @@ public class AnswerActivity extends BaseActivity implements BaseUIInterf, View.O
             tv_answer_question_title.setText(questionBean.getTitle());
             tv_answer_question_content.setText(questionBean.getContent());
             tv_answer_suffer_time.setText(questionBean.getCreateD());
-            x.image().bind(image_answer_suffer_photo, AppConfig.QINIU_IMAGE_URL + questionBean.getSuffererPhoto(), new MyCommonCallbackForDrawable(this, image_answer_suffer_photo, R.mipmap.img_default_photo_gray));
+            x.image().bind(image_answer_suffer_photo, AppConfig.QINIU_IMAGE_URL + questionBean.getSuffererPhoto(), new ImageOptions.Builder().setFailureDrawableId(R.mipmap.img_default_photo_gray).setLoadingDrawableId(R.mipmap.img_default_photo_gray).build());
         }
         load(1, true);
     }

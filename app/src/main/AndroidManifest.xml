@@ -44,7 +44,7 @@
             android:name=".ui.my.MyParticipateActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.my.MyDoctorActivity"
+            android:name=".ui.my.MyDoctorAttentionActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.FeedBackActivity"

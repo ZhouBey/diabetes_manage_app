@@ -276,10 +276,10 @@ public class TextUtil {
         if (sex == 1) {
             return "女";
         }
-        return "";
+        return "null";
     }
 
     public static String getencryptPhone(String phone) {
-        return phone.substring(0, 2) + "*****" + phone.substring(phone.length() - 3, phone.length());
+        return phone.substring(0, 3) + "*****" + phone.substring(phone.length() - 3, phone.length());
     }
 }

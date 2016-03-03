@@ -1,7 +1,6 @@
 package com.zpy.diabetes.app.fragment;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -36,8 +35,6 @@ import com.zpy.diabetes.app.bean.ResultBean;
 import com.zpy.diabetes.app.config.AppConfig;
 import com.zpy.diabetes.app.interf.BaseUIInterf;
 import com.zpy.diabetes.app.interf.IAppCommonBeanHolder;
-import com.zpy.diabetes.app.interf.IAppUserTokenBeanHolder;
-import com.zpy.diabetes.app.my.MyCommonCallbackForDrawable;
 import com.zpy.diabetes.app.ui.RegisterForDoctorActivity;
 import com.zpy.diabetes.app.util.ActivityUtil;
 import com.zpy.diabetes.app.util.ImageTool;
@@ -48,12 +45,10 @@ import com.zpy.diabetes.app.widget.UploadPhotoDialog;
 import com.zpy.diabetes.app.widget.acpf.ACProgressFlower;
 
 import org.json.JSONObject;
-import org.xutils.x;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class DoctorRegisterTwoFragment extends Fragment implements BaseUIInterf, View.OnClickListener {

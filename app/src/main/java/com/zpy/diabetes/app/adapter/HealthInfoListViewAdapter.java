@@ -17,7 +17,6 @@ import com.zpy.diabetes.app.App;
 import com.zpy.diabetes.app.R;
 import com.zpy.diabetes.app.bean.BloodSugarLogBean;
 import com.zpy.diabetes.app.config.AppConfig;
-import com.zpy.diabetes.app.my.MyCommonCallbackForDrawable;
 import com.zpy.diabetes.app.ui.HealthInfoCenterActivity;
 import com.zpy.diabetes.app.util.ActivityUtil;
 import com.zpy.diabetes.app.util.TextUtil;
@@ -26,6 +25,7 @@ import com.zpy.diabetes.app.widget.banner.ConvenientBanner;
 import com.zpy.diabetes.app.widget.linechart.FancyChart;
 import com.zpy.diabetes.app.widget.linechart.FancyChartPointListener;
 
+import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
 import java.util.List;
@@ -143,7 +143,7 @@ public class HealthInfoListViewAdapter<T> extends ArrayAdapter<T> {
         public void setItemAttrs(Map<String, Object> item) {
             tv_health_info_title.setText(String.valueOf(item.get("info_title")));
             tv_health_info_time.setText(String.valueOf(item.get("info_time")));
-            x.image().bind(image_health_info, String.valueOf(item.get("info_image")), new MyCommonCallbackForDrawable(context, image_health_info, R.drawable.empty_photo));
+            x.image().bind(image_health_info, String.valueOf(item.get("info_image")), new ImageOptions.Builder().setLoadingDrawableId(R.drawable.empty_photo).setFailureDrawableId(R.drawable.empty_photo).build());
             if ("1".equals(String.valueOf(item.get("info_tuijian")))) {
                 image_health_info_tuijian.setImageResource(R.mipmap.icon_tuijian);
             }

@@ -6,8 +6,8 @@ import android.widget.ImageView;
 
 import com.bigkoo.convenientbanner.holder.Holder;
 import com.zpy.diabetes.app.R;
-import com.zpy.diabetes.app.my.MyCommonCallbackForDrawable;
 
+import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
 /**
@@ -26,6 +26,6 @@ public class LocalImageHolderView implements Holder<String> {
 
     @Override
     public void UpdateUI(Context context, int position, String data) {
-        x.image().bind(imageView, data,new MyCommonCallbackForDrawable(context,imageView, R.drawable.empty_photo));
+        x.image().bind(imageView, data,new ImageOptions.Builder().setFailureDrawableId(R.drawable.empty_photo).setLoadingDrawableId(R.drawable.empty_photo).build());
     }
 }

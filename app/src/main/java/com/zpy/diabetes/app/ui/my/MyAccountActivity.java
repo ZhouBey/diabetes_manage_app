@@ -38,7 +38,6 @@ import com.zpy.diabetes.app.config.AppConfig;
 import com.zpy.diabetes.app.interf.BaseUIInterf;
 import com.zpy.diabetes.app.interf.IAppCommonBeanHolder;
 import com.zpy.diabetes.app.interf.IAppUserTokenBeanHolder;
-import com.zpy.diabetes.app.my.MyCommonCallbackForDrawable;
 import com.zpy.diabetes.app.util.ActivityUtil;
 import com.zpy.diabetes.app.util.ImageTool;
 import com.zpy.diabetes.app.util.TextUtil;
@@ -49,6 +48,7 @@ import com.zpy.diabetes.app.widget.acpf.ACProgressFlower;
 
 import org.json.JSONObject;
 import org.xutils.common.util.LogUtil;
+import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
 import java.io.ByteArrayOutputStream;
@@ -79,7 +79,6 @@ public class MyAccountActivity extends BaseActivity implements BaseUIInterf, Vie
     private SuffererBean suffererBean;
     private String name, phone, sex, suffer_date, birthday, photo;
     private String newName, newSex, newSuffererDate, newBirthday;
-    //    private boolean isUpdate;
     private ACProgressFlower loadingDialog;
     private boolean isRefresh;
     private File uploadFile;
@@ -132,31 +131,38 @@ public class MyAccountActivity extends BaseActivity implements BaseUIInterf, Vie
     public void show() {
         if (suffererBean != null) {
             name = suffererBean.getName();
-            if (!"null".equals(name)) {
-                tv_account_info_name.setText(String.valueOf(name));
-            }
+
+            tv_account_info_name.setText(!"null".equals(name) ? String.valueOf(name) : "未设置");
+
             phone = suffererBean.getPhone();
-            if (!"null".equals(phone)) {
-                tv_account_info_phone.setText(String.valueOf(phone));
-            }
+
+            tv_account_info_phone.setText(!"null".equals(phone) ? TextUtil.getencryptPhone(String.valueOf(phone)) : "未设置");
+
             sex = TextUtil.getSexStr(suffererBean.getSex());
-            if (!"null".equals(sex)) {
-                tv_account_info_sex.setText(String.valueOf(sex));
-            }
+
+            LogUtil.e("sex="+sex);
+
+            tv_account_info_sex.setText(!"null".equals(sex) ? String.valueOf(sex) : "未设置");
+
             birthday = suffererBean.getBirthday();
-            if (!"1900-01-01".equals(birthday)) {
+
+            LogUtil.e("birthday="+birthday);
+
+            if (!"1970-01-01".equals(birthday)) {
                 tv_account_info_birthday.setText(String.valueOf(birthday));
             } else {
                 birthday = "";
+                tv_account_info_birthday.setText("未设置");
             }
             suffer_date = suffererBean.getSufferedDate();
-            if (!"1900-01-01".equals(suffer_date)) {
+            if (!"1970-01-01".equals(suffer_date)) {
                 tv_account_info_suffer_date.setText(String.valueOf(suffer_date));
             } else {
                 suffer_date = "";
+                tv_account_info_suffer_date.setText("未设置");
             }
             photo = AppConfig.QINIU_IMAGE_URL + suffererBean.getPhoto();
-            x.image().bind(image_my_account_info_photo, photo, new MyCommonCallbackForDrawable(this, image_my_account_info_photo, R.mipmap.img_default_phone_blue));
+            x.image().bind(image_my_account_info_photo, photo, new ImageOptions.Builder().setLoadingDrawableId(R.mipmap.img_default_photo_blue).setFailureDrawableId(R.mipmap.img_default_photo_blue).build());
         }
     }
 
@@ -401,7 +407,7 @@ public class MyAccountActivity extends BaseActivity implements BaseUIInterf, Vie
                                                                                             (MyAccountActivity.this, "上传成功！", Toast.LENGTH_SHORT).show();
                                                                                     isRefresh = true;
                                                                                     uploadFile.delete();
-                                                                                    x.image().bind(image_my_account_info_photo, AppConfig.QINIU_IMAGE_URL + key, new MyCommonCallbackForDrawable(MyAccountActivity.this, image_my_account_info_photo, R.mipmap.img_default_phone_blue));
+                                                                                    x.image().bind(image_my_account_info_photo, AppConfig.QINIU_IMAGE_URL + key, new ImageOptions.Builder().setFailureDrawableId(R.mipmap.img_default_photo_blue).setLoadingDrawableId(R.mipmap.img_default_photo_blue).build());
                                                                                 } else {
                                                                                     Toast.makeText
                                                                                             (MyAccountActivity.this, resultBean.getMsg(), Toast.LENGTH_SHORT).show();

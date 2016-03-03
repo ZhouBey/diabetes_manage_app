@@ -13,7 +13,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,7 +32,6 @@ import com.zpy.diabetes.app.config.AppConfig;
 import com.zpy.diabetes.app.interf.BaseUIInterf;
 import com.zpy.diabetes.app.interf.IAppCommonBeanHolder;
 import com.zpy.diabetes.app.interf.IAppUserTokenBeanHolder;
-import com.zpy.diabetes.app.my.MyCommonCallbackForDrawable;
 import com.zpy.diabetes.app.util.ActivityUtil;
 import com.zpy.diabetes.app.util.ImageTool;
 import com.zpy.diabetes.app.util.TextUtil;
@@ -42,6 +40,7 @@ import com.zpy.diabetes.app.widget.acpf.ACProgressFlower;
 
 import org.json.JSONObject;
 import org.xutils.common.Callback;
+import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
 import java.io.ByteArrayOutputStream;
@@ -113,7 +112,7 @@ public class DoctorInfoActivity extends BaseActivity implements BaseUIInterf, Vi
     public void show() {
         if (doctorBean != null) {
             x.image().bind(image_doctors_info_photo, AppConfig.QINIU_IMAGE_URL + doctorBean.getPhoto(),
-                    new MyCommonCallbackForDrawable(this, image_doctors_info_photo, R.mipmap.img_default_photo_gray));
+                    new ImageOptions.Builder().setLoadingDrawableId(R.mipmap.img_default_photo_gray).setFailureDrawableId(R.mipmap.img_default_photo_gray).build());
             tv_doctors_info_name.setText(doctorBean.getName());
             tv_doctors_info_position.setText(doctorBean.getPost());
             tv_doctors_info_hospital.setText(doctorBean.getHospital());
@@ -284,7 +283,7 @@ public class DoctorInfoActivity extends BaseActivity implements BaseUIInterf, Vi
                                                                                     Toast.makeText
                                                                                             (DoctorInfoActivity.this, "上传成功！", Toast.LENGTH_SHORT).show();
 
-                                                                                    x.image().bind(image_doctors_info_photo, AppConfig.QINIU_IMAGE_URL + key, new MyCommonCallbackForDrawable(DoctorInfoActivity.this, image_doctors_info_photo, R.mipmap.img_default_phone_blue));
+                                                                                    x.image().bind(image_doctors_info_photo, AppConfig.QINIU_IMAGE_URL + key, new ImageOptions.Builder().setLoadingDrawableId(R.mipmap.img_default_photo_blue).setFailureDrawableId(R.mipmap.img_default_photo_blue).build());
                                                                                     isRefresh = true;
                                                                                 } else {
                                                                                     Toast.makeText

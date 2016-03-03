@@ -29,7 +29,7 @@ import com.zpy.diabetes.app.ui.FeedBackActivity;
 import com.zpy.diabetes.app.ui.LoginActivity;
 import com.zpy.diabetes.app.ui.MainActivity;
 import com.zpy.diabetes.app.ui.my.MyAccountActivity;
-import com.zpy.diabetes.app.ui.my.MyDoctorActivity;
+import com.zpy.diabetes.app.ui.my.MyDoctorAttentionActivity;
 import com.zpy.diabetes.app.ui.my.MyParticipateActivity;
 import com.zpy.diabetes.app.util.ActivityUtil;
 import com.zpy.diabetes.app.util.TextUtil;
@@ -37,6 +37,7 @@ import com.zpy.diabetes.app.widget.ConfirmationDialog;
 import com.zpy.diabetes.app.widget.acpf.ACProgressFlower;
 
 import org.xutils.common.Callback;
+import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
 public class UserFragment extends Fragment implements BaseUIInterf, View.OnClickListener {
@@ -57,6 +58,8 @@ public class UserFragment extends Fragment implements BaseUIInterf, View.OnClick
     private DoctorBean doctorBean;
     private ImageView image_user_about_question,
             image_my_doctor_or_sufferer;
+
+    View view_user_fragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -92,6 +95,7 @@ public class UserFragment extends Fragment implements BaseUIInterf, View.OnClick
         image_user_about_question = (ImageView) rootView.findViewById(R.id.image_user_about_question);
         tv_my_doctor_or_sufferer = (TextView) rootView.findViewById(R.id.tv_my_doctor_or_sufferer);
         image_my_doctor_or_sufferer = (ImageView) rootView.findViewById(R.id.image_my_doctor_or_sufferer);
+        view_user_fragment = rootView.findViewById(R.id.view_user_fragment);
     }
 
     @Override
@@ -113,32 +117,13 @@ public class UserFragment extends Fragment implements BaseUIInterf, View.OnClick
                             if (AppConfig.OK.equals(suffererBean.getCode())) {
                                 activity.getApp().setShareData(AppConfig.PHONE, suffererBean.getPhone());
                                 tv_user_phone.setText(suffererBean.getPhone());
+                                layout_user_my_doctor.setVisibility(View.VISIBLE);
+                                view_user_fragment.setVisibility(View.VISIBLE);
                                 tv_user_about_question.setText("我的提问");
                                 image_user_about_question.setImageResource(R.mipmap.icon_my_account_question);
-                                tv_my_doctor_or_sufferer.setText("我的医生");
+                                tv_my_doctor_or_sufferer.setText("我的关注");
                                 image_my_doctor_or_sufferer.setImageResource(R.mipmap.icon_my_account_doctor);
-                                x.image().bind(image_user_photo, AppConfig.QINIU_IMAGE_URL + suffererBean.getPhoto(), new Callback.CommonCallback<Drawable>() {
-                                    @Override
-                                    public void onSuccess(Drawable result) {
-                                        activity.getApp().setShareData(AppConfig.PHOTO, AppConfig.QINIU_IMAGE_URL + suffererBean.getPhoto());
-                                    }
-
-                                    @Override
-                                    public void onError(Throwable ex, boolean isOnCallback) {
-                                        Bitmap bitmap = BitmapFactory.decodeResource(activity.getResources(), R.mipmap.img_default_phone_blue);
-                                        image_user_photo.setImageBitmap(bitmap);
-                                    }
-
-                                    @Override
-                                    public void onCancelled(CancelledException cex) {
-
-                                    }
-
-                                    @Override
-                                    public void onFinished() {
-
-                                    }
-                                });
+                                x.image().bind(image_user_photo, AppConfig.QINIU_IMAGE_URL + suffererBean.getPhoto(),new ImageOptions.Builder().setLoadingDrawableId(R.mipmap.img_default_photo_blue).setFailureDrawableId(R.mipmap.img_default_photo_blue).build());
                                 activity.getHomeFragment().show();
                             } else {
                                 Toast.makeText(activity, suffererBean.getMsg(), Toast.LENGTH_SHORT).show();
@@ -164,32 +149,10 @@ public class UserFragment extends Fragment implements BaseUIInterf, View.OnClick
                             if (AppConfig.OK.equals(doctorBean.getCode())) {
                                 activity.getApp().setShareData(AppConfig.PHONE, doctorBean.getPhone());
                                 tv_user_phone.setText(doctorBean.getPhone());
+                                layout_user_my_doctor.setVisibility(View.GONE);
+                                view_user_fragment.setVisibility(View.GONE);
                                 tv_user_about_question.setText("我的回复");
-                                image_user_about_question.setImageResource(R.mipmap.icon_my_reply);
-                                tv_my_doctor_or_sufferer.setText("我的病人");
-                                image_my_doctor_or_sufferer.setImageResource(R.mipmap.image_my_sufferer);
-                                x.image().bind(image_user_photo, AppConfig.QINIU_IMAGE_URL + doctorBean.getPhoto(), new Callback.CommonCallback<Drawable>() {
-                                    @Override
-                                    public void onSuccess(Drawable result) {
-                                        activity.getApp().setShareData(AppConfig.PHOTO, AppConfig.QINIU_IMAGE_URL + doctorBean.getPhoto());
-                                    }
-
-                                    @Override
-                                    public void onError(Throwable ex, boolean isOnCallback) {
-                                        Bitmap bitmap = BitmapFactory.decodeResource(activity.getResources(), R.mipmap.img_default_phone_blue);
-                                        image_user_photo.setImageBitmap(bitmap);
-                                    }
-
-                                    @Override
-                                    public void onCancelled(CancelledException cex) {
-
-                                    }
-
-                                    @Override
-                                    public void onFinished() {
-
-                                    }
-                                });
+                                x.image().bind(image_user_photo, AppConfig.QINIU_IMAGE_URL + doctorBean.getPhoto(), new ImageOptions.Builder().setLoadingDrawableId(R.mipmap.img_default_photo_blue).setFailureDrawableId(R.mipmap.img_default_photo_blue).build());
                                 activity.getHomeFragment().show();
                             } else {
                                 Toast.makeText(activity, doctorBean.getMsg(), Toast.LENGTH_SHORT).show();
@@ -209,7 +172,7 @@ public class UserFragment extends Fragment implements BaseUIInterf, View.OnClick
 
         } else {
             tv_user_phone.setText("未登录");
-            image_user_photo.setImageResource(R.mipmap.img_default_phone_blue);
+            image_user_photo.setImageResource(R.mipmap.img_default_photo_blue);
         }
     }
 
@@ -230,7 +193,7 @@ public class UserFragment extends Fragment implements BaseUIInterf, View.OnClick
                     intent = new Intent(activity, DoctorInfoActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("doctor", doctorBean);
-                    bundle.putBoolean("isLogout",true);
+                    bundle.putBoolean("isLogout", true);
                     intent.putExtras(bundle);
                 }
             }
@@ -241,7 +204,7 @@ public class UserFragment extends Fragment implements BaseUIInterf, View.OnClick
             startActivity(intent);
         }
         if (v == layout_user_my_doctor) {
-            intent = new Intent(activity, MyDoctorActivity.class);
+            intent = new Intent(activity, MyDoctorAttentionActivity.class);
             startActivity(intent);
         }
         if (v == layout_user_feed_back) {

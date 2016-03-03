@@ -22,7 +22,7 @@
                 android:layout_width="77dp"
                 android:layout_height="77dp"
                 android:layout_gravity="center"
-                android:src="@mipmap/img_default_phone_blue"
+                android:src="@mipmap/img_default_photo_blue"
                 app:siBorderColor="@color/theme_color"
                 app:siBorderWidth="1dp"
                 />
@@ -160,7 +160,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:layout_toRightOf="@id/image_my_doctor_or_sufferer"
-            android:text="我的医生"
+            android:text="我的收藏"
             android:textColor="@color/font_deep_gray"
             android:textSize="@dimen/font_size17" />
 
@@ -174,6 +174,7 @@
     </RelativeLayout>
 
     <View
+        android:id="@+id/view_user_fragment"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/line_color" />

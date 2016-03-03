@@ -1,7 +1,6 @@
 package com.zpy.diabetes.app.ui;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -18,12 +17,10 @@ import com.zpy.diabetes.app.R;
 import com.zpy.diabetes.app.bean.HealthInfoBean;
 import com.zpy.diabetes.app.config.AppConfig;
 import com.zpy.diabetes.app.interf.BaseUIInterf;
-import com.zpy.diabetes.app.my.MyCommonCallbackForDrawable;
 import com.zpy.diabetes.app.util.ActivityUtil;
 import com.zpy.diabetes.app.util.TextUtil;
 
 import org.xutils.common.Callback;
-import org.xutils.common.util.LogUtil;
 import org.xutils.x;
 
 public class HealthInfoDetailsActivity extends BaseActivity implements BaseUIInterf, View.OnClickListener {

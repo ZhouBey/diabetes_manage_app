@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.zpy.diabetes.app.R;
-import com.zpy.diabetes.app.my.MyCommonCallbackForDrawable;
 
+import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
 import java.util.List;
@@ -59,7 +59,7 @@ public class AnswerListViewAdapter<T> extends ArrayAdapter<T> {
             tv_answer_item_content.setText(item.get("answer_content"));
             tv_answer_item_doctor_phone.setText(item.get("answer_phone"));
             image_answer_item_doctor_photo.setImageResource(R.mipmap.img_default_photo_gray);
-            x.image().bind(image_answer_item_doctor_photo, item.get("answer_photo"), new MyCommonCallbackForDrawable(context, image_answer_item_doctor_photo, R.mipmap.img_default_photo_gray));
+            x.image().bind(image_answer_item_doctor_photo, item.get("answer_photo"), new ImageOptions.Builder().setLoadingDrawableId(R.mipmap.img_default_photo_gray).setFailureDrawableId(R.mipmap.img_default_photo_gray).build());
         }
     }
 }
