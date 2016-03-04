@@ -1,6 +1,5 @@
 package com.zpy.diabetes.app.fragment;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -9,18 +8,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zpy.diabetes.app.R;
-import com.zpy.diabetes.app.bean.AppBean;
-import com.zpy.diabetes.app.bean.ResultBean;
-import com.zpy.diabetes.app.config.AppConfig;
 import com.zpy.diabetes.app.interf.BaseUIInterf;
-import com.zpy.diabetes.app.interf.IAppCommonBeanHolder;
 import com.zpy.diabetes.app.my.MyCountDownTimer;
-import com.zpy.diabetes.app.my.SmsObserver;
 import com.zpy.diabetes.app.ui.RegisterForDoctorActivity;
 import com.zpy.diabetes.app.util.ActivityUtil;
 import com.zpy.diabetes.app.util.TextUtil;
@@ -54,7 +47,9 @@ public class DoctorRegisterOneFragment extends Fragment implements BaseUIInterf,
             rootView = inflater.inflate(R.layout.doctor_register_fragment_one, container, false);
         } else {
             ViewGroup viewGroup = (ViewGroup) rootView.getParent();
-            viewGroup.removeView(rootView);
+            if (viewGroup != null) {
+                viewGroup.removeView(rootView);
+            }
         }
         init();
         show();

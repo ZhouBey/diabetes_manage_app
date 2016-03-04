@@ -135,7 +135,7 @@ public class AnswerActivity extends BaseActivity implements BaseUIInterf, View.O
             tv_answer_question_title.setText(questionBean.getTitle());
             tv_answer_question_content.setText(questionBean.getContent());
             tv_answer_suffer_time.setText(questionBean.getCreateD());
-            x.image().bind(image_answer_suffer_photo, AppConfig.QINIU_IMAGE_URL + questionBean.getSuffererPhoto(), new ImageOptions.Builder().setFailureDrawableId(R.mipmap.img_default_photo_gray).setLoadingDrawableId(R.mipmap.img_default_photo_gray).build());
+            x.image().bind(image_answer_suffer_photo, AppConfig.QINIU_IMAGE_URL + questionBean.getSuffererPhoto(), new ImageOptions.Builder().setFailureDrawableId(R.mipmap.img_default_photo_blue).setLoadingDrawableId(R.mipmap.img_default_photo_blue).build());
         }
         load(1, true);
     }

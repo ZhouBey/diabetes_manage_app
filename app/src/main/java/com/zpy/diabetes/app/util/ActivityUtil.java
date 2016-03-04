@@ -103,7 +103,8 @@ public class ActivityUtil {
         switchoverFragment(activity, newFragment, containerID, -1, -1);
     }
 
-    public static void switchoverFragment(FragmentActivity activity, Fragment newFragment, int containerID, int enterAnim, int exitAnim) {
+    public static void switchoverFragment(FragmentActivity activity, Fragment newFragment,
+                                          int containerID, int enterAnim, int exitAnim) {
         FragmentManager manager = activity.getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         if (enterAnim != -1 && exitAnim != -1) {

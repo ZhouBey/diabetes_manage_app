@@ -11,9 +11,9 @@ public class AppConfig {
     public static final int BANNER_COUNT = 2;
 
     // 短信SDK的APPKEY
-    public static String SMS_APPKEY = "cb8603660152";
+    public static String SMS_APPKEY = "1010109384f7b";
     // 短信SDK的APPSECRET
-    public static String SMS_APPSECRET = "e976a39389a4688472c287ede47017c1";
+    public static String SMS_APPSECRET = "cbc18a246c2a1de6d6935a33286e141e";
     public static final int READ_MSG = 1;
     public static final int DIRECT_CLOCKWISE = 100;
     public static final int REFRESH_QA_LIST = 119;

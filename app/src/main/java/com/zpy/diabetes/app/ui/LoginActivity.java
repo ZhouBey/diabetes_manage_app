@@ -122,9 +122,9 @@ public class LoginActivity extends BaseActivity implements BaseUIInterf, View.On
                     getApp().getHttpApi().loginForDoctor(phone, password, loadingDialog, new IAppCommonBeanHolder() {
                         @Override
                         public void asynHold(AppBean bean) {
-                            if(bean!=null) {
+                            if (bean != null) {
                                 TokenBean tokenBean = (TokenBean) bean;
-                                if(AppConfig.OK.equals(tokenBean.getCode())) {
+                                if (AppConfig.OK.equals(tokenBean.getCode())) {
                                     Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                                     getApp().setShareData(AppConfig.EXPIRE_IN, tokenBean.getExpireIn());
                                     getApp().setShareData(AppConfig.TOKEN, tokenBean.getToken());
@@ -133,7 +133,7 @@ public class LoginActivity extends BaseActivity implements BaseUIInterf, View.On
                                     sendBroadcast(intent_refresh_account);
                                     LoginActivity.this.finish();
                                 } else {
-                                    Toast.makeText(LoginActivity.this,tokenBean.getMsg(),Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LoginActivity.this, tokenBean.getMsg(), Toast.LENGTH_SHORT).show();
                                 }
                             } else {
                                 ActivityUtil.loadError(LoginActivity.this);

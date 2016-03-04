@@ -15,6 +15,9 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        flatDir{
+            dirs 'libs' //就是你放aar的目录地址
+        }
     }
 }
 

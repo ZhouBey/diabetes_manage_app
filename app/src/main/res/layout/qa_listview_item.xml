@@ -18,7 +18,7 @@
             android:id="@+id/image_qa_item_photo"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@mipmap/img_default_photo_gray"
+            android:src="@mipmap/img_default_photo_blue"
             app:siBorderColor="@color/dark_gray"
             app:siBorderWidth="1dp" />
 

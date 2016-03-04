@@ -56,7 +56,7 @@ public class DoctorListViewAdapter<T> extends ArrayAdapter<T>{
             tv_doctors_item_hospital.setText(item.get("doctor_for_hospital"));
             tv_doctors_item_name.setText(item.get("doctor_name"));
             tv_doctors_item_info.setText(item.get("doctor_info"));
-            image_doctors_item_photo.setImageResource(R.mipmap.img_default_photo_gray);
+            image_doctors_item_photo.setImageResource(R.mipmap.img_default_photo_blue);
         }
     }
 }

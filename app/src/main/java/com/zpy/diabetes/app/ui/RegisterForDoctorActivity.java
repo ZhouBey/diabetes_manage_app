@@ -1,6 +1,5 @@
 package com.zpy.diabetes.app.ui;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.view.KeyEvent;
@@ -12,13 +11,11 @@ import com.zpy.diabetes.app.R;
 import com.zpy.diabetes.app.config.AppConfig;
 import com.zpy.diabetes.app.fragment.DoctorRegisterOneFragment;
 import com.zpy.diabetes.app.interf.BaseUIInterf;
-import com.zpy.diabetes.app.my.MyCountDownTimer;
-import com.zpy.diabetes.app.my.SmsObserver;
 import com.zpy.diabetes.app.util.ActivityUtil;
 
 import cn.smssdk.SMSSDK;
 
-public class RegisterForDoctorActivity extends BaseActivity implements BaseUIInterf,View.OnClickListener {
+public class RegisterForDoctorActivity extends BaseActivity implements BaseUIInterf, View.OnClickListener {
 
     private ActionBar actionBar;
     private ImageView imageLeft;
@@ -43,7 +40,7 @@ public class RegisterForDoctorActivity extends BaseActivity implements BaseUIInt
     public void init() {
         SMSSDK.initSDK(this, AppConfig.SMS_APPKEY, AppConfig.SMS_APPSECRET);
         actionBar = getSupportActionBar();
-        ActivityUtil.showActionBar(myActionBar,actionBar,R.mipmap.back,-1,"医生注册");
+        ActivityUtil.showActionBar(myActionBar, actionBar, R.mipmap.back, -1, "医生注册");
         imageLeft = myActionBar.getImageViewLeft();
         imageLeft.setOnClickListener(this);
         ActivityUtil.switchoverFragment(this, new DoctorRegisterOneFragment(), R.id.contain_register_for_doctor);
@@ -56,7 +53,7 @@ public class RegisterForDoctorActivity extends BaseActivity implements BaseUIInt
 
     @Override
     public void onClick(View v) {
-        if(v == imageLeft) {
+        if (v == imageLeft) {
             this.finish();
         }
     }

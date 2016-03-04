@@ -58,8 +58,8 @@ public class AnswerListViewAdapter<T> extends ArrayAdapter<T> {
             tv_answer_item_time.setText(item.get("answer_time"));
             tv_answer_item_content.setText(item.get("answer_content"));
             tv_answer_item_doctor_phone.setText(item.get("answer_phone"));
-            image_answer_item_doctor_photo.setImageResource(R.mipmap.img_default_photo_gray);
-            x.image().bind(image_answer_item_doctor_photo, item.get("answer_photo"), new ImageOptions.Builder().setLoadingDrawableId(R.mipmap.img_default_photo_gray).setFailureDrawableId(R.mipmap.img_default_photo_gray).build());
+            image_answer_item_doctor_photo.setImageResource(R.mipmap.img_default_photo_blue);
+            x.image().bind(image_answer_item_doctor_photo, item.get("answer_photo"), new ImageOptions.Builder().setLoadingDrawableId(R.mipmap.img_default_photo_blue).setFailureDrawableId(R.mipmap.img_default_photo_blue).build());
         }
     }
 }

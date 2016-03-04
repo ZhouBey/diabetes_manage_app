@@ -20,12 +20,12 @@
         android:inputType="phone"
         android:maxLength="11"
         android:singleLine="true"
+        android:text="13837113789"
         android:textColor="@color/font_deep_gray"
         android:textColorHint="@color/font_thin_gray"
         android:textCursorDrawable="@null"
         android:textSize="@dimen/font_size15"
-        app:lineColor="@color/theme_color"
-        android:text="13837113789"/>
+        app:lineColor="@color/theme_color" />
 
     <com.zpy.diabetes.app.widget.LineEditText
         android:id="@+id/et_login_password"
@@ -41,12 +41,12 @@
         android:inputType="textPassword"
         android:maxLength="20"
         android:singleLine="true"
+        android:text="qwer1234"
         android:textColor="@color/font_deep_gray"
         android:textColorHint="@color/font_thin_gray"
         android:textCursorDrawable="@null"
         android:textSize="@dimen/font_size15"
-        app:lineColor="@color/theme_color"
-        android:text="qwer1234"/>
+        app:lineColor="@color/theme_color" />
 
     <RadioGroup
         android:id="@+id/radio_group_role"
@@ -63,11 +63,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:checked="true"
             android:text="患者"
             android:textColor="@color/font_deep_gray"
-            android:textSize="@dimen/font_size15"
-            android:checked="true"
-            />
+            android:textSize="@dimen/font_size15" />
 
         <RadioButton
             android:id="@+id/radio_doctor"
@@ -76,7 +75,7 @@
             android:layout_weight="1"
             android:text="医生"
             android:textColor="@color/font_deep_gray"
-            android:textSize="@dimen/font_size15"/>
+            android:textSize="@dimen/font_size15" />
     </RadioGroup>
 
     <TextView
@@ -88,11 +87,11 @@
         android:layout_below="@id/radio_group_role"
         android:layout_marginTop="20dp"
         android:background="@drawable/radius_button_shape"
+        android:fontFamily="sans-serif-light"
         android:gravity="center"
         android:text="登录"
         android:textColor="@color/colorWhite"
-        android:textSize="@dimen/font_size17"
-        android:fontFamily="sans-serif-light"/>
+        android:textSize="@dimen/font_size17" />
 
     <LinearLayout
         android:layout_width="wrap_content"

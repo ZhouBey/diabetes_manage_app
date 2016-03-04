@@ -60,7 +60,7 @@ public class QaListViewItemAdapter<T> extends ArrayAdapter<T> {
             tv_qa_item_reply_count.setText(item.get("qa_reply_count"));
             tv_qa_item_question_title.setText(item.get("question_title"));
             tv_qa_item_question_content.setText(item.get("question_content"));
-            image_qa_item_photo.setImageResource(R.mipmap.img_default_photo_gray);
+            image_qa_item_photo.setImageResource(R.mipmap.img_default_photo_blue);
         }
     }
 }

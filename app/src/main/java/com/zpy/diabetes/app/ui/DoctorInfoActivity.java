@@ -58,13 +58,11 @@ public class DoctorInfoActivity extends BaseActivity implements BaseUIInterf, Vi
             tv_doctors_info_position,
             tv_doctors_info_hospital,
             tv_doctors_info_info;
-    private TextView tv_doctor_logout;
-    private boolean isLogout;
+    private TextView tv_doctor_operate;
     private File uploadFile;
     public static final String IMAGE_FILE_NAME = "tangzhushou_doctor_photo";
     private ACProgressFlower loadingDialog;
-    private boolean isRefresh;
-
+    private int role_type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,35 +82,34 @@ public class DoctorInfoActivity extends BaseActivity implements BaseUIInterf, Vi
         bundle = getIntent().getExtras();
         if (bundle != null) {
             doctorBean = (DoctorBean) bundle.getSerializable("doctor");
-            isLogout = bundle.getBoolean("isLogout");
             if (doctorBean != null) {
                 myActionBar.setActionBarTitle(doctorBean.getName());
             }
         }
+        role_type = getApp().getShareDataInt(AppConfig.ROLE_TYPE, -1);
         image_doctors_info_photo = (CircularImageView) findViewById(R.id.image_doctors_info_photo);
         image_doctors_info_photo.setOnClickListener(this);
         tv_doctors_info_name = (TextView) findViewById(R.id.tv_doctors_info_name);
         tv_doctors_info_position = (TextView) findViewById(R.id.tv_doctors_info_position);
         tv_doctors_info_hospital = (TextView) findViewById(R.id.tv_doctors_info_hospital);
         tv_doctors_info_info = (TextView) findViewById(R.id.tv_doctors_info_info);
-        tv_doctor_logout = (TextView) findViewById(R.id.tv_doctor_logout);
-        if (isLogout) {
-            tv_doctor_logout.setVisibility(View.VISIBLE);
+        tv_doctor_operate = (TextView) findViewById(R.id.tv_doctor_operate);
+        if (AppConfig.ROLE_TYPE_FOR_DOCTOR == role_type) {
+            tv_doctor_operate.setText("退出");
             image_doctors_info_photo.setClickable(true);
         } else {
-            tv_doctor_logout.setVisibility(View.INVISIBLE);
+            tv_doctor_operate.setText("关注");
             image_doctors_info_photo.setClickable(false);
         }
-        tv_doctor_logout.setOnClickListener(this);
+        tv_doctor_operate.setOnClickListener(this);
         loadingDialog = ActivityUtil.getLoadingDialog(this);
-        isRefresh = false;
     }
 
     @Override
     public void show() {
         if (doctorBean != null) {
             x.image().bind(image_doctors_info_photo, AppConfig.QINIU_IMAGE_URL + doctorBean.getPhoto(),
-                    new ImageOptions.Builder().setLoadingDrawableId(R.mipmap.img_default_photo_gray).setFailureDrawableId(R.mipmap.img_default_photo_gray).build());
+                    new ImageOptions.Builder().setLoadingDrawableId(R.mipmap.img_default_photo_blue).setFailureDrawableId(R.mipmap.img_default_photo_blue).build());
             tv_doctors_info_name.setText(doctorBean.getName());
             tv_doctors_info_position.setText(doctorBean.getPost());
             tv_doctors_info_hospital.setText(doctorBean.getHospital());
@@ -165,7 +162,7 @@ public class DoctorInfoActivity extends BaseActivity implements BaseUIInterf, Vi
             sendBroadcast(intent_refresh_account);
             this.finish();
         }
-        if (v == tv_doctor_logout) {
+        if (v == tv_doctor_operate) {
             ActivityUtil.logout(getApp());
             Intent intent_refresh_account = new Intent(AppConfig.REFRESH_ACCOUNT_ACTION);
             sendBroadcast(intent_refresh_account);
@@ -284,7 +281,6 @@ public class DoctorInfoActivity extends BaseActivity implements BaseUIInterf, Vi
                                                                                             (DoctorInfoActivity.this, "上传成功！", Toast.LENGTH_SHORT).show();
 
                                                                                     x.image().bind(image_doctors_info_photo, AppConfig.QINIU_IMAGE_URL + key, new ImageOptions.Builder().setLoadingDrawableId(R.mipmap.img_default_photo_blue).setFailureDrawableId(R.mipmap.img_default_photo_blue).build());
-                                                                                    isRefresh = true;
                                                                                 } else {
                                                                                     Toast.makeText
                                                                                             (DoctorInfoActivity.this, resultBean.getMsg(), Toast.LENGTH_SHORT).show();

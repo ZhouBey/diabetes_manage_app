@@ -11,7 +11,7 @@
         android:layout_height="60dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:src="@mipmap/img_default_photo_gray"
+        android:src="@mipmap/img_default_photo_blue"
         app:siBorderWidth="0dp"/>
     <TextView
         android:id="@+id/tv_doctors_item_name"
