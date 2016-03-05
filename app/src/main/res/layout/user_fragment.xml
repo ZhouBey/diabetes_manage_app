@@ -151,7 +151,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:scaleType="fitCenter"
-            android:src="@mipmap/icon_my_account_doctor" />
+            android:src="@mipmap/icon_attention" />
 
         <TextView
             android:id="@+id/tv_my_doctor_or_sufferer"
@@ -160,7 +160,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:layout_toRightOf="@id/image_my_doctor_or_sufferer"
-            android:text="我的收藏"
+            android:text="我的关注"
             android:textColor="@color/font_deep_gray"
             android:textSize="@dimen/font_size17" />
 

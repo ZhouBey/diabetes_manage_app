@@ -117,12 +117,9 @@ public class UserFragment extends Fragment implements BaseUIInterf, View.OnClick
                             if (AppConfig.OK.equals(suffererBean.getCode())) {
                                 activity.getApp().setShareData(AppConfig.PHONE, suffererBean.getPhone());
                                 tv_user_phone.setText(suffererBean.getPhone());
-                                layout_user_my_doctor.setVisibility(View.VISIBLE);
-                                view_user_fragment.setVisibility(View.VISIBLE);
                                 tv_user_about_question.setText("我的提问");
                                 image_user_about_question.setImageResource(R.mipmap.icon_my_account_question);
                                 tv_my_doctor_or_sufferer.setText("我的关注");
-                                image_my_doctor_or_sufferer.setImageResource(R.mipmap.icon_my_account_doctor);
                                 x.image().bind(image_user_photo, AppConfig.QINIU_IMAGE_URL + suffererBean.getPhoto(),new ImageOptions.Builder().setLoadingDrawableId(R.mipmap.img_default_photo_blue).setFailureDrawableId(R.mipmap.img_default_photo_blue).build());
                                 activity.getHomeFragment().show();
                             } else {
@@ -149,9 +146,9 @@ public class UserFragment extends Fragment implements BaseUIInterf, View.OnClick
                             if (AppConfig.OK.equals(doctorBean.getCode())) {
                                 activity.getApp().setShareData(AppConfig.PHONE, doctorBean.getPhone());
                                 tv_user_phone.setText(doctorBean.getPhone());
-                                layout_user_my_doctor.setVisibility(View.GONE);
-                                view_user_fragment.setVisibility(View.GONE);
                                 tv_user_about_question.setText("我的回复");
+                                image_user_about_question.setImageResource(R.mipmap.icon_my_account_question);
+                                tv_my_doctor_or_sufferer.setText("关注我的");
                                 x.image().bind(image_user_photo, AppConfig.QINIU_IMAGE_URL + doctorBean.getPhoto(), new ImageOptions.Builder().setLoadingDrawableId(R.mipmap.img_default_photo_blue).setFailureDrawableId(R.mipmap.img_default_photo_blue).build());
                                 activity.getHomeFragment().show();
                             } else {
