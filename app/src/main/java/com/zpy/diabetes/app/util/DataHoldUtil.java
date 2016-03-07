@@ -352,6 +352,7 @@ public class DataHoldUtil {
             }
             doctorPageBean.setDoctorBeans(doctorBeans);
         } catch (JSONException e) {
+            LogUtil.e("e=" + e.toString());
             e.printStackTrace();
         }
         return doctorPageBean;

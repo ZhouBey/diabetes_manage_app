@@ -118,7 +118,7 @@ public class DoctorsActivity extends BaseActivity implements BaseUIInterf, View.
                                 Intent intent = new Intent(DoctorsActivity.this, DoctorInfoActivity.class);
                                 Bundle bundle = new Bundle();
                                 bundle.putSerializable("doctor", doctorBeanList.get(position));
-                                bundle.putBoolean("isLogout",false);
+                                bundle.putInt("is_mime",0);
                                 intent.putExtras(bundle);
                                 startActivity(intent);
                             }

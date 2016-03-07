@@ -62,7 +62,7 @@ public class DoctorInfoActivity extends BaseActivity implements BaseUIInterf, Vi
     private File uploadFile;
     public static final String IMAGE_FILE_NAME = "tangzhushou_doctor_photo";
     private ACProgressFlower loadingDialog;
-    private int role_type;
+    private int role_type, is_mine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +82,7 @@ public class DoctorInfoActivity extends BaseActivity implements BaseUIInterf, Vi
         bundle = getIntent().getExtras();
         if (bundle != null) {
             doctorBean = (DoctorBean) bundle.getSerializable("doctor");
+            is_mine = bundle.getInt("is_mine");
             if (doctorBean != null) {
                 myActionBar.setActionBarTitle(doctorBean.getName());
             }
@@ -94,13 +95,6 @@ public class DoctorInfoActivity extends BaseActivity implements BaseUIInterf, Vi
         tv_doctors_info_hospital = (TextView) findViewById(R.id.tv_doctors_info_hospital);
         tv_doctors_info_info = (TextView) findViewById(R.id.tv_doctors_info_info);
         tv_doctor_operate = (TextView) findViewById(R.id.tv_doctor_operate);
-        if (AppConfig.ROLE_TYPE_FOR_DOCTOR == role_type) {
-            tv_doctor_operate.setText("退出");
-            image_doctors_info_photo.setClickable(true);
-        } else {
-            tv_doctor_operate.setText("关注");
-            image_doctors_info_photo.setClickable(false);
-        }
         tv_doctor_operate.setOnClickListener(this);
         loadingDialog = ActivityUtil.getLoadingDialog(this);
     }
@@ -138,6 +132,43 @@ public class DoctorInfoActivity extends BaseActivity implements BaseUIInterf, Vi
                 }
             });
         }
+
+        if (AppConfig.ROLE_TYPE_FOR_DOCTOR == role_type) {
+            if (AppConfig.IS_MINE == is_mine) {
+                tv_doctor_operate.setText("退出");
+                image_doctors_info_photo.setClickable(true);
+            } else {
+                tv_doctor_operate.setVisibility(View.GONE);
+            }
+        } else {
+            image_doctors_info_photo.setClickable(false);
+            String token = getApp().getShareDataStr(AppConfig.TOKEN);
+            if (TextUtil.isEmpty(token)) {
+                tv_doctor_operate.setText("关注");
+                tv_doctor_operate.setClickable(true);
+            } else {
+                loadingDialog.show();
+                getApp().getHttpApi().isAttention(token, doctorBean.getId(), loadingDialog, new IAppUserTokenBeanHolder() {
+                    @Override
+                    public void asynHold(AppBean bean) {
+                        ResultBean resultBean = (ResultBean) bean;
+                        if (AppConfig.OK.equals(resultBean.getCode())) {
+                            tv_doctor_operate.setText("已关注");
+                            tv_doctor_operate.setClickable(false);
+                        } else {
+                            tv_doctor_operate.setText("关注");
+                            tv_doctor_operate.setClickable(true);
+                        }
+                    }
+
+                    @Override
+                    public void overDue() {
+                        ActivityUtil.overdue(DoctorInfoActivity.this, loadingDialog, true);
+                    }
+                });
+            }
+
+        }
     }
 
     private void fitWidth(Bitmap bitmap, ImageView imageView) {
@@ -163,10 +194,37 @@ public class DoctorInfoActivity extends BaseActivity implements BaseUIInterf, Vi
             this.finish();
         }
         if (v == tv_doctor_operate) {
-            ActivityUtil.logout(getApp());
-            Intent intent_refresh_account = new Intent(AppConfig.REFRESH_ACCOUNT_ACTION);
-            sendBroadcast(intent_refresh_account);
-            this.finish();
+            if ("退出".equals(tv_doctor_operate.getText().toString())) {
+                ActivityUtil.logout(getApp());
+                Intent intent_refresh_account = new Intent(AppConfig.REFRESH_ACCOUNT_ACTION);
+                sendBroadcast(intent_refresh_account);
+                this.finish();
+            } else {
+                String token = getApp().getShareDataStr(AppConfig.TOKEN);
+                if (TextUtil.isEmpty(token)) {
+                    Intent intent = new Intent(DoctorInfoActivity.this, LoginActivity.class);
+                    startActivityForResult(intent, 22);
+                } else {
+                    getApp().getHttpApi().addDoctorPatient(token, doctorBean.getId(), loadingDialog, new IAppUserTokenBeanHolder() {
+                        @Override
+                        public void asynHold(AppBean bean) {
+                            ResultBean resultBean = (ResultBean) bean;
+                            if (AppConfig.OK.equals(resultBean.getCode())) {
+                                Toast.makeText(DoctorInfoActivity.this,"关注成功！",Toast.LENGTH_SHORT).show();
+                                tv_doctor_operate.setText("已关注");
+                                tv_doctor_operate.setClickable(false);
+                            } else {
+                                Toast.makeText(DoctorInfoActivity.this,resultBean.getMsg(),Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void overDue() {
+                            ActivityUtil.overdue(DoctorInfoActivity.this, loadingDialog, true);
+                        }
+                    });
+                }
+            }
         }
         if (v == image_doctors_info_photo) {
             final UploadPhotoDialog dialog = new UploadPhotoDialog(this, R.style.GrayDialog);
@@ -315,6 +373,10 @@ public class DoctorInfoActivity extends BaseActivity implements BaseUIInterf, Vi
                 default:
                     break;
             }
+        } else if (AppConfig.LOGIN_OK_RESULT == resultCode) {
+            show();
+        } else {
+            this.finish();
         }
     }
 }

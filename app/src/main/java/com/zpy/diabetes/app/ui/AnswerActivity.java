@@ -32,6 +32,7 @@ import com.zpy.diabetes.app.util.ActivityUtil;
 import com.zpy.diabetes.app.util.TextUtil;
 import com.zpy.diabetes.app.widget.acpf.ACProgressFlower;
 
+import org.xutils.common.util.LogUtil;
 import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
@@ -132,6 +133,7 @@ public class AnswerActivity extends BaseActivity implements BaseUIInterf, View.O
     public void show() {
         if (questionBean != null) {
             tv_answer_suffer_phone.setText(questionBean.getSuffererPhone());
+            LogUtil.e("questionBean=" + questionBean.toString());
             tv_answer_question_title.setText(questionBean.getTitle());
             tv_answer_question_content.setText(questionBean.getContent());
             tv_answer_suffer_time.setText(questionBean.getCreateD());
@@ -179,7 +181,7 @@ public class AnswerActivity extends BaseActivity implements BaseUIInterf, View.O
 
             @Override
             public void overDue() {
-                ActivityUtil.overdue(AnswerActivity.this, loadingDialog, false);
+                ActivityUtil.overdue(AnswerActivity.this, loadingDialog, true);
             }
         });
     }

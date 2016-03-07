@@ -149,7 +149,7 @@ public class ActivityUtil {
         Toast.makeText(activity, "账户已过期或未登录，请先登录", Toast.LENGTH_LONG).show();
         if (isJump) {
             Intent intent = new Intent(activity, LoginActivity.class);
-            activity.startActivity(intent);
+            activity.startActivityForResult(intent, 101);
         }
     }
 

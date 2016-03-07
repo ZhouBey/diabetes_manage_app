@@ -1,9 +1,6 @@
 package com.zpy.diabetes.app.fragment;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -36,7 +33,6 @@ import com.zpy.diabetes.app.util.TextUtil;
 import com.zpy.diabetes.app.widget.ConfirmationDialog;
 import com.zpy.diabetes.app.widget.acpf.ACProgressFlower;
 
-import org.xutils.common.Callback;
 import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
@@ -120,7 +116,9 @@ public class UserFragment extends Fragment implements BaseUIInterf, View.OnClick
                                 tv_user_about_question.setText("我的提问");
                                 image_user_about_question.setImageResource(R.mipmap.icon_my_account_question);
                                 tv_my_doctor_or_sufferer.setText("我的关注");
-                                x.image().bind(image_user_photo, AppConfig.QINIU_IMAGE_URL + suffererBean.getPhoto(),new ImageOptions.Builder().setLoadingDrawableId(R.mipmap.img_default_photo_blue).setFailureDrawableId(R.mipmap.img_default_photo_blue).build());
+                                layout_user_my_doctor.setVisibility(View.VISIBLE);
+                                view_user_fragment.setVisibility(View.VISIBLE);
+                                x.image().bind(image_user_photo, AppConfig.QINIU_IMAGE_URL + suffererBean.getPhoto(), new ImageOptions.Builder().setLoadingDrawableId(R.mipmap.img_default_photo_blue).setFailureDrawableId(R.mipmap.img_default_photo_blue).build());
                                 activity.getHomeFragment().show();
                             } else {
                                 Toast.makeText(activity, suffererBean.getMsg(), Toast.LENGTH_SHORT).show();
@@ -148,7 +146,8 @@ public class UserFragment extends Fragment implements BaseUIInterf, View.OnClick
                                 tv_user_phone.setText(doctorBean.getPhone());
                                 tv_user_about_question.setText("我的回复");
                                 image_user_about_question.setImageResource(R.mipmap.icon_my_account_question);
-                                tv_my_doctor_or_sufferer.setText("关注我的");
+                                layout_user_my_doctor.setVisibility(View.GONE);
+                                view_user_fragment.setVisibility(View.GONE);
                                 x.image().bind(image_user_photo, AppConfig.QINIU_IMAGE_URL + doctorBean.getPhoto(), new ImageOptions.Builder().setLoadingDrawableId(R.mipmap.img_default_photo_blue).setFailureDrawableId(R.mipmap.img_default_photo_blue).build());
                                 activity.getHomeFragment().show();
                             } else {
@@ -190,7 +189,7 @@ public class UserFragment extends Fragment implements BaseUIInterf, View.OnClick
                     intent = new Intent(activity, DoctorInfoActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("doctor", doctorBean);
-                    bundle.putBoolean("isLogout", true);
+                    bundle.putInt("is_mine", AppConfig.IS_MINE);
                     intent.putExtras(bundle);
                 }
             }

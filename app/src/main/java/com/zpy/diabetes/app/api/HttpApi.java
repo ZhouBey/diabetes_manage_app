@@ -464,6 +464,15 @@ public class HttpApi {
         });
     }
 
+    /**
+     * 获取我的问题
+     *
+     * @param requestUrl
+     * @param token
+     * @param currentPage
+     * @param swipeRefreshLayout
+     * @param holder
+     */
     public void getMyQuestionList(String requestUrl, String token, int currentPage, final SwipeRefreshLayout swipeRefreshLayout, final IAppUserTokenBeanHolder holder) {
         if (isNotOverDue()) {
             RequestParams params = new RequestParams(requestUrl);
@@ -499,6 +508,11 @@ public class HttpApi {
         }
     }
 
+    /**
+     * 上传到七牛，得到图片的链接
+     *
+     * @param holder
+     */
     public void prepareForUploadImage(final IAppCommonBeanHolder holder) {
         RequestParams params = new RequestParams(AppConfig.PREPARE_FOR_UPLOAD_PHOTO);
         x.http().get(params, new Callback.CommonCallback<String>() {
@@ -525,6 +539,14 @@ public class HttpApi {
         });
     }
 
+    /**
+     * 上传头像
+     *
+     * @param token
+     * @param photoUrlQiniu
+     * @param dialog
+     * @param holder
+     */
     public void afterUploadPhoto(String token, String photoUrlQiniu, final ACProgressFlower dialog, final IAppUserTokenBeanHolder holder) {
         if (isNotOverDue()) {
             RequestParams params = new RequestParams(AppConfig.AFTER_UPLOAD_PHOTO);
@@ -559,6 +581,21 @@ public class HttpApi {
         }
     }
 
+    /**
+     * 医生注册
+     *
+     * @param name
+     * @param phone
+     * @param password
+     * @param hospital
+     * @param certificate_image
+     * @param info
+     * @param post
+     * @param sex
+     * @param birthday
+     * @param dialog
+     * @param holder
+     */
     public void doctorRegister(String name, String phone, String password, String hospital,
                                String certificate_image, String info, String post,
                                String sex, String birthday,
@@ -600,6 +637,14 @@ public class HttpApi {
         });
     }
 
+    /**
+     * 医生登录
+     *
+     * @param phone
+     * @param password
+     * @param dialog
+     * @param holder
+     */
     public void loginForDoctor(String phone, String password, final ACProgressFlower dialog, final IAppCommonBeanHolder holder) {
         RequestParams params = new RequestParams(AppConfig.LOGIN_FOR_DOCTOR);
         params.addBodyParameter("phone", phone);
@@ -632,6 +677,13 @@ public class HttpApi {
         });
     }
 
+    /**
+     * 获取医生的信息
+     *
+     * @param token
+     * @param dialog
+     * @param holder
+     */
     public void getDoctorInfo(String token, final ACProgressFlower dialog, final IAppUserTokenBeanHolder holder) {
         if (isNotOverDue()) {
             RequestParams params = new RequestParams(AppConfig.GET_DOCTOR_INFO);
@@ -666,6 +718,13 @@ public class HttpApi {
         }
     }
 
+    /**
+     * 获取所有的医生
+     *
+     * @param currentPage
+     * @param swipeRefreshLayout
+     * @param holder
+     */
     public void getAllDoctorList(int currentPage, final SwipeRefreshLayout swipeRefreshLayout, final IAppCommonBeanHolder holder) {
         RequestParams params = new RequestParams(AppConfig.GET_ALL_DOCTOR);
         params.addBodyParameter("currentPage", String.valueOf(currentPage));
@@ -741,6 +800,14 @@ public class HttpApi {
 
     }
 
+    /**
+     * 获取问题的回复
+     *
+     * @param questionId
+     * @param currentPage
+     * @param dialog
+     * @param holder
+     */
     public void getAnswersForOneQuestion(Integer questionId, int currentPage, final ACProgressFlower dialog, final IAppCommonBeanHolder holder) {
         RequestParams params = new RequestParams(AppConfig.GET_ANSWERS_FOR_ONE_QUESTION);
         params.addBodyParameter("questionId", String.valueOf(questionId));
@@ -773,4 +840,130 @@ public class HttpApi {
         });
     }
 
+    /**
+     * 判断医生和患者时候已关注
+     *
+     * @param token
+     * @param doctorId
+     * @param dialog
+     * @param holder
+     */
+    public void isAttention(String token, Integer doctorId, final ACProgressFlower dialog, final IAppUserTokenBeanHolder holder) {
+        if (isNotOverDue()) {
+            RequestParams params = new RequestParams(AppConfig.HAS_ATTENTION);
+            params.addBodyParameter(AppConfig.TOKEN, token);
+            params.addBodyParameter("doctorId", String.valueOf(doctorId));
+            x.http().post(params, new Callback.CommonCallback<String>() {
+
+                @Override
+                public void onSuccess(String result) {
+                    ResultBean bean = DataHoldUtil.getResultBean(result);
+                    holder.asynHold(bean);
+                }
+
+                @Override
+                public void onError(Throwable ex, boolean isOnCallback) {
+                    holder.asynHold(null);
+                }
+
+                @Override
+                public void onCancelled(CancelledException cex) {
+
+                }
+
+                @Override
+                public void onFinished() {
+                    if (dialog != null && dialog.isShowing()) {
+                        dialog.dismiss();
+                    }
+                }
+            });
+        } else {
+            holder.overDue();
+        }
+    }
+
+    /**
+     * 关注医生
+     *
+     * @param token
+     * @param doctorId
+     */
+    public void addDoctorPatient(String token, Integer doctorId, final ACProgressFlower dialog, final IAppUserTokenBeanHolder holder) {
+        if (isNotOverDue()) {
+            RequestParams params = new RequestParams(AppConfig.ADD_ATTENTION);
+            params.addBodyParameter(AppConfig.TOKEN, token);
+            params.addBodyParameter("doctorId", String.valueOf(doctorId));
+            x.http().post(params, new Callback.CommonCallback<String>() {
+                @Override
+                public void onSuccess(String result) {
+                    ResultBean resultBean = DataHoldUtil.getResultBean(result);
+                    holder.asynHold(resultBean);
+                }
+
+                @Override
+                public void onError(Throwable ex, boolean isOnCallback) {
+                    holder.asynHold(null);
+                }
+
+                @Override
+                public void onCancelled(CancelledException cex) {
+
+                }
+
+                @Override
+                public void onFinished() {
+                    if (dialog != null && dialog.isShowing()) {
+                        dialog.dismiss();
+                    }
+                }
+            });
+        } else {
+            holder.overDue();
+        }
+    }
+
+    /**
+     * 获取我关注的医生
+     *
+     * @param token
+     * @param currentPage
+     * @param refreshLayout
+     * @param holder
+     */
+    public void getDoctorAttentionForSuffer(String token, int currentPage, final SwipeRefreshLayout refreshLayout, final IAppUserTokenBeanHolder holder) {
+        if (isNotOverDue()) {
+            RequestParams params = new RequestParams(AppConfig.GET_MY_ATTENTION_DOCTOR);
+            params.addBodyParameter(AppConfig.TOKEN, token);
+            params.addBodyParameter("currentPage", String.valueOf(currentPage));
+            params.addBodyParameter("showCount", String.valueOf(AppConfig.SHOW_COUNT));
+            x.http().post(params, new Callback.CommonCallback<String>() {
+                @Override
+                public void onSuccess(String result) {
+                    DoctorPageBean doctorPageBean = DataHoldUtil.getDoctorPageBean(result);
+                    holder.asynHold(doctorPageBean);
+                }
+
+                @Override
+                public void onError(Throwable ex, boolean isOnCallback) {
+                    LogUtil.e(ex.toString());
+                    holder.asynHold(null);
+                }
+
+                @Override
+                public void onCancelled(CancelledException cex) {
+
+                }
+
+                @Override
+                public void onFinished() {
+                    if (refreshLayout != null && refreshLayout.isRefreshing()) {
+                        refreshLayout.setRefreshing(false);
+                    }
+                }
+            });
+        } else {
+            holder.overDue();
+        }
+    }
 }

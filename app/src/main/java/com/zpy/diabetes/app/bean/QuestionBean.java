@@ -66,4 +66,17 @@ public class QuestionBean implements Serializable{
     public void setCreateD(String createD) {
         this.createD = createD;
     }
+
+    @Override
+    public String toString() {
+        return "QuestionBean{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", suffererPhone='" + suffererPhone + '\'' +
+                ", createD='" + createD + '\'' +
+                ", replyCount=" + replyCount +
+                ", suffererPhoto='" + suffererPhoto + '\'' +
+                '}';
+    }
 }

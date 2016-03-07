@@ -8,6 +8,8 @@ public class AppConfig {
     public static final int ROLE_TYPE_FOR_SUFFERER = 0;
     public static final int ROLE_TYPE_FOR_DOCTOR = 1;
 
+    public static final int LOGIN_OK_RESULT = 200;
+
     public static final int BANNER_COUNT = 2;
 
     // 短信SDK的APPKEY
@@ -21,8 +23,9 @@ public class AppConfig {
 
     //主机名
 //    public static final String HOST = "http://tangzhushou.wicp.net:20162";
-    public static final String HOST = "http://139.129.34.235:8080/diabetesmanage";
+//    public static final String HOST = "http://139.129.34.235:8080/diabetesmanage";
     //    public static final String HOST = "http://192.168.1.115:8080";
+    public static final String HOST = "http://10.20.96.10:8080";
 //    public static final String HOST = "http://192.168.0.100:8080";
     //患者注册
     public static final String REGISTER_FOR_SUFFERER = HOST + "/suffererApi/suffererRegister";
@@ -64,6 +67,12 @@ public class AppConfig {
     public static final String REPLY_QUESTION = HOST + "/doctorApi/replyQuestion";
     //获取问题所对应的答案
     public static final String GET_ANSWERS_FOR_ONE_QUESTION = HOST + "/questionApi/getAnswersForOneQuestion";
+    //判断医生和患者是否已关注
+    public static final String HAS_ATTENTION = HOST + "/doctorPatientApi/isAttention";
+    //关注医生
+    public static final String ADD_ATTENTION = HOST + "/doctorPatientApi/addDoctorPatient";
+    //获取我关注的医生
+    public static final String GET_MY_ATTENTION_DOCTOR = HOST + "/doctorPatientApi/getDoctorAttentionForSuffer";
 
     public static final String EXPIRE_IN = "expire_in";
     public static final String TOKEN = "token";
@@ -80,4 +89,5 @@ public class AppConfig {
     public static final String QINIU_IMAGE_URL = "http://7xo971.com1.z0.glb.clouddn.com/";
     public static final int CROP = 2;
     public static final int CROP_PICTURE = 3;
+    public static final int IS_MINE = 100;
 }
