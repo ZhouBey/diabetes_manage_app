@@ -132,8 +132,13 @@ public class AnswerActivity extends BaseActivity implements BaseUIInterf, View.O
     @Override
     public void show() {
         if (questionBean != null) {
-            tv_answer_suffer_phone.setText(questionBean.getSuffererPhone());
-            LogUtil.e("questionBean=" + questionBean.toString());
+            String phone;
+            if(!TextUtil.isEmpty(questionBean.getSuffererPhone())) {
+                phone = questionBean.getSuffererPhone();
+            } else {
+                phone = bundle.getString("suffer_phone");
+            }
+            tv_answer_suffer_phone.setText(TextUtil.getencryptPhone(phone));
             tv_answer_question_title.setText(questionBean.getTitle());
             tv_answer_question_content.setText(questionBean.getContent());
             tv_answer_suffer_time.setText(questionBean.getCreateD());
@@ -206,7 +211,7 @@ public class AnswerActivity extends BaseActivity implements BaseUIInterf, View.O
                             AnswerBean answerBean = answerBeanList.get(i);
                             item.put("answer_time", answerBean.getAnswerTime());
                             item.put("answer_content", answerBean.getAnswerContent());
-                            item.put("answer_phone", answerBean.getAnswerPhone());
+                            item.put("answer_phone", TextUtil.getencryptPhone(answerBean.getAnswerPhone()));
                             item.put("answer_photo", AppConfig.QINIU_IMAGE_URL + answerBean.getAnswerPhoto());
                             list.add(item);
                         }

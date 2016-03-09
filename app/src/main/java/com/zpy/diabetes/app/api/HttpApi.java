@@ -933,6 +933,7 @@ public class HttpApi {
      */
     public void getDoctorAttentionForSuffer(String token, int currentPage, final SwipeRefreshLayout refreshLayout, final IAppUserTokenBeanHolder holder) {
         if (isNotOverDue()) {
+            LogUtil.e("token=" + token);
             RequestParams params = new RequestParams(AppConfig.GET_MY_ATTENTION_DOCTOR);
             params.addBodyParameter(AppConfig.TOKEN, token);
             params.addBodyParameter("currentPage", String.valueOf(currentPage));
@@ -940,6 +941,7 @@ public class HttpApi {
             x.http().post(params, new Callback.CommonCallback<String>() {
                 @Override
                 public void onSuccess(String result) {
+                    LogUtil.e("sss=" + result);
                     DoctorPageBean doctorPageBean = DataHoldUtil.getDoctorPageBean(result);
                     holder.asynHold(doctorPageBean);
                 }
@@ -965,5 +967,37 @@ public class HttpApi {
         } else {
             holder.overDue();
         }
+    }
+
+    public void searchDoctors(String keyWord, int currentPage, final SwipeRefreshLayout refreshLayout, final IAppCommonBeanHolder holder) {
+        RequestParams params = new RequestParams(AppConfig.GET_SEARCH_DOCTORS);
+        params.addBodyParameter("keyWord",keyWord);
+        params.addBodyParameter("currentPage", String.valueOf(currentPage));
+        params.addBodyParameter("showCount", String.valueOf(AppConfig.SHOW_COUNT));
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                DoctorPageBean doctorPageBean = DataHoldUtil.getDoctorPageBean(result);
+                holder.asynHold(doctorPageBean);
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                LogUtil.e("ex="+String.valueOf(ex));
+                holder.asynHold(null);
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+                if (refreshLayout != null && refreshLayout.isRefreshing()) {
+                    refreshLayout.setRefreshing(false);
+                }
+            }
+        });
     }
 }

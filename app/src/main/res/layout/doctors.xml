@@ -11,7 +11,7 @@
         android:layout_height="1dp"
         android:background="@color/line_color" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginLeft="12dp"
@@ -24,15 +24,21 @@
         android:paddingRight="5dp">
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center_vertical"
-            android:src="@mipmap/icon_search" />
+            android:id="@+id/image_search_doctors"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/icon_search"
+            android:scaleType="center"/>
 
         <EditText
+            android:id="@+id/et_search_doctors"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/image_search_doctors"
             android:background="@null"
             android:hint="请输入医生姓名和医院查找"
             android:maxLength="50"
@@ -40,7 +46,7 @@
             android:textColor="@color/font_deep_gray"
             android:textColorHint="@color/font_thin_gray"
             android:textSize="@dimen/font_size15" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <View
         android:layout_width="match_parent"

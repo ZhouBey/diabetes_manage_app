@@ -24,8 +24,8 @@ public class AppConfig {
     //主机名
 //    public static final String HOST = "http://tangzhushou.wicp.net:20162";
 //    public static final String HOST = "http://139.129.34.235:8080/diabetesmanage";
-    //    public static final String HOST = "http://192.168.1.115:8080";
-    public static final String HOST = "http://10.20.96.10:8080";
+    public static final String HOST = "http://192.168.1.118:8080";
+    //    public static final String HOST = "http://10.20.96.10:8080";
 //    public static final String HOST = "http://192.168.0.100:8080";
     //患者注册
     public static final String REGISTER_FOR_SUFFERER = HOST + "/suffererApi/suffererRegister";
@@ -73,6 +73,8 @@ public class AppConfig {
     public static final String ADD_ATTENTION = HOST + "/doctorPatientApi/addDoctorPatient";
     //获取我关注的医生
     public static final String GET_MY_ATTENTION_DOCTOR = HOST + "/doctorPatientApi/getDoctorAttentionForSuffer";
+    //查询医生
+    public static final String GET_SEARCH_DOCTORS = HOST + "/doctorApi/getSearchDoctors";
 
     public static final String EXPIRE_IN = "expire_in";
     public static final String TOKEN = "token";

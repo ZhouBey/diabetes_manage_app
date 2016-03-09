@@ -120,6 +120,7 @@ public class MyParticipateActivity extends BaseActivity implements View.OnClickL
                                     Intent intent = new Intent(MyParticipateActivity.this, AnswerActivity.class);
                                     Bundle bundle = new Bundle();
                                     bundle.putSerializable("question", questionBeans.get(position));
+                                    bundle.putString("suffer_phone",getApp().getShareDataStr(AppConfig.PHONE));
                                     intent.putExtras(bundle);
                                     startActivity(intent);
                                 }
