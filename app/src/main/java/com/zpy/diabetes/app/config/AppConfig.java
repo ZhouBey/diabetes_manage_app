@@ -23,8 +23,8 @@ public class AppConfig {
 
     //主机名
 //    public static final String HOST = "http://tangzhushou.wicp.net:20162";
-//    public static final String HOST = "http://139.129.34.235:8080/diabetesmanage";
-    public static final String HOST = "http://192.168.1.118:8080";
+    public static final String HOST = "http://139.129.34.235:8080/diabetesmanage";
+//    public static final String HOST = "http://192.168.1.111:8080";
     //    public static final String HOST = "http://10.20.96.10:8080";
 //    public static final String HOST = "http://192.168.0.100:8080";
     //患者注册
@@ -59,8 +59,10 @@ public class AppConfig {
     public static final String REGISTER_FOR_DOCTOR = HOST + "/doctorApi/doctorRegister";
     //医生登录
     public static final String LOGIN_FOR_DOCTOR = HOST + "/doctorApi/doctorLogin";
-    //获取医生信息
-    public static final String GET_DOCTOR_INFO = HOST + "/doctorApi/getDoctorInfo";
+    //获取医生信息(token)
+    public static final String GET_DOCTOR_INFO_BY_TOKEN = HOST + "/doctorApi/getDoctorInfoByToken";
+    //获取医生信息(id)
+    public static final String GET_DOCTOR_INFO_BY_ID = HOST + "/doctorApi/getDoctorInfoById";
     //医生列表
     public static final String GET_ALL_DOCTOR = HOST + "/doctorApi/getDoctorsListPage";
     //医生回复患者提问

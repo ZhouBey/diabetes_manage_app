@@ -21,7 +21,7 @@
             app:siBorderWidth="1dp" />
 
         <TextView
-            android:id="@+id/tv_answer_item_doctor_phone"
+            android:id="@+id/tv_answer_item_doctor_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/image_answer_item_doctor_photo"
@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/image_answer_item_doctor_photo"
-            android:layout_alignLeft="@id/tv_answer_item_doctor_phone"
+            android:layout_alignLeft="@id/tv_answer_item_doctor_name"
             android:textColor="@color/font_thin_gray"
             android:textSize="@dimen/font_size12"/>
     </RelativeLayout>

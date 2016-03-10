@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -28,6 +29,7 @@ import com.zpy.diabetes.app.config.AppConfig;
 import com.zpy.diabetes.app.interf.BaseUIInterf;
 import com.zpy.diabetes.app.interf.IAppCommonBeanHolder;
 import com.zpy.diabetes.app.interf.IAppUserTokenBeanHolder;
+import com.zpy.diabetes.app.interf.OnListViewItemBtnClickListener;
 import com.zpy.diabetes.app.util.ActivityUtil;
 import com.zpy.diabetes.app.util.TextUtil;
 import com.zpy.diabetes.app.widget.acpf.ACProgressFlower;
@@ -204,14 +206,14 @@ public class AnswerActivity extends BaseActivity implements BaseUIInterf, View.O
                             adapter = null;
                         }
 
-                        List<AnswerBean> answerBeanList = pageBean.getAnswerBeanList();
+                        final List<AnswerBean> answerBeanList = pageBean.getAnswerBeanList();
                         tv_doctor_answer_and_count.setText("医生回答（" + String.valueOf(pageBean.getReplyCount()) + "）");
                         for (int i = 0; i < answerBeanList.size(); i++) {
                             Map item = new HashMap();
                             AnswerBean answerBean = answerBeanList.get(i);
                             item.put("answer_time", answerBean.getAnswerTime());
                             item.put("answer_content", answerBean.getAnswerContent());
-                            item.put("answer_phone", TextUtil.getencryptPhone(answerBean.getAnswerPhone()));
+                            item.put("answer_name", answerBean.getAnswerName());
                             item.put("answer_photo", AppConfig.QINIU_IMAGE_URL + answerBean.getAnswerPhoto());
                             list.add(item);
                         }
@@ -220,6 +222,16 @@ public class AnswerActivity extends BaseActivity implements BaseUIInterf, View.O
                             listview_answer.setAdapter(adapter);
                         }
                         adapter.notifyDataSetChanged();
+                        adapter.setOnListViewItemBtnClickListener(new OnListViewItemBtnClickListener() {
+                            @Override
+                            public void onListViewItemBtnClick(int position) {
+                                Intent intent = new Intent(AnswerActivity.this,DoctorInfoActivity.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putInt("doctorId",answerBeanList.get(position).getDoctorId());
+                                intent.putExtras(bundle);
+                                startActivity(intent);
+                            }
+                        });
                         PageInfo pageInfo = pageBean.getPageInfo();
                         if (pageInfo.getTotalPage() != 0) {
                             btnLoadMore.setVisibility(View.VISIBLE);

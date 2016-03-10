@@ -387,6 +387,8 @@ public class DataHoldUtil {
                 answerBean.setAnswerPhoto(doctorObj.optString("photo"));
                 answerBean.setAnswerContent(answerObj.optString("content"));
                 answerBean.setAnswerPhone(doctorObj.optString("phone"));
+                answerBean.setDoctorId(doctorObj.optInt("id"));
+                answerBean.setAnswerName(doctorObj.optString("name"));
                 answerBean.setAnswerTime(TextUtil.getTimeStr(answerObj.optLong("createD")));
                 answerBeanList.add(answerBean);
             }

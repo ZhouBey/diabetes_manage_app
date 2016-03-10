@@ -114,7 +114,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         switch (i) {
             case 0:
                 myActionBar.setActionBarTitle("糖助手");
-                myActionBar.setImageViewRight(R.mipmap.icon_alarm_clock);
+                myActionBar.setImageViewRight(-1);
                 break;
             case 1:
                 myActionBar.setActionBarTitle("发现");

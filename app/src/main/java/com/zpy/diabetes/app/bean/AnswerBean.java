@@ -11,6 +11,24 @@ public class AnswerBean implements Serializable {
     public String answerContent;
     public String answerPhone;
     public String answerPhoto;
+    public String answerName;
+    public Integer doctorId;
+
+    public Integer getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(Integer doctorId) {
+        this.doctorId = doctorId;
+    }
+
+    public String getAnswerName() {
+        return answerName;
+    }
+
+    public void setAnswerName(String answerName) {
+        this.answerName = answerName;
+    }
 
     public Integer getId() {
         return id;

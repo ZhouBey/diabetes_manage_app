@@ -684,14 +684,14 @@ public class HttpApi {
      * @param dialog
      * @param holder
      */
-    public void getDoctorInfo(String token, final ACProgressFlower dialog, final IAppUserTokenBeanHolder holder) {
+    public void getDoctorInfoByToken(String token, final ACProgressFlower dialog, final IAppUserTokenBeanHolder holder) {
         if (isNotOverDue()) {
-            RequestParams params = new RequestParams(AppConfig.GET_DOCTOR_INFO);
+            RequestParams params = new RequestParams(AppConfig.GET_DOCTOR_INFO_BY_TOKEN);
             params.addBodyParameter(AppConfig.TOKEN, token);
             x.http().post(params, new Callback.CommonCallback<String>() {
                 @Override
                 public void onSuccess(String result) {
-                    LogUtil.e("getDoctorInfo=" + result);
+                    LogUtil.e("getDoctorInfoByToken=" + result);
                     DoctorBean doctorBean = DataHoldUtil.getDoctorBean(result);
                     holder.asynHold(doctorBean);
                 }
@@ -816,7 +816,7 @@ public class HttpApi {
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                LogUtil.e("result=" + result);
+                LogUtil.e("result000=" + result);
                 AnswerPageBean answerPageBean = DataHoldUtil.getAnswerPageBean(result);
                 holder.asynHold(answerPageBean);
             }
@@ -996,6 +996,35 @@ public class HttpApi {
             public void onFinished() {
                 if (refreshLayout != null && refreshLayout.isRefreshing()) {
                     refreshLayout.setRefreshing(false);
+                }
+            }
+        });
+    }
+    public void getDoctorInfoById(Integer doctorId, final ACProgressFlower dialog, final IAppCommonBeanHolder holder) {
+        RequestParams params = new RequestParams(AppConfig.GET_DOCTOR_INFO_BY_ID);
+        params.addBodyParameter("doctorId",String.valueOf(doctorId));
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                LogUtil.e("doctor="+result);
+                DoctorBean doctorBean = DataHoldUtil.getDoctorBean(result);
+                holder.asynHold(doctorBean);
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                holder.asynHold(null);
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
                 }
             }
         });

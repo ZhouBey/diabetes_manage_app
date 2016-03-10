@@ -132,7 +132,7 @@ public class TextUtil {
 
     public static String getTimeStr(Long timestamp, String pattern) {
         Date date;
-        if(timestamp!=null) {
+        if (timestamp != null) {
             date = new Date(timestamp);
         } else {
             date = new Date();
@@ -281,5 +281,16 @@ public class TextUtil {
 
     public static String getencryptPhone(String phone) {
         return phone.substring(0, 3) + "*****" + phone.substring(phone.length() - 3, phone.length());
+    }
+
+    public static String getHandleDoctorName(String name) {
+        int length = name.length();
+        if (2 == length || 3 == length) {
+            return name.substring(0, 1) + "医生";
+        }
+        if (4 == length) {
+            return name.substring(0, 2) + "医生";
+        }
+        return name;
     }
 }

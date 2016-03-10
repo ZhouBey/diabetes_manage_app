@@ -150,7 +150,13 @@ public class HealthInfoListViewAdapter<T> extends ArrayAdapter<T> {
         }
 
         public void setSuffererAttrs(Map<String, Object> item) {
-            tv_home_today_blood_sugar.setText(String.valueOf(item.get("todayBloodSugarLog")).equals("null") ? "——" : String.valueOf(item.get("todayBloodSugarLog")));
+            if(String.valueOf(item.get("todayBloodSugarLog")).equals("null")) {
+                tv_home_today_blood_sugar.setText("——");
+                tv_home_today_blood_sugar.setClickable(false);
+            } else {
+                tv_home_today_blood_sugar.setText(String.valueOf(item.get("todayBloodSugarLog")));
+                tv_home_today_blood_sugar.setClickable(true);
+            }
             tv_home_today_date.setText(TextUtil.getTimeStr());
             List<BloodSugarLogBean> bloodSugarLogBeans = (List<BloodSugarLogBean>) item.get("bloodSugarLogBeans");
             double[] yValues = new double[7];

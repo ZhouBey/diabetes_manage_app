@@ -136,7 +136,7 @@ public class UserFragment extends Fragment implements BaseUIInterf, View.OnClick
                 });
             }
             if (roleType == AppConfig.ROLE_TYPE_FOR_DOCTOR) {
-                activity.getApp().getHttpApi().getDoctorInfo(token, loadingDialog, new IAppUserTokenBeanHolder() {
+                activity.getApp().getHttpApi().getDoctorInfoByToken(token, loadingDialog, new IAppUserTokenBeanHolder() {
                     @Override
                     public void asynHold(AppBean bean) {
                         if (bean != null) {

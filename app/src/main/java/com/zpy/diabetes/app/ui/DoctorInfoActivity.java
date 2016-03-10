@@ -1,5 +1,6 @@
 package com.zpy.diabetes.app.ui;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -63,6 +64,7 @@ public class DoctorInfoActivity extends BaseActivity implements BaseUIInterf, Vi
     public static final String IMAGE_FILE_NAME = "tangzhushou_doctor_photo";
     private ACProgressFlower loadingDialog;
     private int role_type, is_mine;
+    private int doctorId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +86,10 @@ public class DoctorInfoActivity extends BaseActivity implements BaseUIInterf, Vi
             doctorBean = (DoctorBean) bundle.getSerializable("doctor");
             is_mine = bundle.getInt("is_mine");
             if (doctorBean != null) {
+                doctorId = doctorBean.getId();
                 myActionBar.setActionBarTitle(doctorBean.getName());
+            } else {
+                doctorId = bundle.getInt("doctorId");
             }
         }
         role_type = getApp().getShareDataInt(AppConfig.ROLE_TYPE, -1);
@@ -102,33 +107,21 @@ public class DoctorInfoActivity extends BaseActivity implements BaseUIInterf, Vi
     @Override
     public void show() {
         if (doctorBean != null) {
-            x.image().bind(image_doctors_info_photo, AppConfig.QINIU_IMAGE_URL + doctorBean.getPhoto(),
-                    new ImageOptions.Builder().setLoadingDrawableId(R.mipmap.img_default_photo_blue).setFailureDrawableId(R.mipmap.img_default_photo_blue).build());
-            tv_doctors_info_name.setText(doctorBean.getName());
-            tv_doctors_info_position.setText(doctorBean.getPost());
-            tv_doctors_info_hospital.setText(doctorBean.getHospital());
-            tv_doctors_info_info.setText(doctorBean.getInfo());
-            x.image().bind(image_doctor_info_certificate, AppConfig.QINIU_IMAGE_URL + doctorBean.getCertificateImage(), new Callback.CommonCallback<Drawable>() {
+            showDoctorInfo(doctorBean);
+        } else {
+            getApp().getHttpApi().getDoctorInfoById(doctorId, loadingDialog, new IAppCommonBeanHolder() {
                 @Override
-                public void onSuccess(Drawable result) {
-                    Bitmap bitmap = ((BitmapDrawable) result).getBitmap();
-                    fitWidth(bitmap, image_doctor_info_certificate);
-                }
-
-                @Override
-                public void onError(Throwable ex, boolean isOnCallback) {
-                    Bitmap bitmap = BitmapFactory.decodeResource(DoctorInfoActivity.this.getResources(), R.drawable.empty_photo);
-                    image_doctor_info_certificate.setImageBitmap(bitmap);
-                }
-
-                @Override
-                public void onCancelled(CancelledException cex) {
-
-                }
-
-                @Override
-                public void onFinished() {
-
+                public void asynHold(AppBean bean) {
+                    if (bean != null) {
+                        DoctorBean doctorBean = (DoctorBean) bean;
+                        if(AppConfig.OK.equals(doctorBean.getCode())) {
+                            showDoctorInfo(doctorBean);
+                        } else {
+                            Toast.makeText(DoctorInfoActivity.this,doctorBean.getMsg(),Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        ActivityUtil.loadError(DoctorInfoActivity.this);
+                    }
                 }
             });
         }
@@ -148,7 +141,7 @@ public class DoctorInfoActivity extends BaseActivity implements BaseUIInterf, Vi
                 tv_doctor_operate.setClickable(true);
             } else {
                 loadingDialog.show();
-                getApp().getHttpApi().isAttention(token, doctorBean.getId(), loadingDialog, new IAppUserTokenBeanHolder() {
+                getApp().getHttpApi().isAttention(token, doctorId, loadingDialog, new IAppUserTokenBeanHolder() {
                     @Override
                     public void asynHold(AppBean bean) {
                         ResultBean resultBean = (ResultBean) bean;
@@ -169,6 +162,38 @@ public class DoctorInfoActivity extends BaseActivity implements BaseUIInterf, Vi
             }
 
         }
+    }
+
+    private void showDoctorInfo(DoctorBean doctorBean) {
+        x.image().bind(image_doctors_info_photo, AppConfig.QINIU_IMAGE_URL + doctorBean.getPhoto(),
+                new ImageOptions.Builder().setLoadingDrawableId(R.mipmap.img_default_photo_blue).setFailureDrawableId(R.mipmap.img_default_photo_blue).build());
+        tv_doctors_info_name.setText(doctorBean.getName());
+        tv_doctors_info_position.setText(doctorBean.getPost());
+        tv_doctors_info_hospital.setText(doctorBean.getHospital());
+        tv_doctors_info_info.setText(doctorBean.getInfo());
+        x.image().bind(image_doctor_info_certificate, AppConfig.QINIU_IMAGE_URL + doctorBean.getCertificateImage(), new Callback.CommonCallback<Drawable>() {
+            @Override
+            public void onSuccess(Drawable result) {
+                Bitmap bitmap = ((BitmapDrawable) result).getBitmap();
+                fitWidth(bitmap, image_doctor_info_certificate);
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Bitmap bitmap = BitmapFactory.decodeResource(DoctorInfoActivity.this.getResources(), R.drawable.empty_photo);
+                image_doctor_info_certificate.setImageBitmap(bitmap);
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
     }
 
     private void fitWidth(Bitmap bitmap, ImageView imageView) {
@@ -210,11 +235,11 @@ public class DoctorInfoActivity extends BaseActivity implements BaseUIInterf, Vi
                         public void asynHold(AppBean bean) {
                             ResultBean resultBean = (ResultBean) bean;
                             if (AppConfig.OK.equals(resultBean.getCode())) {
-                                Toast.makeText(DoctorInfoActivity.this,"关注成功！",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(DoctorInfoActivity.this, "关注成功！", Toast.LENGTH_SHORT).show();
                                 tv_doctor_operate.setText("已关注");
                                 tv_doctor_operate.setClickable(false);
                             } else {
-                                Toast.makeText(DoctorInfoActivity.this,resultBean.getMsg(),Toast.LENGTH_SHORT).show();
+                                Toast.makeText(DoctorInfoActivity.this, resultBean.getMsg(), Toast.LENGTH_SHORT).show();
                             }
                         }
 
