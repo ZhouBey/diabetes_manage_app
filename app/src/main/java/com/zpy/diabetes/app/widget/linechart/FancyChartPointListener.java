@@ -4,6 +4,6 @@ import com.zpy.diabetes.app.widget.linechart.data.Point;
 
 public interface FancyChartPointListener {
 
-	public void onClick(Point point);
+	void onClick(Point point);
 	
 }

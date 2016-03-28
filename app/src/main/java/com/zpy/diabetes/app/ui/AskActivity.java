@@ -6,11 +6,9 @@ import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.zpy.diabetes.app.App;
 import com.zpy.diabetes.app.BaseActivity;
 import com.zpy.diabetes.app.R;
 import com.zpy.diabetes.app.bean.AppBean;
@@ -20,7 +18,6 @@ import com.zpy.diabetes.app.interf.BaseUIInterf;
 import com.zpy.diabetes.app.interf.IAppUserTokenBeanHolder;
 import com.zpy.diabetes.app.util.ActivityUtil;
 import com.zpy.diabetes.app.util.TextUtil;
-import com.zpy.diabetes.app.widget.MyActionBar;
 import com.zpy.diabetes.app.widget.acpf.ACProgressFlower;
 
 public class AskActivity extends BaseActivity implements BaseUIInterf, View.OnClickListener {
@@ -111,7 +108,7 @@ public class AskActivity extends BaseActivity implements BaseUIInterf, View.OnCl
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode != AppConfig.LOGIN_OK_RESULT) {
+        if (resultCode != AppConfig.LOGIN_OK_RESULT) {
             this.finish();
         }
     }

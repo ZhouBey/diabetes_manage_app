@@ -1,9 +1,6 @@
 package com.zpy.diabetes.app.util;
 
 import android.content.Context;
-import android.util.Log;
-
-import org.xutils.common.util.LogUtil;
 
 import java.math.BigDecimal;
 import java.security.MessageDigest;

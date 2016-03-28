@@ -27,7 +27,6 @@ import com.zpy.diabetes.app.interf.BaseUIInterf;
 import com.zpy.diabetes.app.interf.IAppCommonBeanHolder;
 import com.zpy.diabetes.app.util.ActivityUtil;
 import com.zpy.diabetes.app.util.TextUtil;
-import com.zpy.diabetes.app.widget.MyActionBar;
 
 import java.util.ArrayList;
 import java.util.HashMap;

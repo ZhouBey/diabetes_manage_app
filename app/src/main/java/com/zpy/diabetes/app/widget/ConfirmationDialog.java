@@ -10,11 +10,9 @@ import android.view.WindowManager;
 import com.zpy.diabetes.app.R;
 
 public class ConfirmationDialog extends Dialog {
-    private Context context;
 
     public ConfirmationDialog(Context context, int theme) {
         super(context, theme);
-        this.context = context;
     }
 
     @Override

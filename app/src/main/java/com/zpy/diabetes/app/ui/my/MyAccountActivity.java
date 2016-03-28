@@ -20,7 +20,6 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -64,7 +63,6 @@ public class MyAccountActivity extends BaseActivity implements BaseUIInterf, Vie
     private FrameLayout layoutLeft;
     private CircularImageView image_my_account_info_photo;
     private RelativeLayout layout_account_info_name,
-            layout_account_info_phone,
             layout_account_info_sex,
             layout_account_info_birthday,
             layout_account_info_suffer_date;
@@ -79,7 +77,6 @@ public class MyAccountActivity extends BaseActivity implements BaseUIInterf, Vie
     private Bundle bundle;
     private SuffererBean suffererBean;
     private String name, phone, sex, suffer_date, birthday, photo;
-    private String newName, newSex, newSuffererDate, newBirthday;
     private ACProgressFlower loadingDialog;
     private boolean isRefresh;
     private File uploadFile;
@@ -105,7 +102,6 @@ public class MyAccountActivity extends BaseActivity implements BaseUIInterf, Vie
         image_my_account_info_photo.setOnClickListener(this);
         layout_account_info_name = (RelativeLayout) findViewById(R.id.layout_account_info_name);
         layout_account_info_name.setOnClickListener(this);
-        layout_account_info_phone = (RelativeLayout) findViewById(R.id.layout_account_info_phone);
         layout_account_info_sex = (RelativeLayout) findViewById(R.id.layout_account_info_sex);
         layout_account_info_sex.setOnClickListener(this);
         layout_account_info_birthday = (RelativeLayout) findViewById(R.id.layout_account_info_birthday);

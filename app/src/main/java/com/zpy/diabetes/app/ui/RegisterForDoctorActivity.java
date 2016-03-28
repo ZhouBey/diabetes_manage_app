@@ -5,7 +5,6 @@ import android.support.v7.app.ActionBar;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 
 import com.zpy.diabetes.app.BaseActivity;
 import com.zpy.diabetes.app.R;

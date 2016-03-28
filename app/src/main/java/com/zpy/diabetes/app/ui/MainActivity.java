@@ -26,8 +26,6 @@ import com.zpy.diabetes.app.util.DoubleClickExitHelper;
 import com.zpy.diabetes.app.widget.IconButtonContainer;
 import com.zpy.diabetes.app.widget.MyViewPager;
 
-import org.xutils.common.util.LogUtil;
-
 import java.util.ArrayList;
 
 public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener,

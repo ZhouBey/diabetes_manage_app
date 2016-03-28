@@ -1,7 +1,6 @@
 package com.zpy.diabetes.app.widget.linechart.data;
 
 import android.graphics.Color;
-import android.util.Log;
 
 import com.zpy.diabetes.app.util.TextUtil;
 

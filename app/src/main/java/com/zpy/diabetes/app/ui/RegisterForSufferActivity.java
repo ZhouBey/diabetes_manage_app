@@ -7,7 +7,6 @@ import android.os.Message;
 import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 

@@ -6,11 +6,9 @@ import android.support.v7.app.ActionBar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -35,7 +33,6 @@ import com.zpy.diabetes.app.util.ActivityUtil;
 import com.zpy.diabetes.app.util.TextUtil;
 import com.zpy.diabetes.app.widget.acpf.ACProgressFlower;
 
-import org.xutils.common.util.LogUtil;
 import org.xutils.image.ImageOptions;
 import org.xutils.x;
 

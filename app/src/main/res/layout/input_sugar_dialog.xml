@@ -66,7 +66,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="建议午餐后两小时后测量"
+        android:text="建议午餐后1~2小时后测量"
         android:textColor="@color/font_gray"
         android:textSize="@dimen/font_size15"
         android:layout_marginTop="5dp"/>

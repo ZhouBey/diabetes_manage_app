@@ -11,10 +11,8 @@ import com.zpy.diabetes.app.R;
 
 
 public class UploadPhotoDialog extends Dialog {
-    private Context context;
     public UploadPhotoDialog(Context context, int theme) {
         super(context, theme);
-        this.context = context;
     }
 
     @Override

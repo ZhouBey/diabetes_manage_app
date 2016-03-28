@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -13,8 +12,6 @@ import com.zpy.diabetes.app.R;
 import com.zpy.diabetes.app.bean.BloodSugarLogBean;
 import com.zpy.diabetes.app.interf.BaseUIInterf;
 import com.zpy.diabetes.app.util.ActivityUtil;
-import com.zpy.diabetes.app.util.TextUtil;
-import com.zpy.diabetes.app.widget.MyActionBar;
 import com.zpy.diabetes.app.widget.WaterDrop;
 
 import java.util.List;
