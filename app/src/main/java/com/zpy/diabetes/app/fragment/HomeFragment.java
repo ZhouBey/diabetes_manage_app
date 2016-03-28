@@ -38,6 +38,7 @@ import com.zpy.diabetes.app.widget.linechart.FancyChartPointListener;
 import com.zpy.diabetes.app.widget.linechart.data.Point;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -53,6 +54,7 @@ public class HomeFragment extends Fragment implements BaseUIInterf,
     private String token;
     private ACProgressFlower loadingDialog;
     public String[] week = new String[]{"周一", "周二", "周三", "周四", "周五", "周六", "周日"};
+    private List<BloodSugarLogBean> bloodSugarLogBeans;
 
 
     @Override
@@ -144,7 +146,7 @@ public class HomeFragment extends Fragment implements BaseUIInterf,
                             Map<String, Object> firstMap = new HashMap<String, Object>();
                             BloodSugarLogoPageBean bloodSugarLogoPageBean = (BloodSugarLogoPageBean) map.get("bloodSugarLogoPageBean");
                             if (bloodSugarLogoPageBean != null) {
-                                List<BloodSugarLogBean> bloodSugarLogBeans = bloodSugarLogoPageBean.getBloodSugarLogBeans();
+                                bloodSugarLogBeans = bloodSugarLogoPageBean.getBloodSugarLogBeans();
                                 firstMap.put("bloodSugarLogBeans", bloodSugarLogBeans);
                             }
                             BloodSugarLogBean todayBloodSugarLogBean = (BloodSugarLogBean) map.get("bloodSugarLogBeanToday");
@@ -256,7 +258,6 @@ public class HomeFragment extends Fragment implements BaseUIInterf,
         @Override
         public void onClick(Point point) {
             Toast.makeText(activity, "您在" + week[point.x - 1] + "的血糖是" + point.y + "mmol/L", Toast.LENGTH_LONG).show();
-
         }
     };
     View.OnClickListener sugarAnalyzeClickListener = new View.OnClickListener() {
@@ -265,7 +266,13 @@ public class HomeFragment extends Fragment implements BaseUIInterf,
             token = activity.getApp().getShareDataStr(AppConfig.TOKEN);
             Intent intent = null;
             if (!TextUtil.isEmpty(token)) {
-                intent = new Intent(activity, WeekAnalyzeActivity.class);
+                if (bloodSugarLogBeans.size() != 0) {
+                    intent = new Intent(activity, WeekAnalyzeActivity.class);
+                    intent.putExtra("bloodSugarLogBeans", (Serializable) bloodSugarLogBeans);
+                } else {
+                    Toast.makeText(activity, "暂无数据", Toast.LENGTH_LONG).show();
+                    return;
+                }
             } else {
                 intent = new Intent(activity, LoginActivity.class);
             }

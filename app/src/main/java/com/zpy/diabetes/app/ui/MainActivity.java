@@ -62,7 +62,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     @Override
     public void init() {
         actionBar = getSupportActionBar();
-        ActivityUtil.showActionBar(myActionBar, actionBar, -1, R.mipmap.icon_alarm_clock, "糖助手");
+        ActivityUtil.showActionBar(myActionBar, actionBar, -1, -1, "糖助手");
         viewPagerMain = (MyViewPager) findViewById(R.id.viewPagerMain);
         viewPagerMain.setSwip(false);
         iconButtonContainer = (IconButtonContainer) findViewById(R.id.nav_buttons);
@@ -129,7 +129,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 
     @Override
     public void onClick(View v) {
-        if(v == imageRigth) {
+        if (v == imageRigth) {
 
         }
     }
@@ -156,6 +156,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         }
         return super.onKeyDown(keyCode, event);
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

@@ -14,12 +14,14 @@ import com.zpy.diabetes.app.R;
 public class MyActionBar {
     public ImageView imageViewLeft, imageViewRight, imageViewCentre;
     public Context context;
+
     public LinearLayout getLayout_action_bar_centre() {
         return layout_action_bar_centre;
     }
 
 
     public LinearLayout layout_action_bar_centre;
+
     public ImageView getImageViewLeft() {
         return imageViewLeft;
     }
@@ -72,6 +74,7 @@ public class MyActionBar {
             imageViewRight.setVisibility(View.INVISIBLE);
         }
     }
+
     public void setTextViewRight(String rightStr) {
         if (rightStr != null) {
             imageViewRight.setVisibility(View.GONE);
@@ -97,8 +100,9 @@ public class MyActionBar {
             tv_action_bar_title.setText(title);
         }
     }
+
     public void setActionBarCentreView(View view) {
-        if(view!=null) {
+        if (view != null) {
             tv_action_bar_title.setVisibility(View.GONE);
             imageViewCentre.setVisibility(View.GONE);
             layout_action_bar_centre.setVisibility(View.VISIBLE);

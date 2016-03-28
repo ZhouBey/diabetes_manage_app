@@ -24,4 +24,6 @@
     <color name="account_bar_color">#36b097</color>
     <color name="btn_not_click">#c9c9c9</color>
     <color name="background_gray">#cccccc</color>
+
+    <color name="colorGrayPress">#DEDEDE</color>
 </resources>

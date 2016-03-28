@@ -104,6 +104,7 @@ public class HealthInfoListViewAdapter<T> extends ArrayAdapter<T> {
                 viewHolder.linechart_sugar_log = (FancyChart) view.findViewById(R.id.linechart_sugar_log);
                 viewHolder.layout_home_guage = (RelativeLayout) view.findViewById(R.id.layout_home_guage);
                 viewHolder.tv_home_health_info_more = (TextView) view.findViewById(R.id.tv_home_health_info_more);
+                viewHolder.tv_home_sufferer_head_view_result = (TextView) view.findViewById(R.id.tv_home_sufferer_head_view_result);
                 viewHolder.setSuffererAttrs(map);
             }
             return view;
@@ -133,7 +134,8 @@ public class HealthInfoListViewAdapter<T> extends ArrayAdapter<T> {
                 tv_home_current_week_sugar_analyze,
                 tv_home_today_blood_sugar,
                 tv_home_today_date,
-                tv_home_health_info_more;
+                tv_home_health_info_more,
+                tv_home_sufferer_head_view_result;
         public ImageView image_health_info_tuijian;
         public RoundedImageView image_health_info;
         public ConvenientBanner banner_doctor_home;
@@ -150,12 +152,24 @@ public class HealthInfoListViewAdapter<T> extends ArrayAdapter<T> {
         }
 
         public void setSuffererAttrs(Map<String, Object> item) {
-            if(String.valueOf(item.get("todayBloodSugarLog")).equals("null")) {
+            if (String.valueOf(item.get("todayBloodSugarLog")).equals("null")) {
                 tv_home_today_blood_sugar.setText("——");
                 tv_home_today_blood_sugar.setClickable(false);
+                tv_home_sufferer_head_view_result.setText("点击左边，记录血糖");
             } else {
                 tv_home_today_blood_sugar.setText(String.valueOf(item.get("todayBloodSugarLog")));
                 tv_home_today_blood_sugar.setClickable(true);
+                Double today_blood_sugar_d = Double.parseDouble(String.valueOf(item.get("todayBloodSugarLog")));
+                if (today_blood_sugar_d > 8.0) {
+                    tv_home_sufferer_head_view_result.setText(context.getResources().getString(R.string.blood_high));
+                    tv_home_today_blood_sugar.setTextColor(context.getResources().getColor(R.color.color_sugar_mark_high));
+                } else if (today_blood_sugar_d < 4.4) {
+                    tv_home_sufferer_head_view_result.setText(context.getResources().getString(R.string.blood_low));
+                    tv_home_today_blood_sugar.setTextColor(context.getResources().getColor(R.color.color_sugar_mark_low));
+                } else {
+                    tv_home_sufferer_head_view_result.setText(context.getResources().getString(R.string.blood_normal));
+                    tv_home_today_blood_sugar.setTextColor(context.getResources().getColor(R.color.color_sugar_mark_middle));
+                }
             }
             tv_home_today_date.setText(TextUtil.getTimeStr());
             List<BloodSugarLogBean> bloodSugarLogBeans = (List<BloodSugarLogBean>) item.get("bloodSugarLogBeans");

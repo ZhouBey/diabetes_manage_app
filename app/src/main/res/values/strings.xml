@@ -3,4 +3,8 @@
     <string name="tip_double_click_exit">再次点击退出糖助手</string>
     <string name="send_message_again">重新发送</string>
     <string name="send_msg_count_down">秒后重发</string>
+
+    <string name="blood_low">有些低血糖风险，建议您吃些东西缓解低血糖，控制不要太严格</string>
+    <string name="blood_normal">太棒了！血糖值正常。继续保持！</string>
+    <string name="blood_high">有高血糖风险，建议您少吃多运动，保持定期监测。</string>
 </resources>

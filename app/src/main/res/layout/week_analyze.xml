@@ -98,7 +98,7 @@
                 android:id="@id/water_drop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/view_sugar_mark_low"/>
+                android:layout_alignLeft="@id/view_sugar_mark_middle"/>
         </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -108,17 +108,17 @@
             android:layout_marginRight="20dp"
             android:orientation="horizontal">
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@mipmap/icon_week_analyze_result"
                 android:scaleType="fitCenter"/>
             <TextView
+                android:id="@+id/tv_week_analyze_general_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="false"
-                android:textSize="@dimen/font_size18"
+                android:textSize="@dimen/font_size15"
                 android:textColor="@color/font_deep_gray"
-                android:text="圣诞节了看说到空路径大四了放假了杀戮都市了发了多少了看电视了发大水了鲁大师了的水立方老大蓝调沙龙"
                 android:lineSpacingMultiplier="1.2"
                 android:layout_marginLeft="12dp"/>
         </LinearLayout>
@@ -130,17 +130,17 @@
             android:layout_marginRight="20dp"
             android:orientation="horizontal">
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="31dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@mipmap/icon_sugar_wrop"
                 android:scaleType="fitCenter"/>
             <TextView
+                android:id="@+id/tv_week_analyze_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="false"
-                android:textSize="@dimen/font_size18"
+                android:textSize="@dimen/font_size15"
                 android:textColor="@color/font_deep_gray"
-                android:text="圣分离式的路口放假了杀戮都市了发了多少了看电视了发大水了鲁大师了的水立方老大蓝调沙龙"
                 android:lineSpacingMultiplier="1.2"
                 android:layout_marginLeft="12dp"/>
         </LinearLayout>

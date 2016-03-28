@@ -39,19 +39,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="哈哈"
+                android:text="正常范围:4.4~8.8(午餐后)"
                 android:textColor="@color/font_deep_gray"
-                android:textSize="@dimen/font_size18"
-                android:visibility="gone" />
+                android:textSize="@dimen/font_size16" />
 
             <TextView
+                android:id="@+id/tv_home_sufferer_head_view_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="7dp"
                 android:ellipsize="end"
                 android:maxLines="3"
                 android:singleLine="false"
-                android:text="点击左边，记录血糖"
                 android:textColor="@color/font_gray"
                 android:textSize="@dimen/font_size15" />
 
