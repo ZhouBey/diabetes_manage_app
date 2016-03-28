@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.zpy.diabetes.app.BaseActivity;
@@ -18,7 +19,7 @@ import cn.smssdk.SMSSDK;
 public class RegisterForDoctorActivity extends BaseActivity implements BaseUIInterf, View.OnClickListener {
 
     private ActionBar actionBar;
-    private ImageView imageLeft;
+    private FrameLayout layoutLeft;
     private String phone;
 
     public String getPhone() {
@@ -41,8 +42,8 @@ public class RegisterForDoctorActivity extends BaseActivity implements BaseUIInt
         SMSSDK.initSDK(this, AppConfig.SMS_APPKEY, AppConfig.SMS_APPSECRET);
         actionBar = getSupportActionBar();
         ActivityUtil.showActionBar(myActionBar, actionBar, R.mipmap.back, -1, "医生注册");
-        imageLeft = myActionBar.getImageViewLeft();
-        imageLeft.setOnClickListener(this);
+        layoutLeft = myActionBar.getLayout_my_actionbar_left();
+        layoutLeft.setOnClickListener(this);
         ActivityUtil.switchoverFragment(this, new DoctorRegisterOneFragment(), R.id.contain_register_for_doctor);
     }
 
@@ -53,7 +54,7 @@ public class RegisterForDoctorActivity extends BaseActivity implements BaseUIInt
 
     @Override
     public void onClick(View v) {
-        if (v == imageLeft) {
+        if (v == layoutLeft) {
             this.finish();
         }
     }

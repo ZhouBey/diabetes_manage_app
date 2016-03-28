@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -36,7 +37,7 @@ public class MyDoctorAttentionActivity extends BaseActivity implements BaseUIInt
         View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private ActionBar actionBar;
-    private ImageView imageLeft;
+    private FrameLayout layoutLeft;
     private ListView listview_my_doctors;
     private List list;
     private Button btnLoadMore;
@@ -56,8 +57,8 @@ public class MyDoctorAttentionActivity extends BaseActivity implements BaseUIInt
     public void init() {
         actionBar = getSupportActionBar();
         ActivityUtil.showActionBar(myActionBar, actionBar, R.mipmap.back, -1, "我的关注");
-        imageLeft = myActionBar.getImageViewLeft();
-        imageLeft.setOnClickListener(this);
+        layoutLeft = myActionBar.getLayout_my_actionbar_left();
+        layoutLeft.setOnClickListener(this);
         listview_my_doctors = (ListView) findViewById(R.id.listview_my_doctors);
         list = new ArrayList();
         refreshLayoutMyAttention = (SwipeRefreshLayout) findViewById(R.id.refreshLayoutMyAttention);
@@ -77,7 +78,7 @@ public class MyDoctorAttentionActivity extends BaseActivity implements BaseUIInt
 
     @Override
     public void onClick(View v) {
-        if (v == imageLeft) {
+        if (v == layoutLeft) {
             this.finish();
         }
         if (v == btnLoadMore) {

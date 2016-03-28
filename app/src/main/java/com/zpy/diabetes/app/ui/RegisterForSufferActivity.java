@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.ActionBar;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +31,7 @@ import cn.smssdk.SMSSDK;
 public class RegisterForSufferActivity extends BaseActivity implements BaseUIInterf, View.OnClickListener {
 
     private ActionBar actionBar;
-    private ImageView imageLeft;
+    private FrameLayout layoutLeft;
     private LineEditText et_register_suffer_phone,
             et_register_suffer_password,
             et_register_suffer_confirm_password,
@@ -58,8 +59,8 @@ public class RegisterForSufferActivity extends BaseActivity implements BaseUIInt
         SMSSDK.initSDK(this, AppConfig.SMS_APPKEY, AppConfig.SMS_APPSECRET);
         actionBar = getSupportActionBar();
         ActivityUtil.showActionBar(myActionBar, actionBar, R.mipmap.back, -1, "患者注册");
-        imageLeft = myActionBar.getImageViewLeft();
-        imageLeft.setOnClickListener(this);
+        layoutLeft = myActionBar.getLayout_my_actionbar_left();
+        layoutLeft.setOnClickListener(this);
         tv_suffer_click_to_get_verify = (TextView) findViewById(R.id.tv_suffer_click_to_get_verify);
         tv_suffer_click_to_get_verify.setOnClickListener(this);
         tv_register_suffer = (TextView) findViewById(R.id.tv_register_suffer);
@@ -97,7 +98,7 @@ public class RegisterForSufferActivity extends BaseActivity implements BaseUIInt
 
     @Override
     public void onClick(View v) {
-        if (v == imageLeft) {
+        if (v == layoutLeft) {
             this.finish();
         }
         if (v == tv_suffer_click_to_get_verify) {

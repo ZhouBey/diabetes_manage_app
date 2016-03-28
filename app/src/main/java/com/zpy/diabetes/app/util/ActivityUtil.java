@@ -66,6 +66,8 @@ public class ActivityUtil {
         }
         if (leftImageID != -1) {
             myActionBar.setImageViewLeft(leftImageID);
+        } else {
+            myActionBar.getLayout_my_actionbar_left().setVisibility(View.GONE);
         }
         if (rightObject instanceof Integer) {
             int rightImageID = (int) rightObject;

@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -37,7 +38,7 @@ import java.util.Map;
 public class MyParticipateActivity extends BaseActivity implements View.OnClickListener, BaseUIInterf, SwipeRefreshLayout.OnRefreshListener {
 
     private ActionBar actionBar;
-    private ImageView imageLeft;
+    private FrameLayout layoutLeft;
 
     private ListView listview_my_question;
     private List list;
@@ -53,6 +54,7 @@ public class MyParticipateActivity extends BaseActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_question);
         init();
+        show();
     }
 
     @Override
@@ -66,8 +68,8 @@ public class MyParticipateActivity extends BaseActivity implements View.OnClickL
             ActivityUtil.showActionBar(myActionBar, actionBar, R.mipmap.back, -1, "我的提问");
             requestUrl = AppConfig.GET_MY_QUESTION_LIST;
         }
-        imageLeft = myActionBar.getImageViewLeft();
-        imageLeft.setOnClickListener(this);
+        layoutLeft = myActionBar.getLayout_my_actionbar_left();
+        layoutLeft.setOnClickListener(this);
         listview_my_question = (ListView) findViewById(R.id.listview_my_question);
         refreshLayoutMyQuestion = (SwipeRefreshLayout) findViewById(R.id.refreshLayoutMyQuestion);
         ActivityUtil.setSwipeRefreshLayout(this, refreshLayoutMyQuestion);
@@ -120,7 +122,7 @@ public class MyParticipateActivity extends BaseActivity implements View.OnClickL
                                     Intent intent = new Intent(MyParticipateActivity.this, AnswerActivity.class);
                                     Bundle bundle = new Bundle();
                                     bundle.putSerializable("question", questionBeans.get(position));
-                                    bundle.putString("suffer_phone",getApp().getShareDataStr(AppConfig.PHONE));
+                                    bundle.putString("suffer_phone", getApp().getShareDataStr(AppConfig.PHONE));
                                     intent.putExtras(bundle);
                                     startActivity(intent);
                                 }
@@ -153,14 +155,17 @@ public class MyParticipateActivity extends BaseActivity implements View.OnClickL
                 }
             });
         } else {
+            if (refreshLayoutMyQuestion != null && refreshLayoutMyQuestion.isRefreshing()) {
+                refreshLayoutMyQuestion.setRefreshing(false);
+            }
             Intent intent = new Intent(MyParticipateActivity.this, LoginActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, 0);
         }
     }
 
     @Override
     public void onClick(View v) {
-        if (v == imageLeft) {
+        if (v == layoutLeft) {
             this.finish();
         }
         if (v == btnLoadMore) {
@@ -176,8 +181,13 @@ public class MyParticipateActivity extends BaseActivity implements View.OnClickL
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        show();
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == AppConfig.LOGIN_OK_RESULT) {
+            currentPage = 1;
+            show();
+        } else {
+            this.finish();
+        }
     }
 }

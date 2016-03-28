@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <FrameLayout
+        android:id="@+id/layout_my_actionbar_left"
         android:layout_width="50dp"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
@@ -41,7 +42,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_toLeftOf="@id/image_title_bar_right"
-        android:layout_toRightOf="@id/image_title_bar_left"
+        android:layout_toRightOf="@id/layout_my_actionbar_left"
         android:scaleType="fitCenter" />
 
     <TextView
@@ -66,7 +67,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_toLeftOf="@id/image_title_bar_right"
-        android:layout_toRightOf="@id/image_title_bar_left"
+        android:layout_toRightOf="@id/layout_my_actionbar_left"
         android:gravity="center"
         android:orientation="vertical" />
 </RelativeLayout>

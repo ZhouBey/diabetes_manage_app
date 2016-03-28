@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -32,7 +33,7 @@ public class HealthInfoCenterActivity extends BaseActivity implements BaseUIInte
         View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private ActionBar actionBar;
-    private ImageView leftImage;
+    private FrameLayout layoutLeft;
     private ListView listview_health_info;
     private List list;
     private HealthInfoListViewAdapter adapter;
@@ -52,8 +53,8 @@ public class HealthInfoCenterActivity extends BaseActivity implements BaseUIInte
     public void init() {
         actionBar = getSupportActionBar();
         ActivityUtil.showActionBar(myActionBar, actionBar, R.mipmap.back, -1, "资讯中心");
-        leftImage = myActionBar.getImageViewLeft();
-        leftImage.setOnClickListener(this);
+        layoutLeft = myActionBar.getLayout_my_actionbar_left();
+        layoutLeft.setOnClickListener(this);
         listview_health_info = (ListView) findViewById(R.id.listview_health_info);
         list = new ArrayList();
         refreshLayoutHealthInfoCenter = (SwipeRefreshLayout) findViewById(R.id.refreshLayoutHealthInfoCenter);
@@ -137,7 +138,7 @@ public class HealthInfoCenterActivity extends BaseActivity implements BaseUIInte
 
     @Override
     public void onClick(View v) {
-        if (v == leftImage) {
+        if (v == layoutLeft) {
             this.finish();
         }
         if(v == btnLoadMore) {

@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -22,7 +23,7 @@ import com.zpy.diabetes.app.widget.acpf.ACProgressFlower;
 public class FeedBackActivity extends BaseActivity implements BaseUIInterf,View.OnClickListener {
 
     private ActionBar actionBar;
-    private ImageView imageLeft;
+    private FrameLayout layoutLeft;
     private EditText et_opinion_content;
     private Button btn_feed_back_submit;
     private ACProgressFlower loadingDialog;
@@ -37,8 +38,8 @@ public class FeedBackActivity extends BaseActivity implements BaseUIInterf,View.
     public void init() {
         actionBar = getSupportActionBar();
         ActivityUtil.showActionBar(myActionBar,actionBar, R.mipmap.back,-1,"意见反馈");
-        imageLeft = myActionBar.getImageViewLeft();
-        imageLeft.setOnClickListener(this);
+        layoutLeft = myActionBar.getLayout_my_actionbar_left();
+        layoutLeft.setOnClickListener(this);
         et_opinion_content = (EditText) findViewById(R.id.et_opinion_content);
         btn_feed_back_submit = (Button) findViewById(R.id.btn_feed_back_submit);
         btn_feed_back_submit.setOnClickListener(this);
@@ -52,7 +53,7 @@ public class FeedBackActivity extends BaseActivity implements BaseUIInterf,View.
 
     @Override
     public void onClick(View v) {
-        if(v == imageLeft) {
+        if(v == layoutLeft) {
             this.finish();
         }
         if(v == btn_feed_back_submit) {

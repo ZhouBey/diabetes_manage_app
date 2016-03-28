@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -38,7 +39,7 @@ public class LoginActivity extends BaseActivity implements BaseUIInterf, View.On
     private TextView tv_login_register,
             tv_login_forget_password,
             tv_login;
-    private ImageView imageLeft;
+    private FrameLayout layoutLeft;
     private RadioButton radio_suffer,
             radio_doctor;
     private String phone,
@@ -62,8 +63,8 @@ public class LoginActivity extends BaseActivity implements BaseUIInterf, View.On
         ActivityUtil.showActionBar(myActionBar, actionBar, R.mipmap.back, -1, "登录");
         tv_login_register = (TextView) findViewById(R.id.tv_login_register);
         tv_login_register.setOnClickListener(this);
-        imageLeft = myActionBar.getImageViewLeft();
-        imageLeft.setOnClickListener(this);
+        layoutLeft = myActionBar.getLayout_my_actionbar_left();
+        layoutLeft.setOnClickListener(this);
         radio_suffer = (RadioButton) findViewById(R.id.radio_suffer);
         radio_doctor = (RadioButton) findViewById(R.id.radio_doctor);
         tv_login_forget_password = (TextView) findViewById(R.id.tv_login_forget_password);
@@ -86,7 +87,7 @@ public class LoginActivity extends BaseActivity implements BaseUIInterf, View.On
         if (v == tv_login_register) {
             showSelectRole();
         }
-        if (v == imageLeft) {
+        if (v == layoutLeft) {
             this.finish();
         }
         if (v == tv_login_forget_password) {

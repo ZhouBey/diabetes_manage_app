@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -46,7 +47,7 @@ import java.util.Map;
 public class AnswerActivity extends BaseActivity implements BaseUIInterf, View.OnClickListener {
 
     private ActionBar actionBar;
-    private ImageView leftImage;
+    private FrameLayout layoutLeft;
     private ListView listview_answer;
     private View headView;
     private AnswerListViewAdapter adapter;
@@ -79,8 +80,8 @@ public class AnswerActivity extends BaseActivity implements BaseUIInterf, View.O
     public void init() {
         actionBar = getSupportActionBar();
         ActivityUtil.showActionBar(myActionBar, actionBar, R.mipmap.back, -1, "问题详情");
-        leftImage = myActionBar.getImageViewLeft();
-        leftImage.setOnClickListener(this);
+        layoutLeft = myActionBar.getLayout_my_actionbar_left();
+        layoutLeft.setOnClickListener(this);
         listview_answer = (ListView) findViewById(R.id.listview_answer);
         headView = View.inflate(this, R.layout.answer_head_view, null);
         listview_answer.addHeaderView(headView);
@@ -151,7 +152,7 @@ public class AnswerActivity extends BaseActivity implements BaseUIInterf, View.O
 
     @Override
     public void onClick(View v) {
-        if (v == leftImage) {
+        if (v == layoutLeft) {
             this.finish();
         }
         if (v == tv_doctor_submit_reply) {

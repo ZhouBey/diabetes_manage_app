@@ -115,14 +115,17 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
             case 0:
                 myActionBar.setActionBarTitle("糖助手");
                 myActionBar.setImageViewRight(-1);
+                myActionBar.setImageViewLeft(-1);
                 break;
             case 1:
                 myActionBar.setActionBarTitle("发现");
                 myActionBar.setImageViewRight(-1);
+                myActionBar.setImageViewLeft(-1);
                 break;
             case 2:
                 myActionBar.setActionBarTitle("我的");
                 myActionBar.setImageViewRight(-1);
+                myActionBar.setImageViewLeft(-1);
                 break;
         }
     }

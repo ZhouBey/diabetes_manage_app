@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -60,7 +61,7 @@ import java.util.List;
 public class MyAccountActivity extends BaseActivity implements BaseUIInterf, View.OnClickListener {
 
     private ActionBar actionBar;
-    private ImageView imageLeft;
+    private FrameLayout layoutLeft;
     private CircularImageView image_my_account_info_photo;
     private RelativeLayout layout_account_info_name,
             layout_account_info_phone,
@@ -96,8 +97,8 @@ public class MyAccountActivity extends BaseActivity implements BaseUIInterf, Vie
     public void init() {
         actionBar = getSupportActionBar();
         ActivityUtil.showActionBar(myActionBar, actionBar, R.mipmap.back, -1, "我的账户");
-        imageLeft = myActionBar.getImageViewLeft();
-        imageLeft.setOnClickListener(this);
+        layoutLeft = myActionBar.getLayout_my_actionbar_left();
+        layoutLeft.setOnClickListener(this);
         bundle = getIntent().getExtras();
         suffererBean = (SuffererBean) bundle.getSerializable("sufferer");
         image_my_account_info_photo = (CircularImageView) findViewById(R.id.image_my_account_info_photo);
@@ -168,7 +169,7 @@ public class MyAccountActivity extends BaseActivity implements BaseUIInterf, Vie
 
     @Override
     public void onClick(View v) {
-        if (v == imageLeft) {
+        if (v == layoutLeft) {
             if (isRefresh) {
                 Intent intent_refresh_account = new Intent(AppConfig.REFRESH_ACCOUNT_ACTION);
                 sendBroadcast(intent_refresh_account);

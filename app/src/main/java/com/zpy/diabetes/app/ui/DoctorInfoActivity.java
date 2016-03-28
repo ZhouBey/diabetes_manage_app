@@ -1,6 +1,5 @@
 package com.zpy.diabetes.app.ui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,6 +14,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -50,8 +50,8 @@ import java.io.File;
 public class DoctorInfoActivity extends BaseActivity implements BaseUIInterf, View.OnClickListener {
 
     private ActionBar actionBar;
-    private ImageView leftImage,
-            image_doctor_info_certificate;
+    private FrameLayout layoutLeft;
+    private ImageView image_doctor_info_certificate;
     private CircularImageView image_doctors_info_photo;
     private Bundle bundle;
     private DoctorBean doctorBean;
@@ -78,8 +78,8 @@ public class DoctorInfoActivity extends BaseActivity implements BaseUIInterf, Vi
     public void init() {
         actionBar = getSupportActionBar();
         ActivityUtil.showActionBar(myActionBar, actionBar, R.mipmap.back, -1, "");
-        leftImage = myActionBar.getImageViewLeft();
-        leftImage.setOnClickListener(this);
+        layoutLeft = myActionBar.getLayout_my_actionbar_left();
+        layoutLeft.setOnClickListener(this);
         image_doctor_info_certificate = (ImageView) findViewById(R.id.image_doctor_info_certificate);
         bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -213,7 +213,7 @@ public class DoctorInfoActivity extends BaseActivity implements BaseUIInterf, Vi
 
     @Override
     public void onClick(View v) {
-        if (v == leftImage) {
+        if (v == layoutLeft) {
             Intent intent_refresh_account = new Intent(AppConfig.REFRESH_ACCOUNT_ACTION);
             sendBroadcast(intent_refresh_account);
             this.finish();

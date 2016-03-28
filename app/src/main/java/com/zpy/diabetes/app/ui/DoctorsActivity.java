@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -36,7 +37,7 @@ import java.util.Map;
 public class DoctorsActivity extends BaseActivity implements BaseUIInterf, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private ActionBar actionBar;
-    private ImageView leftImage;
+    private FrameLayout layoutLeft;
     private ListView listview_doctors;
     private List list;
     private DoctorListViewAdapter adapter;
@@ -60,8 +61,8 @@ public class DoctorsActivity extends BaseActivity implements BaseUIInterf, View.
     public void init() {
         actionBar = getSupportActionBar();
         ActivityUtil.showActionBar(myActionBar, actionBar, R.mipmap.back, -1, "医生团队");
-        leftImage = myActionBar.getImageViewLeft();
-        leftImage.setOnClickListener(this);
+        layoutLeft = myActionBar.getLayout_my_actionbar_left();
+        layoutLeft.setOnClickListener(this);
         listview_doctors = (ListView) findViewById(R.id.listview_doctors);
         list = new ArrayList();
         refreshLayoutDoctorList = (SwipeRefreshLayout) findViewById(R.id.refreshLayoutDoctorList);
@@ -165,7 +166,7 @@ public class DoctorsActivity extends BaseActivity implements BaseUIInterf, View.
 
     @Override
     public void onClick(View v) {
-        if (v == leftImage) {
+        if (v == layoutLeft) {
             this.finish();
         }
         if (v == btnLoadMore) {

@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.text.Html;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,8 +27,8 @@ import org.xutils.x;
 public class HealthInfoDetailsActivity extends BaseActivity implements BaseUIInterf, View.OnClickListener {
 
     private ActionBar actionBar;
-    private ImageView leftImage,
-            image_health_info_details;
+    private FrameLayout layoutLeft;
+    private ImageView image_health_info_details;
     private Bundle bundle;
     private HealthInfoBean healthInfoBean;
     private TextView tv_health_detail_title,
@@ -46,8 +47,8 @@ public class HealthInfoDetailsActivity extends BaseActivity implements BaseUIInt
     public void init() {
         actionBar = getSupportActionBar();
         ActivityUtil.showActionBar(myActionBar, actionBar, R.mipmap.back, -1, "资讯详情");
-        leftImage = myActionBar.getImageViewLeft();
-        leftImage.setOnClickListener(this);
+        layoutLeft = myActionBar.getLayout_my_actionbar_left();
+        layoutLeft.setOnClickListener(this);
         image_health_info_details = (ImageView) findViewById(R.id.image_health_info_details);
         bundle = getIntent().getExtras();
         healthInfoBean = (HealthInfoBean) bundle.getSerializable("healthInfo");
@@ -95,7 +96,7 @@ public class HealthInfoDetailsActivity extends BaseActivity implements BaseUIInt
 
     @Override
     public void onClick(View v) {
-        if (v == leftImage) {
+        if (v == layoutLeft) {
             this.finish();
         }
     }

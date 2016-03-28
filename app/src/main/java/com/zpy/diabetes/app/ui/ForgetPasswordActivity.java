@@ -3,6 +3,7 @@ package com.zpy.diabetes.app.ui;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.zpy.diabetes.app.BaseActivity;
@@ -13,7 +14,7 @@ import com.zpy.diabetes.app.util.ActivityUtil;
 public class ForgetPasswordActivity extends BaseActivity implements BaseUIInterf,View.OnClickListener {
 
     private ActionBar actionBar;
-    private ImageView imageLeft;
+    private FrameLayout layoutLeft;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +27,8 @@ public class ForgetPasswordActivity extends BaseActivity implements BaseUIInterf
     public void init() {
         actionBar = getSupportActionBar();
         ActivityUtil.showActionBar(myActionBar,actionBar, R.mipmap.back,-1,"找回密码");
-        imageLeft = myActionBar.getImageViewLeft();
-        imageLeft.setOnClickListener(this);
+        layoutLeft = myActionBar.getLayout_my_actionbar_left();
+        layoutLeft.setOnClickListener(this);
     }
 
     @Override
@@ -37,7 +38,7 @@ public class ForgetPasswordActivity extends BaseActivity implements BaseUIInterf
 
     @Override
     public void onClick(View v) {
-        if(v == imageLeft) {
+        if(v == layoutLeft) {
             this.finish();
         }
     }

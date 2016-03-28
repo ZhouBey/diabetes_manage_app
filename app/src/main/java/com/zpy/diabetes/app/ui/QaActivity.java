@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -42,7 +43,7 @@ public class QaActivity extends BaseActivity implements BaseUIInterf, View.OnCli
     private SwipeRefreshLayout refreshLayoutQuestion;
     private Button btnLoadMore;
     private int currentPage;
-    private ImageView imageLeft;
+    private FrameLayout layoutLeft;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +68,8 @@ public class QaActivity extends BaseActivity implements BaseUIInterf, View.OnCli
         btnLoadMore.setOnClickListener(this);
         listview_question.addFooterView(btnLoadMore);
         currentPage = 1;
-        imageLeft = myActionBar.getImageViewLeft();
-        imageLeft.setOnClickListener(this);
+        layoutLeft = myActionBar.getLayout_my_actionbar_left();
+        layoutLeft.setOnClickListener(this);
     }
 
     @Override
@@ -142,7 +143,7 @@ public class QaActivity extends BaseActivity implements BaseUIInterf, View.OnCli
 
     @Override
     public void onClick(View v) {
-        if (v == imageLeft) {
+        if (v == layoutLeft) {
             this.finish();
         }
         if (v == layout_ask_question) {

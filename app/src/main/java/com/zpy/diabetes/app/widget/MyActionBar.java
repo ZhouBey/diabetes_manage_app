@@ -4,6 +4,7 @@ package com.zpy.diabetes.app.widget;
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -12,8 +13,17 @@ import com.zpy.diabetes.app.R;
 
 
 public class MyActionBar {
-    public ImageView imageViewLeft, imageViewRight, imageViewCentre;
+    public ImageView imageViewRight, imageViewCentre, image_title_bar_left;
     public Context context;
+    public FrameLayout layout_my_actionbar_left;
+
+    public FrameLayout getLayout_my_actionbar_left() {
+        return layout_my_actionbar_left;
+    }
+
+    public void setLayout_my_actionbar_left(FrameLayout layout_my_actionbar_left) {
+        this.layout_my_actionbar_left = layout_my_actionbar_left;
+    }
 
     public LinearLayout getLayout_action_bar_centre() {
         return layout_action_bar_centre;
@@ -21,10 +31,6 @@ public class MyActionBar {
 
 
     public LinearLayout layout_action_bar_centre;
-
-    public ImageView getImageViewLeft() {
-        return imageViewLeft;
-    }
 
 
     public ImageView getImageViewRight() {
@@ -47,9 +53,10 @@ public class MyActionBar {
     public MyActionBar(Activity context) {
         this.context = context;
         rootView = context.getLayoutInflater().inflate(R.layout.my_action_bar, null);
-        imageViewLeft = (ImageView) rootView.findViewById(R.id.image_title_bar_left);
+        layout_my_actionbar_left = (FrameLayout) rootView.findViewById(R.id.layout_my_actionbar_left);
         imageViewRight = (ImageView) rootView.findViewById(R.id.image_title_bar_right);
         imageViewCentre = (ImageView) rootView.findViewById(R.id.image_title_bar_centre);
+        image_title_bar_left = (ImageView) rootView.findViewById(R.id.image_title_bar_left);
         tv_action_bar_title = (TextView) rootView.findViewById(R.id.tv_action_bar_title);
         layout_action_bar_centre = (LinearLayout) rootView.findViewById(R.id.layout_action_bar_centre);
         tv_title_bar_right = (TextView) rootView.findViewById(R.id.tv_title_bar_right);
@@ -58,10 +65,10 @@ public class MyActionBar {
 
     public void setImageViewLeft(int imageID) {
         if (imageID != -1) {
-            imageViewLeft.setVisibility(View.VISIBLE);
-            imageViewLeft.setImageResource(imageID);
+            image_title_bar_left.setVisibility(View.VISIBLE);
+            image_title_bar_left.setImageResource(imageID);
         } else {
-            imageViewLeft.setVisibility(View.INVISIBLE);
+            layout_my_actionbar_left.setVisibility(View.GONE);
         }
     }
 

@@ -52,8 +52,7 @@ public class UserFragment extends Fragment implements BaseUIInterf, View.OnClick
     private String token;
     private SuffererBean suffererBean;
     private DoctorBean doctorBean;
-    private ImageView image_user_about_question,
-            image_my_doctor_or_sufferer;
+    private ImageView image_user_about_question;
 
     View view_user_fragment;
 
@@ -90,7 +89,6 @@ public class UserFragment extends Fragment implements BaseUIInterf, View.OnClick
         tv_user_about_question = (TextView) rootView.findViewById(R.id.tv_user_about_question);
         image_user_about_question = (ImageView) rootView.findViewById(R.id.image_user_about_question);
         tv_my_doctor_or_sufferer = (TextView) rootView.findViewById(R.id.tv_my_doctor_or_sufferer);
-        image_my_doctor_or_sufferer = (ImageView) rootView.findViewById(R.id.image_my_doctor_or_sufferer);
         view_user_fragment = rootView.findViewById(R.id.view_user_fragment);
     }
 

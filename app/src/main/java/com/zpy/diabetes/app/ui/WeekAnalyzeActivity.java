@@ -3,6 +3,7 @@ package com.zpy.diabetes.app.ui;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -24,7 +25,7 @@ import java.util.List;
 public class WeekAnalyzeActivity extends BaseActivity implements BaseUIInterf, View.OnClickListener {
 
     private ActionBar actionBar;
-    private ImageView imageLeft;
+    private FrameLayout layoutLeft;
     private WaterDrop water_drop;
     private TextView tv_week_analyze_general_comment,
             tv_week_analyze_detail;
@@ -47,8 +48,8 @@ public class WeekAnalyzeActivity extends BaseActivity implements BaseUIInterf, V
     public void init() {
         actionBar = getSupportActionBar();
         ActivityUtil.showActionBar(myActionBar, actionBar, R.mipmap.back, -1, "评价与建议");
-        imageLeft = myActionBar.getImageViewLeft();
-        imageLeft.setOnClickListener(this);
+        layoutLeft = myActionBar.getLayout_my_actionbar_left();
+        layoutLeft.setOnClickListener(this);
         water_drop = (WaterDrop) findViewById(R.id.water_drop);
         tv_week_analyze_general_comment = (TextView) findViewById(R.id.tv_week_analyze_general_comment);
         tv_week_analyze_detail = (TextView) findViewById(R.id.tv_week_analyze_detail);
@@ -93,7 +94,7 @@ public class WeekAnalyzeActivity extends BaseActivity implements BaseUIInterf, V
 
     @Override
     public void onClick(View v) {
-        if (v == imageLeft) {
+        if (v == layoutLeft) {
             this.finish();
         }
     }
